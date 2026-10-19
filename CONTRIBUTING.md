@@ -1,0 +1,30 @@
+# Contributing
+
+Session Control is a workflow skill for durable role-based chats. Changes should improve an observed coordination problem without requiring a new agent runtime.
+
+## Validate locally
+
+From the repository root, with Python 3.10 or later:
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python scripts/validate.py
+.venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v
+```
+
+On Windows use `.venv\Scripts\python.exe`. The development dependency parses YAML; running the skill itself needs no Python or packages. Validation is read-only and does not create sessions or call providers.
+
+## Report a problem
+
+Include the skill version, host/client and available tools, the minimal user request, expected and observed behavior, and which evidence was actually checked. Redact credentials, personal paths, private chat IDs, internal document links and transcripts. Do not publish raw session exports. For a security-sensitive issue, use the host repository's private vulnerability reporting if enabled; otherwise contact the maintainer through a private channel before sharing details publicly.
+
+## Propose a change
+
+Keep the main Skill short; place mode-specific instructions in the relevant reference. Preserve existing authorization, stop conditions and historical evidence. Record a reproducer before changing behavior and evaluate the changed path afterward. A baseline that already passes is a valid observation, not a failed test to relabel. Add small executable tests for new scripts; prose behavior requires actual agent outcomes, not keyword counts.
+
+Change the portable manifest, compatibility manifest and Skill metadata version together. Keep the README, examples and current evidence in sync. Historical test reports retain their original version and limitations. Update the CI action pins deliberately; do not add execution hooks or telemetry by default.
+
+Native E2E runs require explicit human authorization to create and message real chats. Follow [the reproduction protocol](tests/native-e2e.md); do not launch native sessions automatically from CI. Passing static CI does not prove model behavior, cross-client compatibility or archival safety.
+
+Contributions are offered under this repository's [MIT license](LICENSE). Third-party source material retains its own license; add attribution when copying material, and prefer linking to upstream references.

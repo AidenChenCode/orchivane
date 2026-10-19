@@ -1,0 +1,6 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "session-control",
+  "version": "0.3.0",
+  "description": "从零调研与沟通，设计总控多会话机制，统一派工、验收、巡检与安全交接。"
+}

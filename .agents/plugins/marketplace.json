@@ -1,0 +1,12 @@
+{
+  "name": "session-control-local",
+  "interface": { "displayName": "Session Control" },
+  "plugins": [
+    {
+      "name": "session-control",
+      "source": { "source": "local", "path": "./" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Productivity"
+    }
+  ]
+}

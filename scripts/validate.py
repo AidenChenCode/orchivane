@@ -1,0 +1,188 @@
+#!/usr/bin/env python3
+"""Offline release checks, not a complete official schema or secret scanner."""
+import argparse
+import json
+import os
+from pathlib import Path
+import re
+import sys
+from urllib.parse import unquote, urlsplit
+
+try:
+    import yaml
+except ImportError:
+    sys.exit('ERROR: PyYAML is required for development checks; install requirements-dev.txt.')
+
+EXCLUDED = {'.git', '.venv', 'venv', '__pycache__', 'dist', 'build',
+            'node_modules', '.pytest_cache', '.mypy_cache', '.ruff_cache', '.runtime'}
+PRIVATE = {
+    'personal absolute path': re.compile(r'(?:/(?:Users|home)/[\w.-]+(?:/|\b)|[A-Za-z]:\\Users\\[\w.-]+)', re.I),
+    'private thread link': re.compile(r'codex://' r'threads/[^\s\x22\x27]+'),
+    'possible credential': re.compile(r'\b(?:sk-(?:proj-)?[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|AKIA[A-Z0-9]{16})\b'),
+}
+
+
+def validate(root):
+    errors = []
+
+    def error(path, message):
+        errors.append(f'{path.relative_to(root)}: {message}')
+
+    def inside(path, value, base):
+        if not isinstance(value, str) or not value.strip():
+            error(path, 'path must be a nonempty string')
+            return None
+        target = (base / value).resolve()
+        if not target.is_relative_to(root):
+            error(path, f'path escapes package root: {value}')
+            return None
+        if not target.exists():
+            error(path, f'missing path: {value}')
+            return None
+        if any(part in EXCLUDED for part in target.relative_to(root).parts):
+            error(path, f'path points into excluded files: {value}')
+            return None
+        return target
+
+    def mapping(path, parser, content=None):
+        try:
+            value = parser(path.read_text(encoding='utf-8') if content is None else content)
+            if not isinstance(value, dict):
+                raise ValueError('expected a mapping/object')
+            return value
+        except (OSError, UnicodeError, ValueError, yaml.YAMLError) as exc:
+            error(path, f'invalid or unreadable data ({type(exc).__name__})')
+            return {}
+
+    manifests = [root / 'plugin.json', root / '.codex-plugin/plugin.json']
+    configs = [mapping(path, json.loads) for path in manifests]
+    for key in ('name', 'version'):
+        for path, config in zip(manifests, configs):
+            if not isinstance(config.get(key), str) or not config[key].strip():
+                error(path, f'{key} must be a nonempty string')
+        if configs[0].get(key) != configs[1].get(key):
+            error(manifests[1], f'{key} differs from root plugin.json')
+    skill_roots = [inside(path, config.get('skills', './skills/'), root)
+                   for path, config in zip(manifests, configs)]
+    if skill_roots[0] != skill_roots[1]:
+        error(manifests[1], 'skills path differs from root plugin.json')
+    skill_root = skill_roots[0]
+    skills = sorted(skill_root.glob('*/SKILL.md')) if skill_root and skill_root.is_dir() else []
+    if not skills:
+        error(manifests[0], 'skills path must contain skill directories with SKILL.md')
+    for path in skills:
+        try:
+            text = path.read_text(encoding='utf-8')
+        except (OSError, UnicodeError):
+            error(path, 'cannot read SKILL.md')
+            continue
+        match = re.match(r'\A---\r?\n(.*?)\r?\n---(?:\r?\n|$)', text, re.S)
+        if not match:
+            error(path, 'missing YAML frontmatter')
+            continue
+        meta = mapping(path, yaml.safe_load, match[1])
+        name = meta.get('name')
+        if (not isinstance(name, str) or len(name) > 64 or
+                not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', name) or name != path.parent.name):
+            error(path, 'name must match its directory and use lowercase letters, digits and single hyphens (max 64)')
+        description = meta.get('description')
+        if (not isinstance(description, str) or not description.strip() or
+                len(description) > 1024 or '<' in description or '>' in description):
+            error(path, 'description must be nonempty text, at most 1024 characters, without angle brackets')
+        metadata = meta.get('metadata', {})
+        if not isinstance(metadata, dict):
+            error(path, 'metadata must be a mapping')
+        elif 'version' in metadata and metadata['version'] != configs[0].get('version'):
+            error(path, 'metadata.version differs from plugin version')
+        ui_path = path.parent / 'agents/openai.yaml'
+        ui = mapping(ui_path, yaml.safe_load).get('interface')
+        if not isinstance(ui, dict):
+            error(ui_path, 'interface must be a mapping')
+            continue
+        short = ui.get('short_description')
+        if not isinstance(short, str) or not 25 <= len(short) <= 64:
+            error(ui_path, 'short_description must be 25–64 characters')
+        prompt = ui.get('default_prompt')
+        if not isinstance(prompt, str) or not prompt.strip() or f'${path.parent.name}' not in prompt:
+            error(ui_path, 'default_prompt must be nonempty and mention $' + path.parent.name)
+
+    for relative in ('marketplace.json', '.agents/plugins/marketplace.json',
+                     '.codex-plugin/marketplace.json', '.claude-plugin/marketplace.json'):
+        path = root / relative
+        if not path.exists():
+            continue
+        entries = mapping(path, json.loads).get('plugins')
+        if not isinstance(entries, list) or not entries:
+            error(path, 'plugins must be a nonempty list')
+            continue
+        for entry in entries:
+            source = entry.get('source') if isinstance(entry, dict) else None
+            local = source.get('path') if isinstance(source, dict) else source
+            target = inside(path, local, root)
+            if target and not target.is_dir():
+                error(path, 'source path must be a directory')
+
+    count = 0
+    for directory, dirs, files in os.walk(root, followlinks=False):
+        dirs[:] = sorted(name for name in dirs if name not in EXCLUDED)
+        for name in list(dirs):
+            path = Path(directory) / name
+            if path.is_symlink():
+                inside(path, name, Path(directory))
+                dirs.remove(name)
+        for name in sorted(files):
+            path = Path(directory) / name
+            if path.suffix in {'.pyc', '.pyo'} or name == '.DS_Store':
+                continue
+            if not inside(path, name, Path(directory)):
+                continue
+            count += 1
+            try:
+                text = path.read_text(encoding='utf-8')
+            except UnicodeError:
+                continue  # Binary assets are outside these text-only disclosure checks.
+            except OSError:
+                error(path, 'cannot read file')
+                continue
+            for label, pattern in PRIVATE.items():
+                for match in pattern.finditer(text):
+                    line = text.count('\n', 0, match.start()) + 1
+                    error(path, f'line {line}: {label}')
+            if path.suffix.lower() != '.md':
+                continue
+            # shortcut: ordinary Markdown links only; use a parser if HTML/complex syntax is introduced.
+            prose = re.sub(r'(?ms)^\s*(`{3,}|~{3,})[^\n]*\n.*?^\s*\1\s*$', '', text)
+            prose = re.sub(r'`+[^`\n]*`+', '', prose)
+            targets = re.findall(r'!?\[[^\]\n]*\]\(\s*(<[^>\n]+>|(?:[^\s()]+|\([^()\n]*\))+)', prose)
+            targets += re.findall(r'^\s{0,3}\[[^\]\n]+\]:\s*(<[^>\n]+>|\S+)', prose, re.M)
+            for target in targets:
+                target = target.strip('<>')
+                try:
+                    url = urlsplit(target)
+                except ValueError:
+                    error(path, f'invalid link: {target}')
+                    continue
+                if url.scheme or url.netloc or not url.path:
+                    continue
+                inside(path, unquote(url.path), path.parent)
+    return errors, count
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('root', nargs='?', type=Path, default=Path(__file__).resolve().parents[1])
+    root = parser.parse_args().root.resolve()
+    if not root.is_dir():
+        print('ERROR: package root must be an existing directory', file=sys.stderr)
+        return 1
+    errors, count = validate(root)
+    if errors:
+        for message in errors:
+            print('ERROR: ' + message, file=sys.stderr)
+        return 1
+    print(f'OK: static package checks passed ({count} files scanned).')
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
