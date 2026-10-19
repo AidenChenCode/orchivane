@@ -9,6 +9,12 @@
 - 静态校验通过，16项unittest通过；历史公开材料摘要仍逐项核对。更名没有新增协作行为，未重跑原生E2E、桌面发现、handoff或归档实验。
 - 公开仓库的远端验证以 [GitHub Actions](https://github.com/alexzhu0/orchivane/actions/workflows/validate.yml) 对应提交结果为准，不能仅凭本地通过宣称远端通过。
 
+### 同版后续：实际插件安装
+
+2026-10-19，用户提出像Superpowers、Ponytail一样通过插件安装。实际执行添加GitHub来源和安装插件命令（见README）；CLI0.157.1返回 `orchivane@orchivane-local`、版本0.3.1、installed=true、enabled=true。插件缓存的7份技能文件与源码逐字节一致。原独立Skill完整备份至扫描目录之外后，新app-server强制扫描只返回 `orchivane:orchivane`，来源为插件缓存，pluginId正确，无重复独立入口。配置修改前已私有备份，原生工具回执保留本地。
+
+本次补充README和兼容说明，无技能行为或清单变更；只运行相应静态检查，不重复之前已经通过的行为实验。桌面UI显示、新桌面对话加载及官方精选目录上架仍未验证或未执行，不把CLI结果视为此前桌面问题已解决。
+
 以下各节保留原验证时点、版本与名称。
 
 ## 0.3.0：真实原生实验与开源准备

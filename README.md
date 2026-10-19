@@ -46,6 +46,27 @@ Orchivane 把这些协作责任交给一个总控入口：总控先澄清目标�
 
 ## 安装与迁移
 
+### 插件安装（推荐）
+
+使用与其他 Codex 插件相同的“添加来源 → 安装插件”流程。无需先克隆仓库：
+
+```sh
+codex plugin marketplace add alexzhu0/orchivane
+codex plugin add orchivane@orchivane-local
+```
+
+上述命令已在 Codex CLI 0.157.1 实际完成：0.3.1插件安装并启用，技能从插件缓存发现为 `orchivane:orchivane`。可用下面的命令核对安装状态：
+
+```sh
+codex plugin list --marketplace orchivane-local --json
+```
+
+在支持本地来源的桌面客户端中，查看插件目录的 **Orchivane** 来源；如果目录未刷新，可在合适时机重启客户端后再查看。当前已验证CLI安装和缓存加载，尚未验证桌面UI显示或新桌面对话加载。流程依据 [OpenAI插件打包文档](https://developers.openai.com/plugins/build/plugins)，具体命令以本机CLI帮助为准。这是通过公开GitHub来源分发，尚未上架官方精选目录。
+
+插件安装后，可以说“使用 Orchivane 帮我组织这个项目”，或选择客户端显示的 `orchivane:orchivane` 技能。下文及独立安装的 `$orchivane` 示例指同一套规则。若此前已安装独立Skill，先完整备份到技能扫描目录之外，确认插件可用后仅保留一个活跃来源，避免重复加载；不要删除本地定制。
+
+### 独立 Skill 安装
+
 ```sh
 git clone https://github.com/alexzhu0/orchivane.git
 cd orchivane
@@ -66,7 +87,7 @@ test ! -e "$HOME/.agents/skills/orchivane" && test ! -L "$HOME/.agents/skills/or
 
 自动发现尚未生效时，可以明确要求助手“读取我安装目录中的 `orchivane/SKILL.md` 并按其流程工作”，提供真实完整路径。这是显式加载方式，应单独记录，不能当成自动发现或插件安装通过。
 
-插件使用者可在支持的客户端加载仓库内 `.agents/plugins/marketplace.json`；它仅把包列为可用，不自动启用。根 `plugin.json` 为 portable 格式，`.codex-plugin/plugin.json` 为兼容格式。不要同时启用插件和独立技能副本。插件 UI 安装尚需在目标客户端实际核验，格式依据 [OpenAI 插件打包文档](https://developers.openai.com/plugins/build/plugins)。本包没有后台调度或自动执行 hook。
+仓库内 `.agents/plugins/marketplace.json` 定义插件来源，根 `plugin.json` 为 portable 格式，`.codex-plugin/plugin.json` 为兼容格式。本包没有后台调度或自动执行 hook。
 
 旧的个人 `session-handoff` / `session-health-check` 可以继续保留。新技能内部已有完整交接与巡检流程，无运行时依赖；明确使用 `$orchivane` 即可进入统一机制。旧技能未自动改写，以免影响已有项目。
 

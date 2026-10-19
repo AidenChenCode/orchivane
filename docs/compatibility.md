@@ -8,7 +8,7 @@ Checked against primary documentation on 2026-10-19. Availability is a capabilit
 | Codex desktop with native chat tools | This release includes a real creation → dispatch → artifact → review experiment | A documented run on one host is not every account/client version |
 | Codex CLI / other skill clients | Instructions and records can be used | Native persistent-chat control must be verified separately; subagents are not a drop-in substitute |
 | Claude Code agent teams | Relevant conceptual comparison | No tested adapter or Claude plugin manifest in this release |
-| Portable / Codex plugin package | Root and compatibility manifests plus a repo-local catalog | Marketplace/UI installation is not certified by static validation |
+| Portable / Codex plugin package | GitHub marketplace add and CLI plugin install actually passed on 0.157.1 | Desktop UI installation and fresh desktop-chat loading remain unverified |
 
 The [Agent Skills specification](https://agentskills.io/specification) standardizes skill files and progressive loading; it does not standardize chat creation or archival. The core stays independent of a host, and the Codex reference documents native capabilities that must exist at execution time. Other clients can fall back to files and copyable task briefs without pretending a message was sent.
 
@@ -23,6 +23,10 @@ The [Agent Skills specification](https://agentskills.io/specification) standardi
 The observations below concern the former Session Control 0.3.0 name. Orchivane 0.3.1 is the rename release; current checks are recorded in the evaluation document. Historical discovery results are not silently reassigned to the new name.
 
 A full standalone copy in the documented user skill directory was discovered by Codex CLI 0.157.1 using app-server skills/list with forceReload=true, enabled=true, with no parsing errors. A symlink into this plugin repository appeared under a namespaced skill name in the CLI. Neither observation certifies the desktop skill catalog: three newly created desktop test chats did not list the skill, while an explicitly requested file read loaded version0.3.0 and all five references. Root cause remains unconfirmed. No desktop restart, plugin UI install or unrelated configuration changes were performed.
+
+## Orchivane plugin installation follow-up
+
+On 2026-10-19, `codex plugin marketplace add alexzhu0/orchivane` and `codex plugin add orchivane@orchivane-local` completed on CLI0.157.1. The plugin list reported installed=true and enabled=true for0.3.1. All seven skill files in the plugin cache matched the source; the standalone copy was preserved outside discovery directories. A fresh app-server scan returned exactly one `orchivane:orchivane` with pluginId `orchivane@orchivane-local`, enabled=true and a cache path. These checks establish CLI plugin installation and discovery, not desktop UI visibility or execution in a new desktop chat. No desktop restart or official-directory submission was performed.
 
 ## What is deliberately outside the package
 

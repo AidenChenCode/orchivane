@@ -43,6 +43,22 @@ The skill may recommend staying in one conversation for a small or unclear task.
 
 ## Install
 
+### Plugin installation (recommended)
+
+Add the GitHub marketplace source, then install the plugin. No manual clone is required:
+
+```sh
+codex plugin marketplace add alexzhu0/orchivane
+codex plugin add orchivane@orchivane-local
+codex plugin list --marketplace orchivane-local --json
+```
+
+Tested with Codex CLI 0.157.1: plugin0.3.1 is installed and enabled, and its cached skill is discovered as `orchivane:orchivane`. Say “Use Orchivane” or select the skill name shown by your client. A supported desktop client can expose the **Orchivane** source in its Plugins Directory; restart at a suitable time if that source has not refreshed. Desktop UI visibility and fresh desktop-chat loading have not been verified. See [official packaging guidance](https://developers.openai.com/plugins/build/plugins); command support depends on your installed CLI.
+
+This installs from the public GitHub source; Orchivane is not listed in the official curated directory. Preserve any existing standalone skill outside discovery directories and keep only one active installation source after verifying the plugin. Do not discard local customizations.
+
+### Standalone skill
+
 ```sh
 git clone https://github.com/alexzhu0/orchivane.git
 cd orchivane
