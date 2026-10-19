@@ -40,3 +40,23 @@
 ## 包装依据
 
 采用根 `plugin.json` 加兼容 `.codex-plugin/plugin.json`；技能可单独安装。依据读取时的 [官方打包文档](https://developers.openai.com/plugins/build/plugins) 与 [技能说明](https://developers.openai.com/plugins/concepts/skills)。本轮没有提交插件市场或验证跨客户端安装；清单存在不等于插件已安装。
+
+## 同领域项目补充对照与后续建议
+
+2026-10-19，为候选名 Baton 查重时发现两个同领域项目。此次读取下列固定版本的 Skill、协议及评测说明，未安装或执行它们；对其机制的描述来自文档，不是本项目验证过的效果。
+
+| 项目与固定版本 | 可借鉴之处 | 本项目的取舍 |
+| --- | --- | --- |
+| [cablate/baton](https://github.com/cablate/baton/tree/0ab4d2ec5c69820001eeac2a12fab2c87fd3e943) | 派工前评估单人替代方案、独立性、唯一写入主责和最终整合者；考虑重复阅读与整合成本 | setup 已包含小任务单会话及成本判断，可用实际反例验证，避免仅凭空闲并发槽开角色 |
+| [jpawchan/baton](https://github.com/jpawchan/baton/tree/ca53c1649f9d1242e51ac43fc3712513067fafcf) | 冻结实际派发的上下文；按任务、轮次、报告、差异摘要绑定审阅证据；运行租约防止旧进程覆盖新状态 | 保留原生会话工具，优先在现有任务记录中明确派发轮次和证据版本；目前没有引入其锁、租约、CLI或调度运行时的必要 |
+
+依据：[派工 Skill](https://github.com/cablate/baton/blob/0ab4d2ec5c69820001eeac2a12fab2c87fd3e943/SKILL.md)、[配对评测协议](https://github.com/cablate/baton/blob/0ab4d2ec5c69820001eeac2a12fab2c87fd3e943/benchmarks/case-01-multi-surface-refactor/protocol.md)、[任务与审阅规范](https://github.com/jpawchan/baton/blob/ca53c1649f9d1242e51ac43fc3712513067fafcf/SPEC.md)、[评测与历史冻结说明](https://github.com/jpawchan/baton/blob/ca53c1649f9d1242e51ac43fc3712513067fafcf/benchmarks/README.md)。
+
+以下是待决策的改进建议，尚未实现，也不扩大当前实验的修订预算：
+
+1. **先闭环安装体验。** 给新用户一个只读核验步骤，分别确认包版本、技能是否被当前宿主发现、所需原生能力及实际可用模式。优先定位已观察到的CLI能发现、桌面清单未出现问题；文件可读与插件安装成功分开记录。
+2. **让派工与验收可追溯到同一次尝试。** 复用现有变更记录，必要时保存派发轮次、冻结输入、工具返回及验收产物版本。补一个小型引用核验工具前先确认重复需求；它应覆盖我们实测失败的相对引用，而非再建一套任务数据库。
+3. **验证恢复能力。** 下一轮原生实验重点覆盖创建结果不确定、重复投递、过期回执、接班前主责冲突；另行授权和隔离真实handoff/归档验证。已有安全条款不能代替实际恢复证据。
+4. **验证拆分是否值得。** 用相同起点、相同任务和独立验收做小规模配对实验，保留失败和未完成样本。除了实际可得的耗时与成本，记录用户搬运上下文次数、重复解释、覆盖冲突和验收遗漏；不能从单次19/20推导质量或效率提升。
+
+本项目继续关注长期专业会话、唯一总控入口和跨阶段接班。共用原则按需吸收；没有真实用例与验收证据前，不扩建后台编排平台或把上游测量结果写成本项目收益。

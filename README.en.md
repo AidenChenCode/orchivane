@@ -2,6 +2,22 @@
 
 [中文](README.md) · [MIT](LICENSE) · [Contributing](CONTRIBUTING.md)
 
+## Who keeps the project moving across AI conversations?
+
+You open separate AI conversations for research, implementation and testing. Each can handle a task, while the coordination still lands on you:
+
+- Copying conclusions between windows and explaining the same constraints again.
+- Reconciling overlapping edits and work based on outdated interfaces.
+- Starting a fresh conversation without losing decisions, local changes or unfinished responsibilities.
+- Figuring out whether “done” means written, tested, accepted, pushed or deployed.
+- Deciding who should act next, what context they need and which result to trust.
+
+Session Control gives that work a single controller entry point. The controller clarifies the goal, chooses a useful collaboration structure, assigns one owner per deliverable and verifies results against explicit inputs and acceptance conditions. Handoffs carry decisions, evidence, limits and next steps forward. Small tasks can stay in one conversation.
+
+For example, ask the controller to add login to an existing product. It first checks the current identity design and interfaces, decides how implementation and independent review should be divided, then reports implementation, verification, push and deployment separately. You guide the goal and important tradeoffs without repeating the whole request in every role's chat. This illustrates the intended workflow; actual tool availability and tested limits are documented below.
+
+## Start from an idea
+
 A reusable skill for **one controller + persistent specialist chats**. Start with an idea, research and clarify the work, choose a collaboration structure, then dispatch and accept concrete deliverables. No existing sessions or repository are required.
 
 The controller remains the user's single coordination point. Each deliverable has one owner. Existing human authorization is reused, results are checked against actual artifacts and versions, and safe handoff preserves local data and responsibilities. Temporary subagents and persistent user-visible sessions have different lifecycles.
