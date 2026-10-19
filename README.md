@@ -61,9 +61,19 @@ codex plugin add orchivane@orchivane-local
 codex plugin list --marketplace orchivane-local --json
 ```
 
-在支持本地来源的桌面客户端中，查看插件目录的 **Orchivane** 来源；如果目录未刷新，可在合适时机重启客户端后再查看。当前已验证CLI安装和缓存加载，尚未验证桌面UI显示或新桌面对话加载。流程依据 [OpenAI插件打包文档](https://developers.openai.com/plugins/build/plugins)，具体命令以本机CLI帮助为准。这是通过公开GitHub来源分发，尚未上架官方精选目录。
+2026-10-19，本机用户已确认桌面插件目录可见；两个新建桌面对话实际从插件缓存读取0.3.1并使用规则，其中一个请求正文未点名技能。本轮无需重启。目录可见由用户观察，启用状态和实际读取由工具核验，详见[桌面验收与复现](tests/desktop-plugin.md)。流程依据 [OpenAI插件打包文档](https://developers.openai.com/plugins/build/plugins)，具体命令以本机CLI帮助为准。这是通过公开GitHub来源分发，尚未上架官方精选目录。
 
 插件安装后，可以说“使用 Orchivane 帮我组织这个项目”，或选择客户端显示的 `orchivane:orchivane` 技能。下文及独立安装的 `$orchivane` 示例指同一套规则。若此前已安装独立Skill，先完整备份到技能扫描目录之外，确认插件可用后仅保留一个活跃来源，避免重复加载；不要删除本地定制。
+
+**是否需要“启动”？** 本包是按任务读取的技能，没有需要手动启动的后台进程。`installed=true`、`enabled=true` 表示已安装并启用；再用一个新对话核验实际加载。可直接输入：
+
+```text
+请检查本轮可用技能清单是否有 Orchivane。
+若有，读取声明入口，报告版本，并用它建议一个需求尚不明确的新项目是否需要多个长期角色。
+若没有就报告未发现，不自行搜索文件补救。本轮只读，不创建或派工。
+```
+
+清单出现、实际读取、按规则行动是三个不同检查点。自然语言触发受宿主、模型及其他技能影响；需要稳定选用时明确点名。此核验无需新增项目文件、脚本或角色。
 
 ### 独立 Skill 安装
 
@@ -83,7 +93,7 @@ test ! -e "$HOME/.agents/skills/orchivane" && test ! -L "$HOME/.agents/skills/or
 
 0.3.1 更名自 Session Control，调用入口改为 `$orchivane`。已有 `session-control` 安装者，先将旧目录及本地定制备份到技能扫描目录之外，再安装新目录，避免两个入口同时生效。历史测试与冻结示例保留原名，不能把更名当作重新验证。
 
-旧名0.3.0的本机完整复制安装曾被独立CLI0.157.1发现，但桌面端三个新建核验会话均未列出此技能；自动发现问题仍未闭环。可在方便时刷新或重新打开客户端后核技能列表，本轮未重启客户端；文件就位不等于客户端已加载。当前版本的验证结果见[验证记录](tests/evaluation.md)。
+旧名0.3.0的本机独立复制安装曾被CLI发现，但三个新桌面对话均未列出该技能，原路径的根因仍未确认。后续0.3.1插件安装路线已通过新桌面对话加载验证；没有重测旧独立安装，也不将插件成功改写为旧路线已修复。当前验证结果见[验证记录](tests/evaluation.md)。
 
 自动发现尚未生效时，可以明确要求助手“读取我安装目录中的 `orchivane/SKILL.md` 并按其流程工作”，提供真实完整路径。这是显式加载方式，应单独记录，不能当成自动发现或插件安装通过。
 
@@ -102,6 +112,8 @@ test ! -e "$HOME/.agents/skills/orchivane" && test ! -L "$HOME/.agents/skills/or
 | 按变化巡检与通知 | [health-check.md](skills/orchivane/references/health-check.md) |
 | 原生能力与降级方式 | [codex.md](skills/orchivane/references/codex.md) |
 | Ponytail / Superpowers 源码研究与取舍 | [研究记录](docs/research.md) |
+| 项目定位、同类方案与下一步取舍 | [价值与优化评估](docs/value-assessment.md) |
+| 桌面插件发现、启用与使用复现 | [桌面验收](tests/desktop-plugin.md) |
 | 当前标准、平台支持与边界 | [兼容性说明](docs/compatibility.md) |
 | 真实多会话案例（最终19/20，未通过） | [借物小站完整记录](examples/tool-library/README.md) |
 | 原生端到端实验的复现步骤 | [native-e2e.md](tests/native-e2e.md) |

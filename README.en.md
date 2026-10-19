@@ -53,7 +53,9 @@ codex plugin add orchivane@orchivane-local
 codex plugin list --marketplace orchivane-local --json
 ```
 
-Tested with Codex CLI 0.157.1: plugin0.3.1 is installed and enabled, and its cached skill is discovered as `orchivane:orchivane`. Say “Use Orchivane” or select the skill name shown by your client. A supported desktop client can expose the **Orchivane** source in its Plugins Directory; restart at a suitable time if that source has not refreshed. Desktop UI visibility and fresh desktop-chat loading have not been verified. See [official packaging guidance](https://developers.openai.com/plugins/build/plugins); command support depends on your installed CLI.
+Tested with Codex CLI 0.157.1: plugin 0.3.1 is installed and enabled, and its cached skill is discovered as `orchivane:orchivane`. On 2026-10-19, the user confirmed visibility in the desktop Plugins Directory, and two fresh desktop chats actually read and used the cached skill without restarting the app. One request body did not name the skill. See [observations, limits and reproduction steps](tests/desktop-plugin.md). Say “Use Orchivane” or select the skill name shown by your client. See [official packaging guidance](https://developers.openai.com/plugins/build/plugins); command support depends on your installed CLI.
+
+There is no background process to start: the host loads these instructions when relevant. To check your installation, ask a new chat to find Orchivane in its available-skills list, read the declared entry, report its version and recommend whether an unclear new project needs multiple roles. Ask it to report absence rather than search for a fallback file, and not to create chats or dispatch work. Being listed, being read and being used are separate checks. Name the skill explicitly when you want reliable selection; implicit selection depends on the host, model and other skills.
 
 This installs from the public GitHub source; Orchivane is not listed in the official curated directory. Preserve any existing standalone skill outside discovery directories and keep only one active installation source after verifying the plugin. Do not discard local customizations.
 
@@ -83,10 +85,12 @@ python3 -m venv .venv
 
 The [real native example](examples/tool-library/README.md) completed creation, dispatch and independent review: 17/20 initially, 19/20 after the one allowed correction, with final acceptance still **failed**. The experiment used frozen skill 0.2.0; 0.3.0 incorporates the resulting changes and has not had a full native rerun.
 
-The former Session Control 0.3.0 standalone copy was discovered by Codex CLI 0.157.1, but three fresh desktop test chats still did not list it. Explicit file loading worked; desktop automatic discovery and plugin UI installation remain unresolved/unverified respectively. See the evaluation record for the current release's checks.
+The former Session Control 0.3.0 standalone copy was discovered by Codex CLI 0.157.1, but three fresh desktop test chats did not list it. That route's root cause remains unknown. The later 0.3.1 plugin installation route passed discovery and use in fresh desktop chats; this does not retroactively fix or retest standalone installation. UI visibility was user-reported; installation used the CLI, not UI buttons.
 
 Read [the evaluation record](tests/evaluation.md), [native reproduction protocol](tests/native-e2e.md), and [compatibility notes](docs/compatibility.md). Static checks are not behavioral tests. A native chat experiment is not proof of marketplace auto-loading, archival safety, long-running scheduling or a performance improvement over one agent.
 
 The workflow is primarily written in Chinese and can be requested in English; language-specific behavior has not been separately benchmarked. Missing native tools degrade to explicit files and copyable briefs, never a false claim that sessions were created or messages sent.
 
 Design references include [Ponytail and Superpowers](docs/research.md), the Agent Skills format and current vendor guidance on context and multi-agent coordination. Their benchmark results are not claimed as results of this project. No upstream implementation is vendored.
+
+The [value assessment and priorities](docs/value-assessment.md) focus on durable role ownership, evidence-backed handoffs and reducing human coordination. Quantified benefits still require controlled tests; broader orchestration infrastructure is not planned without demonstrated need.
