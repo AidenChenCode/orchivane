@@ -1,9 +1,9 @@
 {
-  "name": "session-control-local",
-  "interface": { "displayName": "Session Control" },
+  "name": "orchivane-local",
+  "interface": { "displayName": "Orchivane" },
   "plugins": [
     {
-      "name": "session-control",
+      "name": "orchivane",
       "source": { "source": "local", "path": "./" },
       "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
       "category": "Productivity"

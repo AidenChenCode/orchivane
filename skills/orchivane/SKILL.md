@@ -1,9 +1,9 @@
 ---
-name: session-control
+name: orchivane
 description: Use when a user wants to research and discuss how to organize a new project across sessions, establish controller-led collaboration from scratch, coordinate existing persistent chats, audit collaboration, or hand off to a fresh successor. No existing sessions or project files are required. Not for application runtime sessions or automatically delegating ordinary tasks.
 license: MIT
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
 ---
 
 # 总控与多会话协作

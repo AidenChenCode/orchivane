@@ -1,5 +1,16 @@
 # 验证记录
 
+## Orchivane 0.3.1：更名与发布验证
+
+日期：2026-10-19。Session Control 更名为 Orchivane；当前插件清单、目录名、UI提示、README与项目规则示例统一使用 `orchivane`。0.3.0及更早的实测记录、冻结技能和产物保留原名，未把历史结果改写为新版整轮测试。
+
+- 中英文README加入AI编程中的上下文搬运、并发修改、接班与验收痛点，并区分预期使用方式和实际覆盖。
+- 独立Skill完整复制安装后，Codex CLI0.157.1的 `skills/list` 强制重扫返回唯一 `orchivane`、`enabled=true`，无旧名入口、无解析错误；本机旧安装已核对并备份到扫描目录之外。
+- 静态校验通过，16项unittest通过；历史公开材料摘要仍逐项核对。更名没有新增协作行为，未重跑原生E2E、桌面发现、handoff或归档实验。
+- 公开仓库的远端验证以 [GitHub Actions](https://github.com/alexzhu0/orchivane/actions/workflows/validate.yml) 对应提交结果为准，不能仅凭本地通过宣称远端通过。
+
+以下各节保留原验证时点、版本与名称。
+
 ## 0.3.0：真实原生实验与开源准备
 
 日期：2026-10-19。完整公开过程见 [借物小站](../examples/tool-library/README.md)，重跑步骤见 [native-e2e.md](native-e2e.md)。用户明确开源对象、将选题交给总控，并选定MIT；三角色执行读的是冻结0.2.0，0.3.0用于修订观察到的问题，未再做整轮原生重跑。

@@ -1,6 +1,6 @@
 {
-  "name": "session-control",
-  "version": "0.3.0",
+  "name": "orchivane",
+  "version": "0.3.1",
   "description": "从项目想法设计总控多会话协作，内置 handoff 和增量巡检。",
   "author": { "name": "alexzhu0" },
   "license": "MIT",

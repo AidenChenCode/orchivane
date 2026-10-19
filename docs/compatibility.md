@@ -20,6 +20,8 @@ The [Agent Skills specification](https://agentskills.io/specification) standardi
 
 ## Observed installation behavior
 
+The observations below concern the former Session Control 0.3.0 name. Orchivane 0.3.1 is the rename release; current checks are recorded in the evaluation document. Historical discovery results are not silently reassigned to the new name.
+
 A full standalone copy in the documented user skill directory was discovered by Codex CLI 0.157.1 using app-server skills/list with forceReload=true, enabled=true, with no parsing errors. A symlink into this plugin repository appeared under a namespaced skill name in the CLI. Neither observation certifies the desktop skill catalog: three newly created desktop test chats did not list the skill, while an explicitly requested file read loaded version0.3.0 and all five references. Root cause remains unconfirmed. No desktop restart, plugin UI install or unrelated configuration changes were performed.
 
 ## What is deliberately outside the package

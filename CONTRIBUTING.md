@@ -1,6 +1,6 @@
 # Contributing
 
-Session Control is a workflow skill for durable role-based chats. Changes should improve an observed coordination problem without requiring a new agent runtime.
+Orchivane is a workflow skill for durable role-based chats. Changes should improve an observed coordination problem without requiring a new agent runtime.
 
 ## Validate locally
 

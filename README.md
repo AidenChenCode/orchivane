@@ -1,6 +1,8 @@
-# Session Control 0.3.0
+# Orchivane 0.3.1
 
 [English](README.en.md) · [MIT](LICENSE) · [贡献与本地验证](CONTRIBUTING.md)
+
+**一个目标，多方协作，持续接班。** Orchivane 取 orchestration（编排）与 vane（方向标）的意象：让专业角色协同推进同一个目标。
 
 ## AI 写代码之后，谁来把整个项目推进下去？
 
@@ -12,7 +14,7 @@
 - **“完成”很难判断。** 代码写完、测试通过、需求验收、推送和部署混成一句“已完成”，遗留问题没有明确的承接人。
 - **你仍然是项目协调员。** 要决定下一步叫谁、给多少背景、何时验收，还要防止已经否定的方案被再次执行。
 
-Session Control 把这些协作责任交给一个总控入口：总控先澄清目标，再按实际需要组织专业会话，明确每项成果的唯一主责、输入版本、写入范围和验收条件。专业角色交付可核验的成果；换班时连同决定、证据、限制和下一步一起交接。小任务可以留在一个对话中完成。
+Orchivane 把这些协作责任交给一个总控入口：总控先澄清目标，再按实际需要组织专业会话，明确每项成果的唯一主责、输入版本、写入范围和验收条件。专业角色交付可核验的成果；换班时连同决定、证据、限制和下一步一起交接。小任务可以留在一个对话中完成。
 
 例如，你只需告诉总控“为现有产品增加登录功能”：它先核对现有身份方案和接口，再判断实施与独立验收如何分工；收到交付后，分别说明实现、验证、推送与部署的状态。你继续参与目标和关键取舍，无须在每个角色窗口重复描述需求。以上是预期使用方式，实际工具能力和已验证范围见文末。
 
@@ -27,48 +29,57 @@ Session Control 把这些协作责任交给一个总控入口：总控先澄清�
 在已加载该技能的新对话中输入：
 
 ```text
-使用 $session-control，我有一个新项目想法，目前没有其他 session。
+使用 $orchivane，我有一个新项目想法，目前没有其他 session。
 先帮我调研并和我沟通，判断需要什么协作机制，再给出具体分工和启动方案。
 ```
 
 常用请求：
 
-- 从零设计：`使用 $session-control，我想做……，先了解需求和关键约束，调研后建议是否需要拆 session、怎么拆。`
-- 接管现有项目：`使用 $session-control，核对已有 session 的职责与当前 TODO，不派新任务。`
-- 统一派工：`使用 $session-control，按我已确认的任务清单向对应 session 派工，并读取交付结果。`
-- 换班：`使用 $session-control，给当前总控准备交接包，先不创建或归档。`
-- 执行换班：`使用 $session-control，按这份交接包创建接班会话、核验接班并转接关联自动化；保全资料且条件满足后归档旧会话并做归档后复核。`
-- 单次巡检：`使用 $session-control，检查这个项目的多会话协作，只报告新异常、关键缺口和下一步。`
+- 从零设计：`使用 $orchivane，我想做……，先了解需求和关键约束，调研后建议是否需要拆 session、怎么拆。`
+- 接管现有项目：`使用 $orchivane，核对已有 session 的职责与当前 TODO，不派新任务。`
+- 统一派工：`使用 $orchivane，按我已确认的任务清单向对应 session 派工，并读取交付结果。`
+- 换班：`使用 $orchivane，给当前总控准备交接包，先不创建或归档。`
+- 执行换班：`使用 $orchivane，按这份交接包创建接班会话、核验接班并转接关联自动化；保全资料且条件满足后归档旧会话并做归档后复核。`
+- 单次巡检：`使用 $orchivane，检查这个项目的多会话协作，只报告新异常、关键缺口和下一步。`
 
 流程是“理解目标 → 必要调研与分轮沟通 → 推荐协作结构 → 具体启动方案 → 按授权落地”。按长期上下文、工作依赖和独立验收需要拆分，也可以建议暂留当前对话。角色数量与命名按项目确定；已有授权直接沿用，真实新增的创建/发消息等动作才集中补问。长期角色与临时 subagent 分开管理。
 
 ## 安装与迁移
 
-独立 Skill 的完整目录是 [`skills/session-control`](skills/session-control/SKILL.md)，运行它无需 Python 或新依赖。下载/克隆本仓库后，在仓库根目录执行下面的 macOS/Linux 示例（目标已有文件或链接时拒绝覆盖）：
+```sh
+git clone https://github.com/alexzhu0/orchivane.git
+cd orchivane
+```
+
+独立 Skill 的完整目录是 [`skills/orchivane`](skills/orchivane/SKILL.md)，运行它无需 Python 或新依赖。下载/克隆本仓库后，在仓库根目录执行下面的 macOS/Linux 示例（目标已有文件或链接时拒绝覆盖）：
 
 ```sh
 mkdir -p "$HOME/.agents/skills"
-test ! -e "$HOME/.agents/skills/session-control" && test ! -L "$HOME/.agents/skills/session-control" && cp -R skills/session-control "$HOME/.agents/skills/session-control"
+test ! -e "$HOME/.agents/skills/orchivane" && test ! -L "$HOME/.agents/skills/orchivane" && cp -R skills/orchivane "$HOME/.agents/skills/orchivane"
 ```
 
-目录必须包含 `references/` 与 `agents/`，不要只复制 SKILL.md。Windows 可把整个目录复制到用户目录下 `.agents/skills/`。旧客户端使用 `~/.codex/skills/` 的安装须实际核验发现能力；本次测试中旧位置未自动发现，已迁至文档推荐位置，不把文件可读当安装成功。选择一个安装来源；更新前核对其路径和版本，保留本地定制。本机完整复制安装已被独立CLI0.157.1发现，但桌面端三个新建核验会话均未列出此技能；自动发现问题仍未闭环。可在方便时刷新或重新打开客户端后核技能列表，本轮未重启客户端；文件就位不等于客户端已加载。目录规则依据 [Codex 技能文档](https://learn.chatgpt.com/docs/build-skills)。
+目录必须包含 `references/` 与 `agents/`，不要只复制 SKILL.md。Windows 可把整个目录复制到用户目录下 `.agents/skills/`。旧客户端使用 `~/.codex/skills/` 的安装须实际核验发现能力。选择一个安装来源；更新前核对其路径和版本，保留本地定制。目录规则依据 [Codex 技能文档](https://learn.chatgpt.com/docs/build-skills)。
 
-自动发现尚未生效时，可以明确要求助手“读取我安装目录中的 `session-control/SKILL.md` 并按其流程工作”，提供真实完整路径。这是显式加载方式，应单独记录，不能当成自动发现或插件安装通过。
+0.3.1 更名自 Session Control，调用入口改为 `$orchivane`。已有 `session-control` 安装者，先将旧目录及本地定制备份到技能扫描目录之外，再安装新目录，避免两个入口同时生效。历史测试与冻结示例保留原名，不能把更名当作重新验证。
+
+旧名0.3.0的本机完整复制安装曾被独立CLI0.157.1发现，但桌面端三个新建核验会话均未列出此技能；自动发现问题仍未闭环。可在方便时刷新或重新打开客户端后核技能列表，本轮未重启客户端；文件就位不等于客户端已加载。当前版本的验证结果见[验证记录](tests/evaluation.md)。
+
+自动发现尚未生效时，可以明确要求助手“读取我安装目录中的 `orchivane/SKILL.md` 并按其流程工作”，提供真实完整路径。这是显式加载方式，应单独记录，不能当成自动发现或插件安装通过。
 
 插件使用者可在支持的客户端加载仓库内 `.agents/plugins/marketplace.json`；它仅把包列为可用，不自动启用。根 `plugin.json` 为 portable 格式，`.codex-plugin/plugin.json` 为兼容格式。不要同时启用插件和独立技能副本。插件 UI 安装尚需在目标客户端实际核验，格式依据 [OpenAI 插件打包文档](https://developers.openai.com/plugins/build/plugins)。本包没有后台调度或自动执行 hook。
 
-旧的个人 `session-handoff` / `session-health-check` 可以继续保留。新技能内部已有完整交接与巡检流程，无运行时依赖；明确使用 `$session-control` 即可进入统一机制。旧技能未自动改写，以免影响已有项目。
+旧的个人 `session-handoff` / `session-health-check` 可以继续保留。新技能内部已有完整交接与巡检流程，无运行时依赖；明确使用 `$orchivane` 即可进入统一机制。旧技能未自动改写，以免影响已有项目。
 
 ## 内容与证据
 
 | 内容 | 入口 |
 | --- | --- |
-| 核心规则与路由 | [SKILL.md](skills/session-control/SKILL.md) |
-| 从零调研沟通、机制设计、项目接管和恢复 | [setup.md](skills/session-control/references/setup.md) |
-| 任务说明、一次确认与验收 | [dispatch.md](skills/session-control/references/dispatch.md) |
-| 交接、资料保全、自动化转接、归档后复核 | [handoff.md](skills/session-control/references/handoff.md) |
-| 按变化巡检与通知 | [health-check.md](skills/session-control/references/health-check.md) |
-| 原生能力与降级方式 | [codex.md](skills/session-control/references/codex.md) |
+| 核心规则与路由 | [SKILL.md](skills/orchivane/SKILL.md) |
+| 从零调研沟通、机制设计、项目接管和恢复 | [setup.md](skills/orchivane/references/setup.md) |
+| 任务说明、一次确认与验收 | [dispatch.md](skills/orchivane/references/dispatch.md) |
+| 交接、资料保全、自动化转接、归档后复核 | [handoff.md](skills/orchivane/references/handoff.md) |
+| 按变化巡检与通知 | [health-check.md](skills/orchivane/references/health-check.md) |
+| 原生能力与降级方式 | [codex.md](skills/orchivane/references/codex.md) |
 | Ponytail / Superpowers 源码研究与取舍 | [研究记录](docs/research.md) |
 | 当前标准、平台支持与边界 | [兼容性说明](docs/compatibility.md) |
 | 真实多会话案例（最终19/20，未通过） | [借物小站完整记录](examples/tool-library/README.md) |
