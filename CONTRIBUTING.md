@@ -13,7 +13,7 @@ python3 -m venv .venv
 .venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-On Windows use `.venv\Scripts\python.exe`. The development dependency parses YAML; running the skill itself needs no Python or packages. Validation is read-only and does not create sessions or call providers.
+On Windows use `.venv\Scripts\python.exe`. The development dependency parses YAML; running the skill itself needs no Python or packages. Static validation is read-only; fixture tests use temporary directories. Neither creates sessions or calls providers.
 
 ## Report a problem
 
@@ -26,5 +26,7 @@ Keep the main Skill short; place mode-specific instructions in the relevant refe
 Change the portable manifest, compatibility manifest and Skill metadata version together. Keep the README, examples and current evidence in sync. Historical test reports retain their original version and limitations. Update the CI action pins deliberately; do not add execution hooks or telemetry by default.
 
 Native E2E runs require explicit human authorization to create and message real chats. Follow [the reproduction protocol](tests/native-e2e.md); do not launch native sessions automatically from CI. Passing static CI does not prove model behavior, cross-client compatibility or archival safety.
+
+The [handoff/recovery protocol](tests/handoff-recovery.md) includes a bounded fixture for missing local inputs, ownership conflicts and duplicate dispatch. Count effects only in the actual runtime directory, not copied audit evidence. Verify that current role labels and next actions agree with delivered results before closing a run; retain failed snapshots and scope later hash comparisons to the relevant phase.
 
 Contributions are offered under this repository's [MIT license](LICENSE). Third-party source material retains its own license; add attribution when copying material, and prefer linking to upstream references.

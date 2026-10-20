@@ -35,3 +35,7 @@ No desktop restart, UI-button installation, official-directory submission or new
 ## What is deliberately outside the package
 
 No background daemon, automatic role creation, centralized database, provider account access or new runtime protocol. Native tools already own those capabilities. Add an adapter only with a real target client, a minimal reproducible use case and an end-to-end result. Cross-host transfer, long-running scheduling, safe archival and interrupted-creation recovery each require separate real evidence before claiming support at the same level as the tested dispatch path.
+
+## Isolated handoff and recovery follow-up
+
+On 2026-10-20, a separate frozen 0.3.1 run exercised real old-owner delivery, fresh native successor acceptance, independent backup restoration and subsequent task execution. Missing inputs and conflicting ownership declarations blocked takeover; the latter was a labeled file injection, not a real concurrent writer. Identical serial dispatch reused evidence without another apply. Independent review supported those bounded checks but found two stale controller records; both passed closure recheck after one correction. See the [experiment and closure record](../tests/handoff-recovery.md). The fixture deliberately has no application-level deduplication. This is neither transactional exactly-once behavior nor crash, archive, lost-context or asynchronous transport recovery validation.
