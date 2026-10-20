@@ -31,8 +31,7 @@
           "error": null,
           "cached_032_reads": [
             "references/handoff.md",
-            "references/dispatch.md",
-            "SKILL.md"
+            "references/dispatch.md"
           ]
         },
         {
@@ -126,9 +125,7 @@
           "status": "completed",
           "duration_ms": 77588,
           "error": null,
-          "cached_032_reads": [
-            "SKILL.md"
-          ]
+          "cached_032_reads": []
         },
         {
           "phase": "exact-duplicate",
@@ -208,5 +205,6 @@
     "solver_retries": 0,
     "original_grades_preserved": true,
     "skill_or_manifest_changed": false
-  }
+  },
+  "read_counting": "Successful literal cat reads of the installed cached files in visible command traces; paths merely written into receipts do not count. Later turns may reuse previously read context."
 }

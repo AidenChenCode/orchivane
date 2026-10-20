@@ -54,7 +54,7 @@ The prior 0.3.1 cache and local configuration were preserved privately. Marketpl
 
 ## Repository checks and scope
 
-Static package/link/privacy validation, all 21 existing unit tests, and both published artifact replays passed. The first publication check rejected a redacted controller-link placeholder that still used the private-link URI scheme; it was replaced by a plain placeholder before publication. Final installation inspection still reported 0.3.2 installed/enabled and seven unchanged skill hashes. These checks validate packaging and evidence consistency, not missing native phases.
+Static package/link/privacy validation, all 21 existing unit tests, and both published artifact replays passed. The first publication check rejected a redacted controller-link placeholder that still used the private-link URI scheme; it was replaced by a plain placeholder before publication. Final installation inspection still reported 0.3.2 installed/enabled and seven unchanged skill hashes. The read-count audit also excluded skill paths merely embedded in generated receipts; later turns can reuse context without rereading the entry. These checks validate packaging and evidence consistency, not missing native phases.
 
 Current English/Chinese READMEs, compatibility, evidence, evaluation and value-assessment entries were synchronized. Historical examples and paired outputs remain unchanged; research sources, code, skill instructions and manifests did not need changes. The incomplete direction and untested archival/concurrency properties remain explicitly unverified.
 
