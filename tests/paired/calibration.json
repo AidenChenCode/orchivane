@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-20",
+  "positive_examples": 5,
+  "negative_examples": 3,
+  "passed": true,
+  "scope": "functional grader only, not coordination labeling calibration"
+}

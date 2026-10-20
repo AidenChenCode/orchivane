@@ -1,0 +1,23 @@
+{
+  "S1": {
+    "normalize.py": "d95a31ef6bdc1c433e417ca5d45bfa7f84ac2afedcfe2f55ed7a06b14b89bea8",
+    "README_TASK_LIMITS.md": "13642fc9c79d5a18b10c2ede7433c31b05eb3aea8c1a789be7d1dfef54e07e92",
+    "README.md": "455eb636c3f35aa0a2f62fc058d1c0a14e02a2a2eec155cef6b339249dc1b7ee",
+    "BRIEF.md": "cb9ce55235b3d1efac84822bbad97a859c1475c65cce35f40f5f30711e435d4e"
+  },
+  "S2": {
+    "README_TASK_LIMITS.md": "13642fc9c79d5a18b10c2ede7433c31b05eb3aea8c1a789be7d1dfef54e07e92",
+    "stock.py": "a808027790c67c424dad6b15750bb33b83623ea22920bc971cdd90f60ba0f856",
+    "README.md": "a2716da9744b20e08f6a9d8854f19eea60c3a4132b5452310ce4cd1ef5125386",
+    "BRIEF.md": "7cd74a9429159e18a781eda9d6ee4ad3d7247d0e154cc055c1ae96e1c8831322",
+    "contract.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "S3": {
+    "config.json": "d2b191e08fb55024b1235086db10fee7cbc2f14c028f8435d05ae38b45512c97",
+    "README_TASK_LIMITS.md": "13642fc9c79d5a18b10c2ede7433c31b05eb3aea8c1a789be7d1dfef54e07e92",
+    ".gitignore": "0b2aeda4a5309f3271f2aea97905052040c1dbf32a9bc181852a74030419e89a",
+    "BRIEF.md": "6188f1ed9bb4af029044e56f9034926c50b1f9347e23a59cc0027668777823fc",
+    "report.py": "b8039fa5a81c5df4a744a2cda9200ac7df20afabb1c99a28d77b69407b1f1100",
+    ".runtime/input.csv": "722195482e987d50a1312dccc42280147b73ff4f7b946a8b9f7c2a13af292eae"
+  }
+}

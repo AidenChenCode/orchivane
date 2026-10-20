@@ -1,0 +1,8 @@
+{
+  "protocol.md": "5d44539baa201e350a0bd7d1ba047fed4bf825a7030dbda56508377c7b6f16fb",
+  "plan.json": "137acd5f4c3f6e85cf609efc933a615f9b2cfd3c27c86b760ce085920360c29e",
+  "order.json": "808f748b12a6d3e3d7f870de4861e5486d26cfb3a9b7e20c28acbd34dda05c14",
+  "initial-hashes.json": "cbdc97e9b67909267493512c45182192fdb9d58b2574317e6a594aadc2bad26a",
+  "grader/grade.py": "4da4136fd7fb63f940b6c9e57e2cdf90984b22e75ce6798ad6db767000bd2bba",
+  "grader/calibration.json": "b053418534141136051c336493708ffbf716b55ffe63dcacaed76c4468ea8457"
+}

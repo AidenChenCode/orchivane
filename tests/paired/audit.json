@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "report_type": "benchmark_audit",
+  "release_approval": false,
+  "audit_complete": true,
+  "issues": [],
+  "limitations": [
+    "This is a record audit, not release approval, significance testing, or a production-effect estimate.",
+    "Suite means weight planned tasks equally; no performance mean combines different suites.",
+    "confirmed_success_lower_bound retains all planned trials and counts only usable confirmed successes; it is not final performance.",
+    "Version strings are declarations and do not prove that actual environments or graders were identical.",
+    "Costs use caller-supplied consistent units; no currency is assumed. Null values mean unavailable, not zero."
+  ],
+  "planned_versions": {
+    "taskset": "coordination-pilot-v1",
+    "environment": "codex-desktop-isolated-local-v1",
+    "tools": "native-chat-and-local-python-v1",
+    "knowledge": "synthetic-fixtures-v1",
+    "grader": "deterministic-v1-plus-trace-labels"
+  },
+  "variants": {
+    "single": {
+      "agent_versions": [
+        "single-pilot-v1-gpt-6.1-sol-high"
+      ],
+      "suites": {
+        "regression": {
+          "task_count": 3,
+          "planned_trials": 3,
+          "confirmed_successes": 3,
+          "confirmed_success_lower_bound": 1.0,
+          "descriptive_task_mean_success": 1.0,
+          "complete_and_judgable": true
+        }
+      },
+      "tasks": [
+        {
+          "task_id": "S1",
+          "suite": "regression",
+          "planned_trials": 1,
+          "confirmed_successes": 1,
+          "confirmed_success_lower_bound": 1.0,
+          "descriptive_task_mean_success": 1.0,
+          "complete_and_judgable": true,
+          "exclusion_reasons": [],
+          "trials": [
+            {
+              "trial_id": "1",
+              "confirmed_success": true,
+              "reasons": [],
+              "lines": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "task_id": "S2",
+          "suite": "regression",
+          "planned_trials": 1,
+          "confirmed_successes": 1,
+          "confirmed_success_lower_bound": 1.0,
+          "descriptive_task_mean_success": 1.0,
+          "complete_and_judgable": true,
+          "exclusion_reasons": [],
+          "trials": [
+            {
+              "trial_id": "1",
+              "confirmed_success": true,
+              "reasons": [],
+              "lines": [
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "task_id": "S3",
+          "suite": "regression",
+          "planned_trials": 1,
+          "confirmed_successes": 1,
+          "confirmed_success_lower_bound": 1.0,
+          "descriptive_task_mean_success": 1.0,
+          "complete_and_judgable": true,
+          "exclusion_reasons": [],
+          "trials": [
+            {
+              "trial_id": "1",
+              "confirmed_success": true,
+              "reasons": [],
+              "lines": [
+                5
+              ]
+            }
+          ]
+        }
+      ],
+      "planned_trials": 3
+    },
+    "orchivane": {
+      "agent_versions": [
+        "orchivane-pilot-v1-gpt-6.1-sol-high"
+      ],
+      "suites": {
+        "regression": {
+          "task_count": 3,
+          "planned_trials": 3,
+          "confirmed_successes": 3,
+          "confirmed_success_lower_bound": 1.0,
+          "descriptive_task_mean_success": 1.0,
+          "complete_and_judgable": true
+        }
+      },
+      "tasks": [
+        {
+          "task_id": "S1",
+          "suite": "regression",
+          "planned_trials": 1,
+          "confirmed_successes": 1,
+          "confirmed_success_lower_bound": 1.0,
+          "descriptive_task_mean_success": 1.0,
+          "complete_and_judgable": true,
+          "exclusion_reasons": [],
+          "trials": [
+            {
+              "trial_id": "1",
+              "confirmed_success": true,
+              "reasons": [],
+              "lines": [
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "task_id": "S2",
+          "suite": "regression",
+          "planned_trials": 1,
+          "confirmed_successes": 1,
+          "confirmed_success_lower_bound": 1.0,
+          "descriptive_task_mean_success": 1.0,
+          "complete_and_judgable": true,
+          "exclusion_reasons": [],
+          "trials": [
+            {
+              "trial_id": "1",
+              "confirmed_success": true,
+              "reasons": [],
+              "lines": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "task_id": "S3",
+          "suite": "regression",
+          "planned_trials": 1,
+          "confirmed_successes": 1,
+          "confirmed_success_lower_bound": 1.0,
+          "descriptive_task_mean_success": 1.0,
+          "complete_and_judgable": true,
+          "exclusion_reasons": [],
+          "trials": [
+            {
+              "trial_id": "1",
+              "confirmed_success": true,
+              "reasons": [],
+              "lines": [
+                6
+              ]
+            }
+          ]
+        }
+      ],
+      "planned_trials": 3
+    }
+  },
+  "paired_comparison": {
+    "baseline": "single",
+    "candidate": "orchivane",
+    "direction": "candidate_minus_baseline",
+    "interpretation": "Descriptive differences on the included fully observed task subset only; excluded tasks may bias that subset.",
+    "included_tasks": [
+      {
+        "task_id": "S1",
+        "suite": "regression",
+        "baseline_success": 1.0,
+        "candidate_success": 1.0,
+        "difference": 0.0
+      },
+      {
+        "task_id": "S2",
+        "suite": "regression",
+        "baseline_success": 1.0,
+        "candidate_success": 1.0,
+        "difference": 0.0
+      },
+      {
+        "task_id": "S3",
+        "suite": "regression",
+        "baseline_success": 1.0,
+        "candidate_success": 1.0,
+        "difference": 0.0
+      }
+    ],
+    "excluded_tasks": [],
+    "suites": {
+      "regression": {
+        "included_task_count": 3,
+        "planned_task_count": 3,
+        "descriptive_mean_difference": 0.0
+      }
+    }
+  },
+  "costs": {
+    "unit": "caller_supplied_consistent_unit",
+    "interpretation": "Reported resource totals include failed runs. Canonical totals include only unique expected schema-valid records, irrespective of outcome, score, or declared-version agreement. Raw totals include all valid individual fields, including duplicates, extras, and schema-invalid rows; they are not deduplicated spend estimates. Latency sums are not wall-clock duration.",
+    "canonical_expected_unique": {
+      "record_count": 6,
+      "cost": {
+        "reported_count": 0,
+        "unavailable_count": 6,
+        "invalid_or_absent_count": 0,
+        "sum": 0.0
+      },
+      "latency_ms": {
+        "reported_count": 6,
+        "unavailable_count": 0,
+        "invalid_or_absent_count": 0,
+        "sum": 509305.0
+      }
+    },
+    "raw_valid_fields": {
+      "record_count": 6,
+      "cost": {
+        "reported_count": 0,
+        "unavailable_count": 6,
+        "invalid_or_absent_count": 0,
+        "sum": 0.0
+      },
+      "latency_ms": {
+        "reported_count": 6,
+        "unavailable_count": 0,
+        "invalid_or_absent_count": 0,
+        "sum": 509305.0
+      }
+    }
+  },
+  "counts": {
+    "planned_runs": 6,
+    "input_rows": 6,
+    "missing_runs": 0,
+    "extra_rows": 0,
+    "duplicate_identities": 0,
+    "schema_invalid_rows": 0,
+    "critical_violation_rows": 0
+  },
+  "status": "complete",
+  "exit_code": 0
+}

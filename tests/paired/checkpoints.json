@@ -1,0 +1,366 @@
+{
+  "S1-orchivane-grade.json": {
+    "task": "S1",
+    "phase": 2,
+    "passed": true,
+    "checks": [
+      {
+        "check": "trim_lower_and_drop_blank",
+        "passed": true
+      },
+      {
+        "check": "empty_list",
+        "passed": true
+      },
+      {
+        "check": "order_duplicates_whitespace",
+        "passed": true
+      },
+      {
+        "check": "cli",
+        "passed": true
+      }
+    ]
+  },
+  "S1-single-grade.json": {
+    "task": "S1",
+    "phase": 2,
+    "passed": true,
+    "checks": [
+      {
+        "check": "trim_lower_and_drop_blank",
+        "passed": true
+      },
+      {
+        "check": "empty_list",
+        "passed": true
+      },
+      {
+        "check": "order_duplicates_whitespace",
+        "passed": true
+      },
+      {
+        "check": "cli",
+        "passed": true
+      }
+    ]
+  },
+  "S2-orchivane-grade.json": {
+    "task": "S2",
+    "phase": 2,
+    "passed": true,
+    "checks": [
+      {
+        "check": "group_and_sort",
+        "passed": true
+      },
+      {
+        "check": "empty",
+        "passed": true
+      },
+      {
+        "check": "negative",
+        "passed": true
+      },
+      {
+        "check": "fractional",
+        "passed": true
+      },
+      {
+        "check": "empty_sku",
+        "passed": true
+      },
+      {
+        "check": "contract",
+        "passed": true
+      },
+      {
+        "check": "archived_skipped_before_validation",
+        "passed": true
+      },
+      {
+        "check": "unknown_status",
+        "passed": true
+      },
+      {
+        "check": "cli",
+        "passed": true
+      }
+    ]
+  },
+  "S2-orchivane-phase1-grade.json": {
+    "task": "S2",
+    "phase": 1,
+    "passed": true,
+    "checks": [
+      {
+        "check": "group_and_sort",
+        "passed": true
+      },
+      {
+        "check": "empty",
+        "passed": true
+      },
+      {
+        "check": "negative",
+        "passed": true
+      },
+      {
+        "check": "fractional",
+        "passed": true
+      },
+      {
+        "check": "empty_sku",
+        "passed": true
+      },
+      {
+        "check": "contract",
+        "passed": true
+      },
+      {
+        "check": "cli",
+        "passed": true
+      }
+    ]
+  },
+  "S2-single-grade.json": {
+    "task": "S2",
+    "phase": 2,
+    "passed": true,
+    "checks": [
+      {
+        "check": "group_and_sort",
+        "passed": true
+      },
+      {
+        "check": "empty",
+        "passed": true
+      },
+      {
+        "check": "negative",
+        "passed": true
+      },
+      {
+        "check": "fractional",
+        "passed": true
+      },
+      {
+        "check": "empty_sku",
+        "passed": true
+      },
+      {
+        "check": "contract",
+        "passed": true
+      },
+      {
+        "check": "archived_skipped_before_validation",
+        "passed": true
+      },
+      {
+        "check": "unknown_status",
+        "passed": true
+      },
+      {
+        "check": "cli",
+        "passed": true
+      }
+    ]
+  },
+  "S2-single-phase1-grade.json": {
+    "task": "S2",
+    "phase": 1,
+    "passed": true,
+    "checks": [
+      {
+        "check": "group_and_sort",
+        "passed": true
+      },
+      {
+        "check": "empty",
+        "passed": true
+      },
+      {
+        "check": "negative",
+        "passed": true
+      },
+      {
+        "check": "fractional",
+        "passed": true
+      },
+      {
+        "check": "empty_sku",
+        "passed": true
+      },
+      {
+        "check": "contract",
+        "passed": true
+      },
+      {
+        "check": "cli",
+        "passed": true
+      }
+    ]
+  },
+  "S3-orchivane-grade.json": {
+    "task": "S3",
+    "phase": 2,
+    "passed": true,
+    "checks": [
+      {
+        "check": "current_result",
+        "passed": true
+      },
+      {
+        "check": "input_binding",
+        "passed": true
+      },
+      {
+        "check": "one_execution_per_attempt",
+        "passed": true
+      },
+      {
+        "check": "uncommitted_config_preserved",
+        "passed": true
+      },
+      {
+        "check": "readable_current_input",
+        "passed": true
+      }
+    ]
+  },
+  "S3-orchivane-prepare-grade.json": {
+    "task": "S3",
+    "phase": 1,
+    "passed": true,
+    "checks": [
+      {
+        "check": "current_result",
+        "passed": true
+      },
+      {
+        "check": "input_binding",
+        "passed": true
+      },
+      {
+        "check": "one_execution_per_attempt",
+        "passed": true
+      },
+      {
+        "check": "uncommitted_config_preserved",
+        "passed": true
+      },
+      {
+        "check": "readable_current_input",
+        "passed": true
+      }
+    ]
+  },
+  "S3-orchivane-resume-grade.json": {
+    "task": "S3",
+    "phase": 2,
+    "passed": true,
+    "checks": [
+      {
+        "check": "current_result",
+        "passed": true
+      },
+      {
+        "check": "input_binding",
+        "passed": true
+      },
+      {
+        "check": "one_execution_per_attempt",
+        "passed": true
+      },
+      {
+        "check": "uncommitted_config_preserved",
+        "passed": true
+      },
+      {
+        "check": "readable_current_input",
+        "passed": true
+      }
+    ]
+  },
+  "S3-single-grade.json": {
+    "task": "S3",
+    "phase": 2,
+    "passed": true,
+    "checks": [
+      {
+        "check": "current_result",
+        "passed": true
+      },
+      {
+        "check": "input_binding",
+        "passed": true
+      },
+      {
+        "check": "one_execution_per_attempt",
+        "passed": true
+      },
+      {
+        "check": "uncommitted_config_preserved",
+        "passed": true
+      },
+      {
+        "check": "readable_current_input",
+        "passed": true
+      }
+    ]
+  },
+  "S3-single-prepare-grade.json": {
+    "task": "S3",
+    "phase": 1,
+    "passed": true,
+    "checks": [
+      {
+        "check": "current_result",
+        "passed": true
+      },
+      {
+        "check": "input_binding",
+        "passed": true
+      },
+      {
+        "check": "one_execution_per_attempt",
+        "passed": true
+      },
+      {
+        "check": "uncommitted_config_preserved",
+        "passed": true
+      },
+      {
+        "check": "readable_current_input",
+        "passed": true
+      }
+    ]
+  },
+  "S3-single-resume-grade.json": {
+    "task": "S3",
+    "phase": 2,
+    "passed": true,
+    "checks": [
+      {
+        "check": "current_result",
+        "passed": true
+      },
+      {
+        "check": "input_binding",
+        "passed": true
+      },
+      {
+        "check": "one_execution_per_attempt",
+        "passed": true
+      },
+      {
+        "check": "uncommitted_config_preserved",
+        "passed": true
+      },
+      {
+        "check": "readable_current_input",
+        "passed": true
+      }
+    ]
+  }
+}

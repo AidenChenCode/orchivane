@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "variants": [
+    "single",
+    "orchivane"
+  ],
+  "versions": {
+    "taskset": "coordination-pilot-v1",
+    "environment": "codex-desktop-isolated-local-v1",
+    "tools": "native-chat-and-local-python-v1",
+    "knowledge": "synthetic-fixtures-v1",
+    "grader": "deterministic-v1-plus-trace-labels"
+  },
+  "tasks": [
+    {
+      "task_id": "S1",
+      "suite": "regression",
+      "expected_outcome": "completed",
+      "trial_ids": [
+        "1"
+      ]
+    },
+    {
+      "task_id": "S2",
+      "suite": "regression",
+      "expected_outcome": "completed",
+      "trial_ids": [
+        "1"
+      ]
+    },
+    {
+      "task_id": "S3",
+      "suite": "regression",
+      "expected_outcome": "completed",
+      "trial_ids": [
+        "1"
+      ]
+    }
+  ]
+}

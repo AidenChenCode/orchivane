@@ -29,4 +29,6 @@ Native E2E runs require explicit human authorization to create and message real 
 
 The [handoff/recovery protocol](tests/handoff-recovery.md) includes a bounded fixture for missing local inputs, ownership conflicts and duplicate dispatch. Count effects only in the actual runtime directory, not copied audit evidence. Verify that current role labels and next actions agree with delivered results before closing a run; retain failed snapshots and scope later hash comparisons to the relevant phase.
 
+The [paired pilot](tests/paired/README.md) includes frozen inputs, prompts, final artifacts, resource metrics and offline replay tests. A zero-request baseline is a valid result. Keep human-time measurements separate from scripted coordination-request proxies, and equal budget ceilings separate from actual spend. New native trials require a new bounded plan; offline replay is not another behavioral trial.
+
 Contributions are offered under this repository's [MIT license](LICENSE). Third-party source material retains its own license; add attribution when copying material, and prefer linking to upstream references.

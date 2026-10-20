@@ -83,6 +83,8 @@ python3 -m venv .venv
 
 ## Evidence and limits
 
+A [paired pilot](tests/paired/README.md) on 2026-10-20 used identical tasks, model settings and aggregate turn ceilings. Both workflows completed three tasks with zero extra coordination requests. Orchivane used more cumulative active time and reported tokens overall. No specialist chat was created, and real human time was not measured. This does **not** establish coordination savings; equal turn ceilings also do not mean equal token spend.
+
 The [real native example](examples/tool-library/README.md) completed creation, dispatch and independent review: 17/20 initially, 19/20 after the one allowed correction, with final acceptance still **failed**. The experiment used frozen skill 0.2.0; 0.3.0 incorporates the resulting changes and has not had a full native rerun.
 
 A separate [0.3.1 handoff/recovery experiment](tests/handoff-recovery.md) used three native desktop chats and an isolated CSV fixture. It exercised missing ignored inputs, backup restoration, preserved uncommitted configuration, an injected ownership conflict, stale evidence and serial duplicate dispatch. A successor actually completed the new input version once. Initial independent review found two stale controller records despite the six behavioral checks being supported; one correction and an independent closure review resolved them. Failed checks and measurement corrections remain documented. This does not test archival, real concurrent writers, crashes or retries after context loss.
@@ -95,4 +97,4 @@ The workflow is primarily written in Chinese and can be requested in English; la
 
 Design references include [Ponytail and Superpowers](docs/research.md), the Agent Skills format and current vendor guidance on context and multi-agent coordination. Their benchmark results are not claimed as results of this project. No upstream implementation is vendored.
 
-The [value assessment and priorities](docs/value-assessment.md) focus on durable role ownership, evidence-backed handoffs and reducing human coordination. Quantified benefits still require controlled tests; broader orchestration infrastructure is not planned without demonstrated need.
+The [value assessment and priorities](docs/value-assessment.md) focus on durable role ownership, evidence-backed handoffs and reducing human coordination. The first paired pilot found no coordination-request reduction; benefits in sustained multi-role work remain unproven. Broader orchestration infrastructure is not planned without demonstrated need.

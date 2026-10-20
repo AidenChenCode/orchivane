@@ -1,0 +1,45 @@
+{
+  "S1-single": {
+    "README.md": "c808f9e4364d8bc9f65fc851aa5b805ca81c43d76d0d583c1effec41944a457b",
+    "normalize.py": "49b0bda849d106343c330ee28d794ed50772533da00d2f6e152809ea45016361"
+  },
+  "S1-orchivane": {
+    "README.md": "247bfa36f12152fe87d3957c13e8c1eb5654cb45eff3a5043047131b19932599",
+    "normalize.py": "ac7d97398f2d7499df9b017db48d024f8a1440620378c0e542cd6228adc806e0"
+  },
+  "S2-single": {
+    "README.md": "8a47929d6286694cc3548058530bb80aad8a4a7ca0e85c258d42105d359ae2c7",
+    "contract.json": "281cc6a8feb7a4c2f260fdd0ac07eeab9112f552f3990d599fb5bc1b94e59592",
+    "stock.py": "e60b0bcb1568a775bcebcace9c35d05236d7ff71da6e3246ee80f3275c72ee91"
+  },
+  "S2-orchivane": {
+    "README.md": "8aef4963dc7e58aca4ecc4853ad632f212f47a77b3ceb5e048e730828dc4523c",
+    "contract.json": "281cc6a8feb7a4c2f260fdd0ac07eeab9112f552f3990d599fb5bc1b94e59592",
+    "stock.py": "b95c821091d021ef6ebe2ff1ad3494a5a358bc1f6a24c66a7e134966e4bbe279"
+  },
+  "S3-single": {
+    ".gitignore": "0b2aeda4a5309f3271f2aea97905052040c1dbf32a9bc181852a74030419e89a",
+    ".runtime/executions.jsonl": "1af0f4d156b61098c7d38cd3cd7229635e5992c308df3b71e9a69f27f8b6b016",
+    ".runtime/input.T1-A1.csv": "722195482e987d50a1312dccc42280147b73ff4f7b946a8b9f7c2a13af292eae",
+    ".runtime/input.csv": "9b0cd28f1fe08292e95be52d490c72b070b8805c0fd13eb77be0396b75e7c931",
+    "HANDOFF.md": "e089f6b9b3f15d7bbba0da78b920ae81601e13911831cf4d36c3453e469f51cc",
+    "config.json": "d2b191e08fb55024b1235086db10fee7cbc2f14c028f8435d05ae38b45512c97",
+    "report.py": "b8039fa5a81c5df4a744a2cda9200ac7df20afabb1c99a28d77b69407b1f1100",
+    "result.json": "c4006672becaee6495e64bc1b3cfe25795affe5ac8de0efc4316a951bf12c70b"
+  },
+  "S3-orchivane": {
+    ".gitignore": "0b2aeda4a5309f3271f2aea97905052040c1dbf32a9bc181852a74030419e89a",
+    ".runtime/executions.jsonl": "1af0f4d156b61098c7d38cd3cd7229635e5992c308df3b71e9a69f27f8b6b016",
+    ".runtime/input.T1-A1.csv": "722195482e987d50a1312dccc42280147b73ff4f7b946a8b9f7c2a13af292eae",
+    ".runtime/input.csv": "9b0cd28f1fe08292e95be52d490c72b070b8805c0fd13eb77be0396b75e7c931",
+    ".runtime/result.T1-A1.json": "f7b7029bbee7b18b724804d6ff626dfc090b7d8b05b58e3617d7cf305416989c",
+    ".runtime/result.T1-A2.json": "c4006672becaee6495e64bc1b3cfe25795affe5ac8de0efc4316a951bf12c70b",
+    "AGENTS.md": "77489f1ee4bae43f17ca355c6a6ae30459b7e23e6feda479e10ed34b689c70d2",
+    "config.json": "d2b191e08fb55024b1235086db10fee7cbc2f14c028f8435d05ae38b45512c97",
+    "docs/SESSION-MANAGEMENT.md": "25749f5beb06b5828fe30c373bc6ab0398de5753c1bd8b7bf206a12fd5646f1c",
+    "docs/handoffs/S3-A1.md": "5bd0cfa47f54daf511221973b58ee6a615d0667d13acf3476e147fd6c2ef385c",
+    "docs/handoffs/S3-A2.md": "056f1395434356dab93ef281de2e4b641d7693a4f30a5d1c0a18b608078da9dd",
+    "report.py": "b8039fa5a81c5df4a744a2cda9200ac7df20afabb1c99a28d77b69407b1f1100",
+    "result.json": "c4006672becaee6495e64bc1b3cfe25795affe5ac8de0efc4316a951bf12c70b"
+  }
+}
