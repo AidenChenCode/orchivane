@@ -1,11 +1,11 @@
 # Compatibility and current design basis
 
-Checked against primary documentation on 2026-10-19. Availability is a capability question, not a brand-name guarantee.
+Checked against primary documentation on 2026-10-19. Version 0.3.2 translates the skill and default presentation into English; the native installation and behavioral observations below remain tied to their original versions. No native 0.3.2 rerun is claimed. Availability is a capability question, not a brand-name guarantee.
 
 | Surface | Supported claim | Limit |
 | --- | --- | --- |
 | Agent Skills-compatible reader | Standard SKILL.md, progressive references, no runtime dependency | The host must actually load the skill; no automatic tool entitlement |
-| Codex desktop with native chat tools | This release includes a real creation → dispatch → artifact → review experiment | A documented run on one host is not every account/client version |
+| Codex desktop with native chat tools | The repository preserves a real creation → dispatch → artifact → review experiment using frozen 0.2.0 | A documented run on one host is not every account/client version |
 | Codex CLI / other skill clients | Instructions and records can be used | Native persistent-chat control must be verified separately; subagents are not a drop-in substitute |
 | Claude Code agent teams | Relevant conceptual comparison | No tested adapter or Claude plugin manifest in this release |
 | Portable / Codex plugin package | CLI 0.157.1 installation passed; user observed desktop directory visibility; two fresh desktop chats read and used 0.3.1 | UI-button installation, other hosts and repeatable implicit selection remain unverified |

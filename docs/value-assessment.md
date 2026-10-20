@@ -1,45 +1,47 @@
-# Orchivane 的价值与优化取舍
+# Value and optimization priorities
 
-评估日期：2026-10-19；2026-10-20补充隔离接班实验及首轮配对试跑。依据：本仓库实际实验、此前固定版本的源码研究，以及下列一手公开材料。结论是产品定位判断，不是用户需求调查或效能证明。
+**English** · [简体中文](value-assessment.zh-CN.md)
 
-## 值得继续，但要验证协调负担是否下降
+Assessment: 2026-10-19; updated with recovery and paired-pilot evidence on 2026-10-20. This is a positioning assessment based on repository experiments, fixed-source reviews and the primary materials linked below. It is not a demand survey or proof of efficiency. This translation does not add a new upstream research run.
 
-Orchivane最值得保留的定位是：**让用户通过一个总控入口推进长期项目，让角色、有效决定、交付证据和接班责任持续可查。** 新项目可以先在单对话澄清需求；出现持续独立上下文或验收需要时才拆分。小任务无需为使用插件而创建角色。
+## Worth exploring; coordination savings remain unproven
 
-适合已有多个长期聊天、经常跨阶段变更或换班、需要独立验收的个人和小团队。对于一次性修复、短问答，或者平台默认流程已经足够稳定的项目，单对话或现有工程技能通常更合适。这是工作形态判断，尚无用户规模或付费意愿数据。
+The useful hypothesis is **one controller entry point for a long-running project, with durable ownership, effective decisions, delivery evidence and handoff responsibility**. New projects can clarify their needs in one chat, adding roles only when persistent independent context or acceptance warrants it. Small tasks need no roles merely to use the plugin.
 
-痛点有外部依据，但解决方案并非独有。Anthropic的长任务工程报告使用规划、生成、验收和结构化交接，也说明模型进步后部分过程应当删除、额外验收并非对每项任务都划算。我们的推论是：持续验证最小协作结构比固定角色数量更重要。[来源](https://www.anthropic.com/engineering/harness-design-long-running-apps)
+Likely use cases include individuals and small teams already working across persistent chats, changing requirements across phases and needing independent acceptance. One-off fixes, short questions or workflows already handled well by the host often fit a single chat or existing engineering skills better. This is a workflow judgment; user-scale and willingness-to-pay data are unavailable.
 
-Anthropic对Claude Code实际使用的研究观察到领域经验与成功结果相关，但它依赖模型分类，不能直接测量产物的现实价值，也不是对Orchivane的实验。它支持重视用户判断与结果核验的方向，不能证明加一个总控就会提升成功率。[来源](https://www.anthropic.com/research/claude-code-expertise)
+The problem has external support, but the approach is not unique. Anthropic's long-running application report uses planning, generation, verification and structured handoffs, while describing how better models can make some process unnecessary and extra verification may not pay for every task. Our inference is to keep testing the smallest useful structure rather than prescribing a role count. [Source](https://www.anthropic.com/engineering/harness-design-long-running-apps).
 
-## 与已有项目的关系
+Anthropic's Claude Code study associates domain expertise with successful outcomes, but uses model-based classification and does not directly measure the real-world value of artifacts. It is not an Orchivane experiment. It supports attention to user judgment and outcome verification, not a claim that adding a controller improves success. [Source](https://www.anthropic.com/research/claude-code-expertise).
 
-| 方案 | 已读取材料所强调的能力 | 对Orchivane的启发与边界 |
+## Relationship to existing approaches
+
+| Approach | Capability emphasized in reviewed materials | Implication for Orchivane |
 | --- | --- | --- |
-| [Ponytail](research.md#从-ponytail-学什么) | 最小实现、复用、范围和验证 | 可作为执行原则配合；无需重复其实现技能 |
-| [Superpowers](research.md#从-superpowers-学什么) | 规划、实现、调试、评审等工程流程 | 复用工程方法；Orchivane重点是长期角色与跨阶段责任，不应再复制整套工程流程 |
-| [cablate/baton、jpawchan/baton](research.md#同领域项目补充对照与后续建议) | 拆分成本、任务契约、冻结输入及审阅绑定 | 编排和验收不是独家能力；吸收可核证据，不引入另一套调度运行时 |
-| [uchimata2/handoff-skill](https://github.com/uchimata2/handoff-skill/blob/b4296dcc7476d9c4ec8be5ac6c9937b7b7dc23a8/README.md) | 跨项目交接、单一事实来源、回查过期文档 | 仅“生成交接摘要”区分度很低；我们应验证接班可运行、唯一主责切换与资料保全 |
-| [Entire skills](https://github.com/entireio/skills/blob/fe5266f76d846222c73b080ce39fd803dd705198/README.md) | 利用Entire记录的checkpoint、会话和Git历史检索、解释及交接 | 若项目已有该记录系统，可作为证据来源；没有必要自建转录数据库或复制其历史检索 |
+| [Ponytail](research.md#lessons-from-ponytail) | Minimal implementation, reuse, scope and validation | Complement its engineering principles rather than duplicating them |
+| [Superpowers](research.md#lessons-from-superpowers) | Planning, implementation, debugging and review workflows | Reuse engineering methods; focus here on persistent roles and continuity |
+| [cablate/baton and jpawchan/baton](research.md#related-collaboration-projects) | Splitting costs, task contracts, frozen inputs and bound review evidence | Orchestration and acceptance are not unique; adopt evidence practices without another runtime |
+| [uchimata2/handoff-skill](https://github.com/uchimata2/handoff-skill/blob/b4296dcc7476d9c4ec8be5ac6c9937b7b7dc23a8/README.md) | Cross-project handoff, a single source of truth and stale-document checks | A generated summary alone offers little distinction; verify successor runnability, sole ownership and preserved data |
+| [Entire skills](https://github.com/entireio/skills/blob/fe5266f76d846222c73b080ce39fd803dd705198/README.md) | Retrieval, explanation and handoff using Entire checkpoints, sessions and Git history | Reuse an existing record system as evidence instead of building a transcript database |
 
-前四个项目的固定源码与读取范围见[研究记录](research.md)。后两个补充项目本轮只读取公开README并记录HEAD，未运行、未审计实现。比较仅覆盖所读能力，不宣称竞品缺少其他功能。未来平台原生能力可能覆盖更多协作过程，因此可迁移的规则与复现证据比绑定某个客户端工具名更值得积累。
+[Research notes](research.md) identify the fixed source snapshots for the first four repositories. Only the READMEs and HEADs of the final two were reviewed; their implementations were not executed or audited. Comparisons cover what was read and do not assert missing competitor features. Native platforms may absorb more coordination capabilities, making portable rules and reproducible evidence more useful than dependence on particular tool names.
 
-## 当前证据能支持到哪里
+## What the evidence supports
 
-- 已验证安装与调用：[桌面验收](../tests/desktop-plugin.md)证明本机插件路线可用。未点名请求的单次触发有标题和共存插件影响，不能宣传稳定触发率。
-- 已跑过真实创建、派工与独立验收：[借物小站](../examples/tool-library/README.md)最终19/20仍未通过。它暴露了冻结引用和状态一致性问题，说明机制能产出可审查的失败；不能据此推导相较单会话的增益。
-- 早期无技能基线已经能守住多项关键约束。当前没有足够证据证明这些文字规则优于模型原有能力，不能把整理规则等同新增能力。
-- 2026-10-20的[隔离接班实验](../tests/handoff-recovery.md)已覆盖真实接班与继续工作、ignored依赖恢复、历史回执判断及串行重复投递；初审也发现两个总控记录遗漏。归档后恢复、真实并发、上下文丢失及崩溃窗口仍未验证，不宜把有限场景写成全面可靠。
-- 同日[首轮配对试跑](../tests/paired/README.md)：相同模型、任务与四轮上限，两组各三题完成，额外协调请求均零；单会话累计216.163秒、Orchivane293.142秒，报告总token分别1,120,054和1,536,528（大量缓存，费用未知）。本轮没有专业角色拆分，没有真人计时；不能证明减少协调成本。S2只形成跨文件变更，尚未形成跨职责压力。
+- **Installation and actual use:** the [desktop record](evidence.md#desktop-installation) supports the local plugin route. The single unnamed-request case had title and co-installed-plugin confounds; it is not a reliable trigger-rate measurement.
+- **Native creation, dispatch and independent acceptance:** the tool-library case finished at 19/20 and failed. It exposed frozen-reference and state-consistency issues, giving a reviewable failure rather than evidence of an advantage over one chat. [Case summary](evidence.md#native-project-example).
+- **A strong baseline:** earlier no-skill responses already respected key constraints. Organizing rules is not automatically a new model capability.
+- **Bounded recovery:** real takeover and subsequent execution, ignored-input recovery, stale receipts and serial duplicate dispatch were exercised. Initial review found two stale controller records. Archival, concurrency, context loss and crash windows remain untested. [Summary](evidence.md#handoff-and-recovery).
+- **Paired pilot:** identical tasks, model and four-turn ceilings; three tasks completed per arm, zero extra coordination requests in both. Single-chat active duration was 216.163 seconds versus 293.142 for Orchivane. Reported total tokens were 1,120,054 versus 1,536,528, with extensive caching and unknown monetary cost. No specialist roles or real human timing were involved. S2 tested cross-file changes, not actual cross-role pressure. [Summary](evidence.md#paired-pilot).
 
-## 优化顺序与验收条件
+## Priorities and acceptance conditions
 
-1. **安装后的第一分钟——本轮已补齐文档。** README提供只读自检，分别核验可见、启用、发现、读取和使用；修正现行“桌面未验证”口径，保留旧路线失败历史。复用原生命令和对话，没有增加安装器、脚本或权限。
-2. **先测接班和异常恢复——已做限定实验，剩余范围明确保留。** 2026-10-20完成首轮原生实验；初审发现控制记录遗漏，经修正后独立复核通过，详见实验报告。旧角色写入仅由声明冲突模拟，创建结果未知、真实归档及崩溃恢复仍待独立验证。现有规则已要求同步记录，本轮不因一次执行遗漏继续堆规则；下一轮若扩大范围，先定具体场景、成本和停止条件。
-3. **证明减少协调成本——首轮已执行，未观察到收益。** 三类任务各一对的可行性试跑完成，没有追加补跑。基线已零请求，题目太短且约束充分，指标出现地板效应；本轮不宜扩样同样的简单题来追求正结果。下一步先选已有真实协调负担、需要持续角色上下文的脱敏工作流，记录真人分钟数与搬运次数，再冻结独立重复的预算和验收。相同轮次上限不等于相同token成本；原生工具不能强制token上限，此限制必须继续公开。
+1. **The first minute after installation:** documentation now separates visibility, enablement, discovery, reading and actual use. Preserve the older failed route as history; use native tools without adding another installer or permissions.
+2. **Handoff and recovery:** the bounded experiment is complete, with the initial controller omissions corrected and independently rechecked. An injected ownership declaration is not a real old writer. Unknown creation outcomes, real archival and crash recovery need separately bounded inputs, costs and stop conditions. Existing rules already covered record synchronization; one omission did not justify more rules.
+3. **Coordination cost:** the first paired pilot observed no reduction. Its short, well-specified tasks reached a zero-request floor in the baseline. Do not keep expanding the same easy suite to chase a positive result. Select a sanitized workflow with existing coordination burden and sustained role context; record real human minutes and relays before freezing independent repeats and their budgets. Equal turn ceilings are not equal token spend, and the native tool cannot enforce a token cap.
 
-“搬运一次”定义为用户为同步另一角色而复制或重述已有信息，正常提出新需求不计；“重复解释”指同一已确认约束因未传递而被迫再次说明。对照组保持相同需求和验收强度，避免多会话组扩大功能后声称胜出。实验成本和修订次数执行前固定。小样本只能发现方向；若没有协调收益或增加负担，应合并角色、删减规则或承认该任务不适用。
+A relay is the user copying or restating existing information to synchronize another role; a new requirement is not a relay. Repeated explanation means an already confirmed constraint had to be supplied again after a transfer failure. Match business requirements and acceptance between arms rather than expanding the multi-chat arm's scope. Freeze costs and correction allowances first. If collaboration offers no benefit or adds burden, combine roles, remove unnecessary process or recognize that the task does not fit.
 
-本轮不增加独立服务、数据库、自动唤醒hook、多平台适配或仪表盘。没有实际目标平台与验收用例前，这些会扩大维护面，却不能回答当前最重要的问题：用户是否少做了协调工作，且交付没有变差。
+No independent service, database, wake-up hook, additional platform adapter or dashboard is planned without an actual target and test case. Those additions cannot answer whether the user coordinates less while delivery stays sound.
 
-当前优化是收窄证据与宣传口径、保留小任务单会话路径，并提供可复核的对照产物。Skill仍为0.3.1，不因一次无增益结果追加条款。长期协作是否值得保留，取决于后续代表性工作流中的实际收益，而不是生成了多少角色表和交接文档。
+The immediate improvement is honest positioning, a clear single-chat path and reproducible comparative evidence. The pilot kept Skill 0.3.1 unchanged. Version 0.3.2 subsequently introduces English-first instructions and bilingual entry points; prior outcomes are not reassigned to the translated version. Long-term value depends on representative workflow evidence, not the quantity of role tables and handoff documents produced.

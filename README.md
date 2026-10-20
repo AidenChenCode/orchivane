@@ -1,130 +1,123 @@
-# Orchivane 0.3.1
+# Orchivane 0.3.2
 
-[English](README.en.md) · [MIT](LICENSE) · [贡献与本地验证](CONTRIBUTING.md)
+**English** · [简体中文](README.zh-CN.md) · [MIT](LICENSE) · [Contributing](CONTRIBUTING.md)
 
-**一个目标，多方协作，持续接班。** Orchivane 取 orchestration（编排）与 vane（方向标）的意象：让专业角色协同推进同一个目标。
+**One intent. Many minds. Work carried forward.** Orchivane combines orchestration with the image of a direction vane: specialist roles working toward one shared goal.
 
-## AI 写代码之后，谁来把整个项目推进下去？
+## Who keeps the project moving across AI conversations?
 
-一个需求跨越前端、后端、研究和测试时，你可能已经开了几个 AI 对话：每个都能处理自己的任务，但协作工作又回到了你身上。
+You open separate AI conversations for research, implementation and testing. Each can handle a task, while the coordination still lands on you:
 
-- **你在搬运上下文。** 把这个窗口的结论复制给另一个，反复解释目标、约束和已经做过的决定。
-- **并行开始互相干扰。** 两个会话改了同一份文件，一个仍按旧接口实现，最后需要你辨认哪一版有效。
-- **换个对话就要重新交代。** 长对话结束了，新会话看到了摘要，却不知道哪些结论已确认、哪里有未提交成果、谁正在接着做。
-- **“完成”很难判断。** 代码写完、测试通过、需求验收、推送和部署混成一句“已完成”，遗留问题没有明确的承接人。
-- **你仍然是项目协调员。** 要决定下一步叫谁、给多少背景、何时验收，还要防止已经否定的方案被再次执行。
+- **Moving context between windows.** Copying conclusions and explaining the same constraints and decisions again.
+- **Reconciling conflicting work.** Two chats edit the same file, or one implements an outdated interface.
+- **Starting over at handoff.** A fresh chat has a summary but cannot tell which decisions are current, where local changes live or who owns unfinished work.
+- **Deciding what “done” means.** Implementation, tests, acceptance, push and deployment get collapsed into one claim.
+- **Remaining the project coordinator.** You decide who acts next, what context they need and which result to trust.
 
-Orchivane 把这些协作责任交给一个总控入口：总控先澄清目标，再按实际需要组织专业会话，明确每项成果的唯一主责、输入版本、写入范围和验收条件。专业角色交付可核验的成果；换班时连同决定、证据、限制和下一步一起交接。小任务可以留在一个对话中完成。
+Orchivane gives that work a single controller entry point. The controller clarifies the goal, chooses a useful collaboration structure, assigns one owner per deliverable and verifies results against explicit inputs and acceptance conditions. Specialists deliver artifacts and evidence. Handoffs carry decisions, limits and next steps forward. Small tasks can stay in one conversation.
 
-例如，你只需告诉总控“为现有产品增加登录功能”：它先核对现有身份方案和接口，再判断实施与独立验收如何分工；收到交付后，分别说明实现、验证、推送与部署的状态。你继续参与目标和关键取舍，无须在每个角色窗口重复描述需求。以上是预期使用方式，实际工具能力和已验证范围见文末。
+For example, ask the controller to add login to an existing product. It first checks the current identity design and interfaces, decides how implementation and independent review should be divided, then reports implementation, verification, push and deployment separately. You guide the goal and important tradeoffs without repeating the whole request in every role's chat. This is the intended workflow; tested capabilities and limits are documented below.
 
-**尚未证明协调成本更低。** 2026-10-20的[配对试跑](tests/paired/README.md)使用相同任务、模型及轮次预算上限：两组各完成三题，额外协调请求均为零；Orchivane 组累计执行时长和 token 更高。没有测量真人时间，也没有形成长期多角色协作，不能把机制设计当成已证实的效能收益。
+**Coordination savings are not yet established.** In the [paired pilot](docs/evidence.md#paired-pilot), both workflows completed three tasks with zero extra coordination requests under the same tasks, model and turn ceilings. Orchivane used more cumulative active time and reported tokens. Real human time and sustained specialist collaboration were not measured.
 
-## 从一个想法开始
+Version 0.3.2 makes skill instructions, plugin presentation and default documentation English-first, with a complete Chinese README. You can continue using Chinese in conversations. Native installation and behavioral observations below concern 0.3.1; they are not a native rerun of 0.3.2.
 
-从一个项目想法开始，先调研并与用户沟通，判断适合什么协作机制，再形成分工与启动方案。没有已有 session 或资料也可使用；已有项目则复用其角色和入口。进入多会话执行后，用户在总控提出需求，总控统一派工、验收和收口。适用于开发、研究、内容与运营项目。
+## Start from an idea
 
-本套件包含一个可独立安装的 Skill 和轻量插件清单。核心入口短，按任务加载建制、派工验收、巡检、handoff 与 Codex 适配模块；没有后台服务、额外依赖或自动唤醒 hook。
+Start with an idea, research and clarify the work, choose a collaboration structure, then dispatch and accept concrete deliverables. No existing sessions or repository are required. Existing projects reuse their roles and records. The workflow can support software, research, content and operations projects.
 
-## 直接使用
+The package contains one independently installable skill and lightweight plugin manifests. A short entry loads setup, dispatch, health-check, handoff and Codex references as needed. There is no background service, runtime dependency or automatic wake-up hook.
 
-在已加载该技能的新对话中输入：
+## Use it
+
+In a conversation where the skill is available:
 
 ```text
-使用 $orchivane，我有一个新项目想法，目前没有其他 session。
-先帮我调研并和我沟通，判断需要什么协作机制，再给出具体分工和启动方案。
+Use $orchivane. I have a new project idea and no other sessions.
+Research it with me, clarify the important constraints, and recommend
+an appropriate collaboration structure and a concrete starting plan.
 ```
 
-常用请求：
+Common requests:
 
-- 从零设计：`使用 $orchivane，我想做……，先了解需求和关键约束，调研后建议是否需要拆 session、怎么拆。`
-- 接管现有项目：`使用 $orchivane，核对已有 session 的职责与当前 TODO，不派新任务。`
-- 统一派工：`使用 $orchivane，按我已确认的任务清单向对应 session 派工，并读取交付结果。`
-- 换班：`使用 $orchivane，给当前总控准备交接包，先不创建或归档。`
-- 执行换班：`使用 $orchivane，按这份交接包创建接班会话、核验接班并转接关联自动化；保全资料且条件满足后归档旧会话并做归档后复核。`
-- 单次巡检：`使用 $orchivane，检查这个项目的多会话协作，只报告新异常、关键缺口和下一步。`
+- **Design a workflow:** “Use $orchivane. I want to build … Research the constraints and recommend whether to split the work across chats.”
+- **Inspect an existing project:** “Use $orchivane to check current roles and TODOs. Do not dispatch new tasks.”
+- **Dispatch authorized work:** “Use $orchivane to assign the tasks I approved to the corresponding chats and read their deliveries.”
+- **Prepare a handoff:** “Use $orchivane to prepare a handoff package for the current controller. Do not create or archive chats yet.”
+- **Execute a handoff:** “Use $orchivane to create and verify a successor from this package, transfer related automation, then archive the old chat only after preservation and acceptance checks, including a post-archive check.”
+- **Run one health check:** “Use $orchivane to inspect this project's collaboration. Report new issues, important gaps and next steps.”
 
-流程是“理解目标 → 必要调研与分轮沟通 → 推荐协作结构 → 具体启动方案 → 按授权落地”。按长期上下文、工作依赖和独立验收需要拆分，也可以建议暂留当前对话。角色数量与命名按项目确定；已有授权直接沿用，真实新增的创建/发消息等动作才集中补问。长期角色与临时 subagent 分开管理。
+The workflow is: understand the goal → research and discuss → recommend a structure → propose concrete tasks → execute within authorization. Split by durable context, dependencies and independent acceptance needs. Role names and counts depend on the project. Reuse existing authorization; ask together only for genuinely new actions that need it. Persistent roles and temporary subagents have different lifecycles.
 
-## 安装与迁移
+## Install and migrate
 
-### 插件安装（推荐）
+### Plugin installation — recommended
 
-使用与其他 Codex 插件相同的“添加来源 → 安装插件”流程。无需先克隆仓库：
+Add the GitHub source and install the plugin, using the same plugin mechanism as other Codex plugins. No repository clone is required:
 
 ```sh
 codex plugin marketplace add alexzhu0/orchivane
 codex plugin add orchivane@orchivane-local
-```
-
-上述命令已在 Codex CLI 0.157.1 实际完成：0.3.1插件安装并启用，技能从插件缓存发现为 `orchivane:orchivane`。可用下面的命令核对安装状态：
-
-```sh
 codex plugin list --marketplace orchivane-local --json
 ```
 
-2026-10-19，本机用户已确认桌面插件目录可见；两个新建桌面对话实际从插件缓存读取0.3.1并使用规则，其中一个请求正文未点名技能。本轮无需重启。目录可见由用户观察，启用状态和实际读取由工具核验，详见[桌面验收与复现](tests/desktop-plugin.md)。流程依据 [OpenAI插件打包文档](https://developers.openai.com/plugins/build/plugins)，具体命令以本机CLI帮助为准。这是通过公开GitHub来源分发，尚未上架官方精选目录。
+These commands were exercised on Codex CLI 0.157.1 for version 0.3.1: installed and enabled, with the cached skill discovered as `orchivane:orchivane`. On 2026-10-19, the user observed the desktop directory entry and two fresh desktop chats actually read and used the cached skill without restarting the app. One request body did not name the skill. See the [English evidence summary](docs/evidence.md#desktop-installation) and [original test record, Chinese](tests/desktop-plugin.md). UI visibility was user-reported; tool traces verified enablement and reads.
 
-插件安装后，可以说“使用 Orchivane 帮我组织这个项目”，或选择客户端显示的 `orchivane:orchivane` 技能。下文及独立安装的 `$orchivane` 示例指同一套规则。若此前已安装独立Skill，先完整备份到技能扫描目录之外，确认插件可用后仅保留一个活跃来源，避免重复加载；不要删除本地定制。
+Say “Use Orchivane” or select `orchivane:orchivane` in the client. `$orchivane` in examples refers to the same workflow. The package is distributed through its public GitHub source; it has not been submitted to the official curated directory. Commands depend on your installed CLI; see [OpenAI's packaging guidance](https://developers.openai.com/plugins/build/plugins).
 
-**是否需要“启动”？** 本包是按任务读取的技能，没有需要手动启动的后台进程。`installed=true`、`enabled=true` 表示已安装并启用；再用一个新对话核验实际加载。可直接输入：
+If a standalone copy already exists, preserve the full directory and local changes outside skill discovery directories. Once the plugin works, keep one active source to avoid duplicate discovery.
+
+**No background process needs starting.** `installed=true` and `enabled=true` confirm installation and enablement. Verify actual loading in a fresh chat:
 
 ```text
-请检查本轮可用技能清单是否有 Orchivane。
-若有，读取声明入口，报告版本，并用它建议一个需求尚不明确的新项目是否需要多个长期角色。
-若没有就报告未发现，不自行搜索文件补救。本轮只读，不创建或派工。
+Check whether Orchivane appears in the available skills for this conversation.
+If it does, read its declared entry, report the version, and use it to suggest
+whether an unclear new project needs multiple persistent roles.
+If it does not, report that it was not discovered; do not search for a file
+as a workaround. Read only: do not create chats or dispatch tasks.
 ```
 
-清单出现、实际读取、按规则行动是三个不同检查点。自然语言触发受宿主、模型及其他技能影响；需要稳定选用时明确点名。此核验无需新增项目文件、脚本或角色。
+Discovery, reading and following the workflow are separate checks. Natural-language selection depends on the host, model and other skills; explicitly name the skill when you want it selected.
 
-### 独立 Skill 安装
+### Standalone skill
 
 ```sh
 git clone https://github.com/alexzhu0/orchivane.git
 cd orchivane
-```
-
-独立 Skill 的完整目录是 [`skills/orchivane`](skills/orchivane/SKILL.md)，运行它无需 Python 或新依赖。下载/克隆本仓库后，在仓库根目录执行下面的 macOS/Linux 示例（目标已有文件或链接时拒绝覆盖）：
-
-```sh
 mkdir -p "$HOME/.agents/skills"
 test ! -e "$HOME/.agents/skills/orchivane" && test ! -L "$HOME/.agents/skills/orchivane" && cp -R skills/orchivane "$HOME/.agents/skills/orchivane"
 ```
 
-目录必须包含 `references/` 与 `agents/`，不要只复制 SKILL.md。Windows 可把整个目录复制到用户目录下 `.agents/skills/`。旧客户端使用 `~/.codex/skills/` 的安装须实际核验发现能力。选择一个安装来源；更新前核对其路径和版本，保留本地定制。目录规则依据 [Codex 技能文档](https://learn.chatgpt.com/docs/build-skills)。
+This macOS/Linux example refuses to overwrite an existing file, directory or symlink. Copy the complete [`skills/orchivane`](skills/orchivane/SKILL.md) directory, including `references/` and `agents/`. On Windows, copy it into the user's `.agents/skills/` directory. Older clients using `~/.codex/skills/` need their own discovery check. Preserve local customizations when updating and choose one installation source. See [Codex skill documentation](https://learn.chatgpt.com/docs/build-skills).
 
-0.3.1 更名自 Session Control，调用入口改为 `$orchivane`。已有 `session-control` 安装者，先将旧目录及本地定制备份到技能扫描目录之外，再安装新目录，避免两个入口同时生效。历史测试与冻结示例保留原名，不能把更名当作重新验证。
+Version 0.3.1 renamed Session Control to Orchivane. If you installed `session-control`, preserve it and any local modifications outside discovery directories before installing the new name. Historical tests retain their original name and version.
 
-旧名0.3.0的本机独立复制安装曾被CLI发现，但三个新桌面对话均未列出该技能，原路径的根因仍未确认。后续0.3.1插件安装路线已通过新桌面对话加载验证；没有重测旧独立安装，也不将插件成功改写为旧路线已修复。当前验证结果见[验证记录](tests/evaluation.md)。
+The former 0.3.0 standalone copy was discovered by the CLI but absent from three fresh desktop chats. Its root cause remains unknown. The later 0.3.1 plugin route passed discovery and use; this does not retroactively fix or retest standalone installation. See [compatibility notes](docs/compatibility.md).
 
-自动发现尚未生效时，可以明确要求助手“读取我安装目录中的 `orchivane/SKILL.md` 并按其流程工作”，提供真实完整路径。这是显式加载方式，应单独记录，不能当成自动发现或插件安装通过。
+If automatic discovery is unavailable, explicitly ask the assistant to read the installed `orchivane/SKILL.md` at its real full path and follow it. Record that as explicit loading, not successful automatic discovery.
 
-仓库内 `.agents/plugins/marketplace.json` 定义插件来源，根 `plugin.json` 为 portable 格式，`.codex-plugin/plugin.json` 为兼容格式。本包没有后台调度或自动执行 hook。
+The repository includes `.agents/plugins/marketplace.json`, a portable root `plugin.json` and `.codex-plugin/plugin.json`. Existing personal `session-handoff` or `session-health-check` skills can remain installed; Orchivane includes its own complete modules and does not modify or depend on those older skills.
 
-旧的个人 `session-handoff` / `session-health-check` 可以继续保留。新技能内部已有完整交接与巡检流程，无运行时依赖；明确使用 `$orchivane` 即可进入统一机制。旧技能未自动改写，以免影响已有项目。
+## Documentation and evidence
 
-## 内容与证据
-
-| 内容 | 入口 |
+| Topic | Entry |
 | --- | --- |
-| 核心规则与路由 | [SKILL.md](skills/orchivane/SKILL.md) |
-| 从零调研沟通、机制设计、项目接管和恢复 | [setup.md](skills/orchivane/references/setup.md) |
-| 任务说明、一次确认与验收 | [dispatch.md](skills/orchivane/references/dispatch.md) |
-| 交接、资料保全、自动化转接、归档后复核 | [handoff.md](skills/orchivane/references/handoff.md) |
-| 按变化巡检与通知 | [health-check.md](skills/orchivane/references/health-check.md) |
-| 原生能力与降级方式 | [codex.md](skills/orchivane/references/codex.md) |
-| Ponytail / Superpowers 源码研究与取舍 | [研究记录](docs/research.md) |
-| 项目定位、同类方案与下一步取舍 | [价值与优化评估](docs/value-assessment.md) |
-| 桌面插件发现、启用与使用复现 | [桌面验收](tests/desktop-plugin.md) |
-| 隔离接班、依赖恢复、旧回执及重复派工 | [接班恢复实验](tests/handoff-recovery.md) |
-| 单会话对照、协调请求与资源用量 | [配对试跑及复现](tests/paired/README.md) |
-| 当前标准、平台支持与边界 | [兼容性说明](docs/compatibility.md) |
-| 真实多会话案例（最终19/20，未通过） | [借物小站完整记录](examples/tool-library/README.md) |
-| 原生端到端实验的复现步骤 | [native-e2e.md](tests/native-e2e.md) |
-| 行为测试条件与实测边界 | [场景](tests/scenarios.md)、[结果](tests/evaluation.md) |
+| Core workflow and routing | [SKILL.md](skills/orchivane/SKILL.md) |
+| Research, setup, takeover and context recovery | [Setup](skills/orchivane/references/setup.md) |
+| Task briefs, dispatch and acceptance | [Dispatch](skills/orchivane/references/dispatch.md) |
+| Preservation, successor acceptance and archival checks | [Handoff](skills/orchivane/references/handoff.md) |
+| Incremental collaboration checks | [Health checks](skills/orchivane/references/health-check.md) |
+| Native tools and fallbacks | [Codex adapter](skills/orchivane/references/codex.md) |
+| Ponytail, Superpowers and related work | [Research](docs/research.md) · [中文](docs/research.zh-CN.md) |
+| Value, tradeoffs and next priorities | [Value assessment](docs/value-assessment.md) · [中文](docs/value-assessment.zh-CN.md) |
+| Results, versions and limitations | [English evidence index](docs/evidence.md) · [Original records, 中文](tests/evaluation.md) |
+| Platform support and boundaries | [Compatibility](docs/compatibility.md) |
+| Local checks and language conventions | [Contributing](CONTRIBUTING.md) |
 
-## 能力边界
+## Boundaries
 
-技能规定工作方法，客户端提供创建/读取/消息/自动化工具。缺少工具时可生成任务和交接材料，不能实际操控其他会话。检查或建制不自动授权创建新聊天、发消息、修复产品或归档。调度只在用户要求时建立。
+The skill defines a workflow; the host supplies chat creation, reading, messaging and automation tools. Without those tools, it can prepare files and task briefs but cannot control other chats. An inspection or design request does not authorize new chats, messaging, product fixes or archival. Schedules require a user request.
 
-0.3.0 根据真实原生会话实验补上技能版本标识、创建窗口登记与共享目录及冻结依赖核验，并提供开发校验、CI、MIT许可及贡献说明。静态验证不会创建聊天或调用供应商；运行方法见贡献文档。具体实测覆盖与未验证项以测试记录为准，不把单次流程成功推为所有客户端或所有项目有效。
+The native example finished at 19/20 and **failed acceptance**. The paired pilot found no coordination-request reduction. Bounded handoff tests do not prove crash recovery, concurrent safety or archival reliability. See [evidence](docs/evidence.md) for versions and failures; static checks are not behavioral tests or cross-client certification.
+
+Code identifiers, comments, plugin metadata and maintained skill instructions use English. The README and selected design guides provide Chinese counterparts. Respond in the user's preferred language. Original Chinese transcripts, fixtures and frozen reports remain in their source language so evidence is not rewritten; language-specific behavior has not been separately benchmarked.

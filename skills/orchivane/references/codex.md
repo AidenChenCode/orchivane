@@ -1,25 +1,25 @@
-# Codex 适配：只调用当前实际可用的能力
+# Codex adapter: use capabilities actually available now
 
-这是工具选择提示，不是新 API 或工具授权。以本次环境的实时工具说明为准；其他客户端使用等价能力，缺失时退化到可复制交接包/任务说明，不伪造执行。
+This is tool-selection guidance, not a new API or grant of authority. Follow the current environment's live tool descriptions. On other clients, use equivalent capabilities; if absent, provide copyable handoff packages and briefs without pretending execution occurred.
 
-| 需要做什么 | 优先使用的原生能力 |
+| Need | Preferred native capability |
 | --- | --- |
-| 查真实会话、读取必要历史 | `list_threads`、`read_thread`；核准确标题和 ID、实际分页范围 |
-| 查已有目标/项目 | `list_projects`；用户新建请求才 `create_thread` |
-| 向已有角色派工 | `send_message_to_thread`，须直接人类授权或可核的原人类授权 |
-| 收结果 | `wait_threads` 紧凑状态，必要时 `read_thread`；避免重复轮询 |
-| 查工作树/归档依赖 | `list_artifacts` 以及实际文件核验；其他会话附着物不得拿当前列表冒充 |
-| 会话归档/确认 | `set_thread_archived`、`list_archived_threads`，按需分页 |
-| 配置定时任务 | `automation_update`，先读匹配的现有配置，保持未要求修改的字段 |
+| Inspect actual chats and necessary history | `list_threads`, `read_thread`; verify exact titles/IDs and actual pagination coverage |
+| Find an existing target/project | `list_projects`; `create_thread` only for a user request to create a chat |
+| Dispatch to an existing role | `send_message_to_thread`, with direct human authorization or verifiable original human authority |
+| Collect results | Compact `wait_threads` status, then `read_thread` as needed; avoid repeated polling |
+| Check worktree/archive dependencies | `list_artifacts` plus actual file checks; the current chat's list does not describe another chat's attachments |
+| Archive and confirm | `set_thread_archived`, `list_archived_threads`, with pagination as needed |
+| Configure scheduled work | `automation_update`; first read matching existing configuration and preserve fields the user did not ask to change |
 
-创建线程前按工具要求查项目。默认复用原项目和运行环境；用户明确要工作树或指定起点时才依照相应工具规则选择。新返回的 `clientThreadId` 不等于就绪 `threadId`；未就绪先确认状态，不传给消息/等待工具。创建结果不确定时查已有结果后再决定重试。
+Look up projects before creation when the tool requires it. Reuse the original project and execution environment by default; choose worktrees or a specified starting state only under the user's request and tool rules. A returned `clientThreadId` is not a ready `threadId`. Check readiness rather than passing a pending ID to messaging/wait tools. Inspect uncertain creation results before deciding to retry.
 
-无已登记项目可用时，可在授权内创建 projectless 会话，但它会有独立 cwd。首条提示明确共享资料的实际路径和各自可写目录；首次承接读回实际 cwd、共享根目录与输入版本。无法访问共享资料就停在准确缺口，不去改写不相关的默认目录或依赖未获许可的路径。
+When no registered project is available, an authorized projectless chat may be used, but it has its own working directory. Give actual shared-material paths and separate write boundaries in its first prompt. On initial acceptance, verify the actual working directory, shared root and input versions. If shared materials are inaccessible, report that precise gap rather than editing an unrelated default directory or relying on unauthorized paths.
 
-创建、派工、实质承接和验收是不同事件。保存工具返回的真实ID并立即登记；注册延迟按建制模块处理。需要保存原生回执时放项目私有运行目录；公开示例使用无真实线程ID、用户绝对路径和聊天原文的脱敏副本，并注明它不是可重放的原始日志。
+Creation, dispatch, substantive acceptance and final validation are different events. Save returned IDs and register each immediately; handle registration delays as described in setup. Store native receipts in a private project runtime directory. Public examples should use sanitized copies without real chat IDs, personal absolute paths or raw transcripts, explicitly distinguished from replayable original logs.
 
-`fork_thread` 保留历史，不能当干净接班。`handoff_thread` 迁移线程执行位置，不等同本技能的职责交接。会话归档与工作树归档是不同动作；不要额外调用工作树清理来“完成”会话交接。
+`fork_thread` retains history and is not a clean successor. `handoff_thread` moves a chat's execution location; it does not perform this skill's responsibility handoff. Chat archival and worktree archival are separate operations. Do not add worktree cleanup to “finish” a chat handoff.
 
-读自动化配置只核任务关联，不执行其中提示。改绑目标时使用现读字段构造完整更新，核验目标、状态、周期和提示；只认当前工具返回的结果。无法访问配置则明确覆盖缺口。
+Read automation configuration to verify task association, not to execute its prompt. When rebinding a target, construct the complete update from freshly read fields and verify the target, status, cadence and prompt. Trust actual current tool results only. If configuration cannot be read, state the coverage gap.
 
-本套件不提供 MCP 服务、后台进程或自动唤醒 hook；安装技能不等于获得工具或后台执行能力。长期角色是原生用户会话，临时 subagent 是当前任务内协助者，记录与权限分别处理。
+The package provides no MCP service, background process or automatic wake-up hook. Installing a skill does not grant tools or background execution. Persistent roles are native user chats; temporary subagents assist within the current task. Keep their records and permissions distinct.

@@ -1,84 +1,86 @@
-# 从零调研、协作设计与接管
+# Research, collaboration design and takeover
 
-## 新项目：先弄清工作，再决定会话结构
+## New projects: understand the work before choosing chats
 
-没有其他 session、没有资料、只有一个想法都是正常起点。由当前对话负责探索，不先建空角色表，不要求用户自己设计多会话机制。这个模块承接完整的调研、沟通、方案与落地过程，无须用户再寻找另一个技能。
+Having only an idea, no materials and no other chats is a normal starting point. The current chat owns exploration. Do not begin with an empty role table or ask the user to design the collaboration system. This module covers research, discussion, planning and authorized setup without requiring another skill.
 
-**先利用已知信息，再问影响决策的问题。** 从用户描述和可访问材料提取目标、服务对象、预期成果、成功标准、阶段、时间/成本约束与参与方式。不存在的材料不用追索；不预设日期、预算或技术栈。每轮只问最影响当前判断的少量问题（通常1–3个），用推荐选项说明取舍；不要发长问卷或重复已答内容。用户尚无答案时，可给出标明假设的选项或小范围探索建议，继续不依赖答案的工作；关键未知不当作已确认。
+**Use known information before asking decision-changing questions.** Extract the goal, audience, deliverables, success criteria, phase, time/cost constraints and user involvement from accessible sources. Do not chase nonexistent documents or assume dates, budgets or a stack. Ask only a few high-impact questions per round, usually one to three, with recommended options and tradeoffs. Avoid long questionnaires and repeated questions. If the user has no answer, offer labeled assumptions or a bounded exploration and continue independent work; do not promote unknowns to facts.
 
-**调研必须服务于协作决策。** 根据当前问题查必要的公开案例、官方资料或项目材料，明确哪些结论会改变交付步骤、能力需求或验收方式。用户要求调研时实际执行可用的读取/检索，记录来源、日期、适用条件和缺口；工具不可用时明确哪些只是待查方案，不把常识推测写成调研结果。项目方向仍模糊时可以先做有限探索，不无限搜索或等待全部问题有答案；也不为了调研先创建一组研究聊天。真实外联、访谈、付费实验等仍按各自授权执行。
+**Research must inform the collaboration decision.** Read necessary public examples, official documentation or project materials, identifying findings that change delivery steps, required capabilities or acceptance. When research is requested, actually use available retrieval tools and record sources, dates, applicability and gaps. If tools are unavailable, distinguish a research plan from completed research. A vague direction can justify bounded exploration, not endless searches or waiting for every answer. Do not create a research team merely to start researching. Outreach, interviews and paid experiments need their respective authorization.
 
-**用工作依赖决定机制。** 先列关键成果及先后关系，再判断哪些工作需要长期独立上下文、哪些可并行、哪些必须独立验收、哪些会共享写入。比较拆分带来的收益与传递、同步、等待成本，给一个推荐方案及理由：
+**Let dependencies determine the structure.** List key deliverables and their order. Identify durable independent context, parallel work, independent acceptance and shared writes. Compare those benefits against transfer, synchronization and waiting costs, then recommend a structure with reasons:
 
-| 观察到的工作形态 | 可推荐的起步方式 |
+| Observed work | Possible starting structure |
 | --- | --- |
-| 目标尚在探索，或交付小且前后紧密相连 | 当前对话先完成探索或执行，暂不新增 session |
-| 有明确的一次性独立分析/核验 | 在允许的环境下用临时协助，不必设长期角色 |
-| 存在持续的独立资料积累、并行交付或验收职责 | 总控加必要的长期专业 session |
+| Unclear goal, or a small tightly coupled delivery | Explore or execute in the current chat; no additional chat yet |
+| A bounded one-off analysis or verification task | Temporary assistance where permitted; no persistent role required |
+| Sustained independent knowledge, parallel delivery or acceptance responsibilities | A controller plus the necessary persistent specialist chats |
 
-这些是判断依据，不是固定门槛或角色数量。用户已明确要多 session 时给最小合理分工，不擅自改成单会话；仍可说明哪些角色宜晚些启动。不要按职位名称或“看起来完整”凑角色。
+These are decision aids, not fixed thresholds or role counts. If the user explicitly wants multiple chats, propose the smallest useful split instead of silently substituting one chat; explain which roles can start later. Do not invent roles from job titles or for apparent completeness.
 
-**收敛成可执行方案。** 当首个阶段的目标、成果、关键约束及足以改变分工的问题已明确，就形成短项目简报和具体协作方案，不要求完成整个领域研究。包含：已知事实及来源、用户已答问题、剩余假设；推荐的会话结构及理由；每个拟设角色的产物、读写边界、依赖、验收人及首条任务；总控收口方式；何种实际变化才需要新增/合并角色。尚未创建的会话标“拟设”，不编造 ID 或承接状态。若暂不需要拆分，说明下一阶段何时重评。
+**Converge on an actionable plan.** Once the first phase's goal, deliverables, key constraints and role-changing questions are clear, produce a short brief and concrete collaboration plan. Do not require an exhaustive domain study. Include facts and sources, answered questions and remaining assumptions; the proposed structure and rationale; each role's deliverable, read/write boundaries, dependencies, acceptance owner and first task; controller closure; and actual changes that would justify adding or merging roles. Mark uncreated roles as proposed, without invented IDs or acceptance status. If staying in one chat, state when to reassess.
 
-**一次确认后落实。** 将机制方案与需要创建/派工的具体动作一起交用户确认；当前授权已经明确覆盖这些动作时直接执行，不再确认。只请求调研沟通或明确暂不建会话时，交付方案与续点，保持在设计阶段。授权落地后，按原生能力创建必要会话、写职责入口、交付首批任务并读取实质承接，沿用派工验收规则；不能仅列角色清单就称机制已运行。方案中待明确但不影响首阶段的小问题可以保留，不把它们变成全局阻塞。
+**Execute after one confirmation.** Present the structure together with concrete creation and dispatch actions. Execute directly when existing authorization already covers them. If the user only requested research/planning or explicitly deferred creation, deliver the plan and continuation point without starting the roles. Once authorized, use native capabilities to create necessary chats, write the role entry, dispatch initial tasks and inspect substantive acceptance under the dispatch rules. A role list alone does not mean the workflow is running. Minor open questions that do not affect the first phase need not block everything.
 
-调研和沟通跨轮进行时，把已答问题、来源、当前方案及下一问题保存在现有项目简报中；无简报时暂存在下方索引的“项目简报 / 机制方案”区。设计阶段可以保存这些记录，保存不代表已经启动建制、创建会话或有人承接任务。角色表可以记录“拟设、创建中、已创建待承接、已承接”的实际阶段，只有核验回执后才标已承接。未指定项目目录则用当前任务输出目录；不强制创建仓库或空目录树。
+Across discussion rounds, persist answered questions, sources, the current plan and next question in the existing brief, or initially in the index's project-brief section below. Saving design records does not mean setup has begun, chats exist or tasks are accepted. Track proposed, creating, created-awaiting-acceptance and accepted states according to actual evidence. Use the current task output directory if no project directory is given; do not require a repository or empty directory tree.
 
-创建前明确共享资料根目录、各角色写入边界与技能版本；先确认当前平台具备本轮需要的创建/读取/消息能力。原生会话各自的 cwd 可能不同，首条任务给出可访问的绝对资料入口并让接收方实际读核，不假定都在总控目录。版本以技能元数据或可核的发行/快照清单为据，不能只凭口头版本号。
+Before creation, define an accessible shared root, each role's write boundaries and the skill version. Check current creation/read/messaging capabilities. Native chats may have different working directories: provide a real absolute shared entry in the first task and have the recipient read it. Verify the version from skill metadata or a release/snapshot manifest, not a spoken label alone.
 
-创建调用可能在返回前启动接收方。先写拟设记录与首条任务，返回就绪ID后立即按原生回执更新该角色，不等所有角色创建完才登记；ID只取实际返回值，不手工编造占位ID。接收方读到旧“拟设”时，若明确任务、可核授权和资料齐备且没有主责冲突，可完成已授权的独立准备并报告登记延迟；发现真实职责冲突则暂停冲突写入。未知创建结果先查已有结果，不能为补索引重复创建。
+Creation may start a recipient before returning. Write the proposed record and initial brief first, then register each role immediately when its ready ID returns; do not wait for all roles to finish creation. Only use actual returned IDs. If a recipient sees an outdated proposed status but has a clear task, verifiable authority and accessible inputs with no ownership conflict, it may complete authorized independent preparation and report the registration delay. Pause conflicting writes when a real ownership conflict exists. For an uncertain creation outcome, inspect existing results rather than creating a duplicate to fill the index.
 
-## 接管已有项目
+## Existing projects
 
-先读现有规则、角色索引、当前变更。用会话列表和必要历史核对真实标题、ID、职责与状态；同名会话不能凭标题猜。先复用现有角色；缺少能力才建议新角色。没有工具时提供可复制的文件和任务说明，明确未创建/未发送。
+Read existing rules, the role index and current changes. Use chat listings and necessary history to verify actual titles, IDs, responsibilities and status; titles alone cannot disambiguate duplicate names. Reuse roles first and propose new ones only for missing capabilities. Without tools, provide copyable files and briefs and say explicitly that nothing was created or sent.
 
-默认由当前会话承担总控，不需另建总控聊天。已有总控时遵循既有职责，不争夺入口。用户只问“有哪些 session / 下一步是什么”时读取并回答，不顺手派工。
+The current chat is the controller by default; no separate controller chat is required. Respect an existing controller's responsibilities rather than competing for its entry point. If the user only asks which chats exist or what comes next, inspect and answer without dispatching tasks.
 
-根据任务拆分交付责任，例如研究、实施、独立验收；小项目可以合并角色。不要求每个角色都独立一个聊天，更不固定八个角色。非工程项目用文稿版本、来源日期或成果批次替代 Git 字段。
+Split delivery ownership as needed, such as research, implementation and independent acceptance. Small projects can combine roles; one chat per role or a fixed eight-role structure is not required. Non-engineering work can use document versions, source dates or delivery batches instead of Git fields.
 
-接管时复用现有索引，补足具体角色建议与任务说明；目标或分工依据仍不清楚时，回到上面的调研沟通步骤。只有用户明确请求创建新会话时才调用创建工具；发消息也须有相应人类授权。若用户已指定创建和派工，就直接完成。需要补充授权时一次列出具体目标、消息内容与动作，解释是因为哪些动作尚未获授权；不问抽象的“是否继续”。
+Reuse the index and add concrete role suggestions and briefs. If goals or the basis for the split remain unclear, return to research and discussion. Call chat creation only for an explicit user request; messaging also requires corresponding human authorization. If creation and dispatch are already requested, complete them. When additional authority is genuinely missing, present concrete destinations, messages and actions together and explain the gap, rather than asking an abstract “continue?” question.
 
-## 最小文件布局
+## Minimal records
 
-复用项目已有等价文件，避免两套台账。探索阶段先记录项目简报与机制方案；进入建制才填实际角色表。变更、巡检、交接发生时才创建对应记录：
+Reuse equivalent project files instead of creating parallel ledgers. During exploration, record the brief and proposed structure; add actual roles during setup. Create change, health-check and handoff records only when needed:
 
-```
+```text
 docs/SESSION-MANAGEMENT.md
-docs/changes/<变更ID>.md
+docs/changes/<change-id>.md
 docs/SESSION-HEALTH.md
-docs/handoffs/<交接ID>.md
+docs/handoffs/<handoff-id>.md
 ```
 
-无项目目录时使用当前任务输出目录；无写入工具时交付文本。内部文件若被忽略，给其他检出记录稳定可访问入口，不为同步而强行提交敏感资料。
+Without a project directory, use the current task output directory; without write tools, deliver text. If internal files are ignored, give other checkouts a stable accessible entry rather than forcing sensitive materials into Git.
 
-职责索引模板：
+Role-index template:
 
 ```markdown
-# 项目协作入口
-截至：日期；当前总控：实际标题/ID/链接；本次读取范围：…
-当前目标：…
-当前有效授权与限制：原请求出处、允许动作、预算/停止条件
+# Project collaboration entry
+As of: date; controller: actual title/ID/link; inspected scope: ...
+Current goal: ...
+Effective authorization and limits: original request, allowed actions, budget/stop conditions
 
-## 项目简报 / 机制方案
-已有项目简报则链接，不重复维护。记录成果与成功标准、来源、已答问题与待核假设、推荐分工及理由、下一步；区分拟设角色与实际已承接角色。
+## Project brief / collaboration plan
+Link an existing brief instead of duplicating it. Record deliverables and success criteria,
+sources, answered questions and assumptions, recommended roles and rationale, and next steps.
+Distinguish proposed roles from verified acceptance.
 
-| 角色 | 当前会话标题 / ID | 主责与交付 | 资料入口 / 实际目录 | 当前任务与下一步 |
+| Role | Current chat title / ID | Ownership and delivery | Shared entry / actual directory | Current task and next step |
 | --- | --- | --- | --- | --- |
 
-## 当前决定与待办
-只列当前结论、主责与相关变更链接；旧结论注明被哪条替代。
+## Current decisions and TODOs
+Current conclusions, owners and change links; mark what supersedes old conclusions.
 
-## 重要依赖
-必要本地资料、冻结输入、关联自动化、不能清理的目录。
+## Important dependencies
+Required local materials, frozen inputs, related automation and directories to preserve.
 
-## 交接关系
-旧会话 → 新会话，实际接班状态，交接包链接。
+## Handoff relationships
+Old chat → successor, actual takeover status and package link.
 ```
 
-索引维护方唯一，通常是总控。专业会话维护自己的产物和回执；若索引正由总控写入，不让多个角色同时修改。可在项目 `AGENTS.md` 中追加以下指引，先检查原文，不覆盖已有规则：
+The index has one maintainer, usually the controller. Specialists maintain their own artifacts and receipts; do not let several roles edit the index while the controller owns that write. After checking existing `AGENTS.md`, append an appropriate guide without overwriting its rules:
 
-> 多会话协作先读 `docs/SESSION-MANAGEMENT.md`，定位职责与当前任务。总控汇总影响并沿用用户确认统一派工；专业角色在授权职责内完成并交付实际成果、版本、验证与遗留项。跨职责问题交总控协调，交接与巡检按 `$orchivane` 的对应模块执行。已有规则及用户授权继续有效。
+> For multi-chat collaboration, first read `docs/SESSION-MANAGEMENT.md` to locate your role and current task. The controller consolidates impacts and dispatches under the user's authorization. Specialists deliver authorized work with artifacts, versions, validation and remaining issues. Route cross-role questions to the controller; use the relevant `$orchivane` modules for handoff and health checks. Existing rules and user authorization remain effective.
 
-## 上下文恢复
+## Context recovery
 
-从当前索引进入本次变更，核对完成项及证据后继续未完成项，不重跑整份计划。记录不足时补查最小必要历史。持久记录存决定、依据和续点，不倾倒整段聊天；不以最新消息日期替代来源有效性判断。
+Enter through the current index and change record. Verify completed items and their evidence, then continue unfinished work without replaying the whole plan. Retrieve only necessary history when records are insufficient. Persist decisions, sources and continuation points rather than entire transcripts; the latest message date does not establish source validity.

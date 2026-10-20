@@ -1,62 +1,64 @@
-# Ponytail、Superpowers 与本套件的取舍
+# Design lessons from Ponytail, Superpowers and related projects
 
-研究日期：2026-10-19。读取公开仓库源码与插件清单，不仅看 README；未执行上游 hooks 或安装脚本。以下版本以本次浅克隆的提交为准，不承诺未来仓库行为不变。
+**English** · [简体中文](research.zh-CN.md)
 
-| 项目 | 读取版本 | 固定源码 |
+Research date: 2026-10-19; paired-pilot follow-up: 2026-10-20. The original review read public source and manifests, not just READMEs. Upstream hooks and installers were not executed. Commit references identify the reviewed snapshots, not promises about future upstream behavior. This English edition translates that research; it is not a new upstream audit.
+
+| Project | Reviewed version | Fixed source |
 | --- | --- | --- |
-| Ponytail | manifest 5.3.2；`09c434ab73ca43761c5d8b0c5d341926c2fba710` | [仓库快照](https://github.com/DietrichGebert/ponytail/tree/09c434ab73ca43761c5d8b0c5d341926c2fba710) |
-| Superpowers | manifest 7.0.0；`bb92a77741419a4ab5f06e711a283343f1ada0c3` | [仓库快照](https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3) |
+| Ponytail | Manifest 5.3.2 | [09c434ab73ca43761c5d8b0c5d341926c2fba710](https://github.com/DietrichGebert/ponytail/tree/09c434ab73ca43761c5d8b0c5d341926c2fba710) |
+| Superpowers | Manifest 7.0.0 | [bb92a77741419a4ab5f06e711a283343f1ada0c3](https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3) |
 
-本机安装的 Superpowers 技能版本为 6.4.2；本次仓库研究为 7.0.0，两者不混称。本套件沿用已有多会话制度及个人 handoff/health-check 技能的方法，独立整理为通用规则；不包含任何原项目角色ID、私有资料或运行数据。
+The locally installed Superpowers skills were 6.4.2; the source review covered 7.0.0. These are different observations. Orchivane generalizes an existing multi-chat workflow and personal handoff/health-check practices, excluding original project identities, private material and runtime data.
 
-## 从 Ponytail 学什么
+## Lessons from Ponytail
 
-**复用优先，省掉没有必要的新系统。** 其核心 Skill 给出了从已有能力、标准库到最小实现的选择顺序，同时保留校验、错误处理与安全要求。本套件直接使用客户端会话工具和 Markdown 记录，不造消息总线、调度器、角色数据库或额外 MCP。来源：[核心 Skill](https://github.com/DietrichGebert/ponytail/blob/09c434ab73ca43761c5d8b0c5d341926c2fba710/skills/ponytail/SKILL.md)。
+**Reuse before building another system.** Its skill prefers existing capabilities, the standard library and minimal implementation while retaining validation, error handling and safety. Orchivane uses native chat tools and Markdown records instead of a message bus, scheduler, role database or additional MCP service. [Core skill](https://github.com/DietrichGebert/ponytail/blob/09c434ab73ca43761c5d8b0c5d341926c2fba710/skills/ponytail/SKILL.md).
 
-**把规则和分发分开。** Ponytail 同时有技能目录、插件清单和生命周期 hooks。本套件借鉴技能加轻量清单的分发方式；没有照搬每次会话/提示自动注入的 hooks，因为用户只需在多会话协作任务中启用规则。来源：[插件清单](https://github.com/DietrichGebert/ponytail/blob/09c434ab73ca43761c5d8b0c5d341926c2fba710/.codex-plugin/plugin.json)、[hooks 配置](https://github.com/DietrichGebert/ponytail/blob/09c434ab73ca43761c5d8b0c5d341926c2fba710/hooks/claude-codex-hooks.json)。
+**Separate instructions from distribution.** Ponytail ships skills, manifests and lifecycle hooks. Orchivane adopts the lightweight packaging pattern but does not copy automatic per-session or per-prompt injection; its instructions apply to collaboration tasks. [Manifest](https://github.com/DietrichGebert/ponytail/blob/09c434ab73ca43761c5d8b0c5d341926c2fba710/.codex-plugin/plugin.json), [hook configuration](https://github.com/DietrichGebert/ponytail/blob/09c434ab73ca43761c5d8b0c5d341926c2fba710/hooks/claude-codex-hooks.json).
 
-**效率结论需要对应的正确性证据。** 其 2026-10-07 benchmark 明确了模型、CLI、任务数、重复次数与覆盖限制：39题、每臂5轮、3臂共585轮；运行环境限制了 agent shell。18道 surgical 题有隐藏正确性测试，其他题的交付/编译检查不能等同全面质量判断。对我们更有价值的是这种可追溯的实验边界，而非把其省 token/耗时比例宣传成我们的效果。本套件目前只有小样本场景核验，不声称效率提升。来源：[benchmark 报告](https://github.com/DietrichGebert/ponytail/blob/09c434ab73ca43761c5d8b0c5d341926c2fba710/benchmarks/results/2026-10-07-agentic.md)。
+**Efficiency claims need corresponding correctness evidence.** The reviewed 2026-10-07 benchmark reports its models, CLI, 39 tasks, five runs per arm and three arms totaling 585 runs, with restrictions on agent shell access. Eighteen surgical tasks had hidden correctness tests; delivery/compilation checks on other tasks do not establish comprehensive quality. We learn from those explicit limits rather than borrowing its savings claims. [Benchmark report](https://github.com/DietrichGebert/ponytail/blob/09c434ab73ca43761c5d8b0c5d341926c2fba710/benchmarks/results/2026-10-07-agentic.md).
 
-## 从 Superpowers 学什么
+## Lessons from Superpowers
 
-**入口负责路由，阶段文件负责细节。** 技能按规划、执行、调试、审查等任务划分，避免把所有细则塞进每次对话。本套件使用一个入口和按需加载的 references，减少同名/相似技能争抢；建制、派工、巡检与 handoff 均有明确产物。参考：[技能目录](https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills)。
+**Route at the entry; load details by phase.** Separate planning, execution, debugging and review skills avoid loading everything at once. Orchivane uses one entry with progressive references, reducing competing similar triggers and assigning concrete outputs to setup, dispatch, inspection and handoff. [Skill directory](https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills).
 
-**给实施者任务契约，给总控真实回执。** 其 implementer prompt 包含目标、上下文、约束、自检及明确交付状态；执行流程保存任务进度，避免上下文恢复后重复完成项。我们把这转译成长会话任务说明与持久变更记录，并保留规格符合性与实际质量的区别。来源：[实施提示](https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/subagent-driven-development/implementer-prompt.md)、[执行技能](https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/subagent-driven-development/SKILL.md)。
+**Give implementers a contract and controllers real receipts.** Its implementer brief includes goals, context, constraints, self-checks and delivery status. Execution records preserve progress across context recovery. Orchivane adapts these ideas to persistent-chat briefs and change records while distinguishing specification compliance from actual quality. [Implementer prompt](https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/subagent-driven-development/implementer-prompt.md), [execution skill](https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/subagent-driven-development/SKILL.md).
 
-**技能也要用行为场景测试。** writing-skills 强调用压力场景检验规则是否改变执行，不把文档写得长视为有效。本套件记录未加载前的回答、加载后的实际测试文件及局限。基线已能守住核心边界，因此本轮不能证明技能带来改进，只能证明约定被整理且有限场景未出现回退。来源：[writing-skills](https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/writing-skills/SKILL.md)。
+**Test skills through behavior.** Its writing guidance uses pressure scenarios to check whether rules change execution. More text is not proof of effectiveness. Orchivane keeps baseline responses, actual generated artifacts and limits. The early baseline already respected key boundaries, so those checks did not establish an improvement. [Writing skills](https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/writing-skills/SKILL.md).
 
-没有全盘移植其工程流程：临时新 subagent 与长期专业 session 的生命周期不同；小任务不固定走多轮审查；不把每次协作都升级成完整开发流程。7.0.0 执行技能中的持续裁决机制也不用于覆盖用户给定的预算、停止条件或暂停要求。当前 Codex 插件清单显式设置空 hooks，本套件同样不安装生命周期 hook。来源：[Codex 清单](https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/.codex-plugin/plugin.json)。
+We do not transplant the whole engineering workflow: temporary subagents and persistent specialists have different lifecycles, small changes need not receive repeated review, and collaboration does not always require a full development process. The reviewed 7.0.0 execution mechanism cannot override user budgets, stop conditions or pauses. Its Codex manifest explicitly has empty hooks; Orchivane likewise installs no lifecycle hook. [Codex manifest](https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/.codex-plugin/plugin.json).
 
-## 我们这套机制应继续保留的部分
+## Practices retained in Orchivane
 
-1. 用户面对一个总控；按实际交付设置长期角色，已有授权不反复询问。
-2. 专业角色交出成果、版本、验证和遗留项，总控核验后收口。
-3. 更正必须更新受影响的现行口径，原文和冻结版本保留。
-4. 交接有实际接班、自动化承接、ignored 资料独立保全、归档后复核。
-5. 巡检只关注变化，覆盖不足如实记录，减少重复唤醒。
+1. One user-facing controller; roles follow deliverables, and existing authorization is reused.
+2. Specialists provide artifacts, versions, validation and remaining issues; the controller verifies closure.
+3. Corrections reach affected current records while original sources and frozen versions remain intact.
+4. Handoffs verify actual takeover, automation continuity, independent preservation of ignored data and post-archive survival.
+5. Health checks focus on changes, disclose gaps and avoid repeated wake-ups.
 
-这是一层跨项目协作规则，可以与 Ponytail 的实现原则及 Superpowers 的工程技能配合。它不接管客户端权限系统，也不把技能文件当作自动运行的 agent 平台。
+This collaboration layer can complement Ponytail's implementation principles and Superpowers' engineering skills. It does not replace host permissions or turn a skill file into an autonomous runtime.
 
-## 包装依据
+## Packaging basis
 
-采用根 `plugin.json` 加兼容 `.codex-plugin/plugin.json`；技能可单独安装。依据读取时的 [官方打包文档](https://developers.openai.com/plugins/build/plugins) 与 [技能说明](https://developers.openai.com/plugins/concepts/skills)。本轮没有提交插件市场或验证跨客户端安装；清单存在不等于插件已安装。
+The root portable `plugin.json`, compatibility `.codex-plugin/plugin.json` and standalone skill follow the [packaging documentation](https://developers.openai.com/plugins/build/plugins) and [skill concepts](https://developers.openai.com/plugins/concepts/skills) read during the original review. A manifest is not proof of installation. Official-directory submission and cross-client installation were not performed in that review; later local plugin evidence is recorded separately.
 
-## 同领域项目补充对照与后续建议
+## Related collaboration projects
 
-2026-10-19，为候选名 Baton 查重时发现两个同领域项目。此次读取下列固定版本的 Skill、协议及评测说明，未安装或执行它们；对其机制的描述来自文档，不是本项目验证过的效果。
+These projects were found while checking the proposed name Baton on 2026-10-19. The review read fixed skills, protocols and evaluation documents, without installing or executing them. Their mechanisms are documented concepts, not effects verified by Orchivane.
 
-| 项目与固定版本 | 可借鉴之处 | 本项目的取舍 |
+| Project and snapshot | Useful ideas | Orchivane's choice |
 | --- | --- | --- |
-| [cablate/baton](https://github.com/cablate/baton/tree/0ab4d2ec5c69820001eeac2a12fab2c87fd3e943) | 派工前评估单人替代方案、独立性、唯一写入主责和最终整合者；考虑重复阅读与整合成本 | setup 已包含小任务单会话及成本判断，可用实际反例验证，避免仅凭空闲并发槽开角色 |
-| [jpawchan/baton](https://github.com/jpawchan/baton/tree/ca53c1649f9d1242e51ac43fc3712513067fafcf) | 冻结实际派发的上下文；按任务、轮次、报告、差异摘要绑定审阅证据；运行租约防止旧进程覆盖新状态 | 保留原生会话工具，优先在现有任务记录中明确派发轮次和证据版本；目前没有引入其锁、租约、CLI或调度运行时的必要 |
+| [cablate/baton](https://github.com/cablate/baton/tree/0ab4d2ec5c69820001eeac2a12fab2c87fd3e943) | Evaluate a single-worker alternative, independence, one write owner and a final integrator; include rereading and integration costs | Setup already considers single-chat work and overhead; test that decision rather than filling idle parallel slots |
+| [jpawchan/baton](https://github.com/jpawchan/baton/tree/ca53c1649f9d1242e51ac43fc3712513067fafcf) | Freeze dispatched context; bind review to task, attempt, report and diff; use leases to prevent stale writes | Keep native chat tools and trace attempts/evidence in existing records; no demonstrated need for another lock, lease, CLI or scheduler runtime |
 
-依据：[派工 Skill](https://github.com/cablate/baton/blob/0ab4d2ec5c69820001eeac2a12fab2c87fd3e943/SKILL.md)、[配对评测协议](https://github.com/cablate/baton/blob/0ab4d2ec5c69820001eeac2a12fab2c87fd3e943/benchmarks/case-01-multi-surface-refactor/protocol.md)、[任务与审阅规范](https://github.com/jpawchan/baton/blob/ca53c1649f9d1242e51ac43fc3712513067fafcf/SPEC.md)、[评测与历史冻结说明](https://github.com/jpawchan/baton/blob/ca53c1649f9d1242e51ac43fc3712513067fafcf/benchmarks/README.md)。
+Sources: [dispatch skill](https://github.com/cablate/baton/blob/0ab4d2ec5c69820001eeac2a12fab2c87fd3e943/SKILL.md), [paired protocol](https://github.com/cablate/baton/blob/0ab4d2ec5c69820001eeac2a12fab2c87fd3e943/benchmarks/case-01-multi-surface-refactor/protocol.md), [task/review specification](https://github.com/jpawchan/baton/blob/ca53c1649f9d1242e51ac43fc3712513067fafcf/SPEC.md), [benchmark records](https://github.com/jpawchan/baton/blob/ca53c1649f9d1242e51ac43fc3712513067fafcf/benchmarks/README.md).
 
-以下建议记录原研究时点；第一项的本机插件路线和文档自检已由后续验收推进，第三项于2026-10-20完成限定场景实验，第四项同日完成首轮配对试跑，未验证减少协调成本。剩余范围仍待决策，不扩大原实验的修订预算。最新价值判断及优先级见[价值与优化评估](value-assessment.md)。
+## Follow-up priorities and actual progress
 
-1. **先闭环安装体验。** 后续已验证0.3.1插件路线的安装启用、用户观察的桌面目录可见，以及两个新对话实际读取和使用；README新增只读自检，见[验收记录](../tests/desktop-plugin.md)。旧独立安装失败的根因仍未知，跨客户端与所需原生控制能力仍需各自核验；不混称全平台修复。
-2. **让派工与验收可追溯到同一次尝试。** 复用现有变更记录，必要时保存派发轮次、冻结输入、工具返回及验收产物版本。补一个小型引用核验工具前先确认重复需求；它应覆盖我们实测失败的相对引用，而非再建一套任务数据库。
-3. **验证恢复能力。** 2026-10-20[限定实验](../tests/handoff-recovery.md)已覆盖接班继续工作、ignored依赖恢复、旧回执、注入主责冲突和串行重复派工，并暴露控制记录未同步的问题。未知创建结果、真实并发、上下文丢失和归档仍未实测；已有条款不能代替这些恢复证据。
-4. **验证拆分是否值得。** [首轮配对结果](../tests/paired/README.md)中两组各三题完成、额外协调请求均零，Orchivane累计时长与token更高。三题均未创建专业会话，因此只能说明小任务基线很强，尚不能判断持续拆分是否值得。下一批应先找到真实跨角色协调负担并测量人工时间，不从既有19/20或本轮零请求推导效能提升。
+1. **Installation experience:** the local 0.3.1 plugin route passed enablement, user-observed desktop visibility and actual use in fresh chats. The README includes a read-only check. The older standalone-discovery failure remains unexplained; this is not a cross-platform fix. [Evidence](evidence.md#desktop-installation).
+2. **Trace dispatch and acceptance to the same attempt:** reuse change records for dispatch attempts, frozen inputs, tool results and artifact versions. Confirm repeated need before adding a reference checker, and target observed relative-path failures rather than building a task database.
+3. **Recovery:** a bounded 2026-10-20 experiment covered successor continuation, missing ignored inputs, stale evidence, injected ownership conflict and serial duplicate dispatch. It exposed stale controller records. Unknown creation outcomes, real concurrency, context loss and archival remain untested. [Evidence](evidence.md#handoff-and-recovery).
+4. **Whether splitting pays:** the first paired pilot completed three tasks per arm with zero extra coordination requests in both; Orchivane used more cumulative time and tokens. No specialists were created, so sustained splitting remains unmeasured. Find a real cross-role coordination burden and measure human time before claiming savings. [Evidence](evidence.md#paired-pilot).
 
-本项目继续关注长期专业会话、唯一总控入口和跨阶段接班。共用原则按需吸收；没有真实用例与验收证据前，不扩建后台编排平台或把上游测量结果写成本项目收益。
+See the [value assessment](value-assessment.md) for current decisions. The project remains focused on persistent roles, one controller and continuity across phases, without borrowing upstream results or expanding into a background orchestration platform without a demonstrated need.

@@ -1,5 +1,15 @@
 # 验证记录
 
+[English evidence index](../docs/evidence.md) · 原始中文记录
+
+## 2026-10-20: 0.3.2 English-first documentation
+
+The default README, maintained skill and five references, plugin descriptions and UI prompts now use English. A complete Chinese README and bilingual research/value guides provide language switching; the previous English README path remains a compatibility entry. Code identifiers and comments remain English. Historical reports and frozen examples retain their original contents and tested versions.
+
+This revision changes instruction wording and adds an explicit user-language convention. Packaging and offline checks do not establish translated-prompt equivalence; native discovery, handoff and bilingual behavior have not been rerun for 0.3.2. The installed 0.3.1 cache was not modified.
+
+Local static package validation, all 21 existing unit tests and the skill-creator format validator passed. Frozen paired inputs, recorded artifacts and historical examples were preserved. These checks cover structure and existing offline evidence, not a new native behavioral trial.
+
 ## 2026-10-20：0.3.1单会话配对试跑
 
 完整[协议、结果与复现材料](paired/README.md)已公开。三题各一对，原生八个新聊天、十二个执行轮次；实际模型均为gpt-6.1-sol/high，每题每组最多四轮。两组各三题完成，额外协调请求均零；Orchivane累计执行时长293.142秒、单会话216.163秒，报告总token分别1,536,528与1,120,054。费用与真人协调分钟数缺测，不能把相同轮次上限写成相同实际消耗。

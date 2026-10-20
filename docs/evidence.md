@@ -1,0 +1,66 @@
+# Evidence index
+
+[English README](../README.md) · [简体中文说明](../README.zh-CN.md) · [Original evaluation history, Chinese](../tests/evaluation.md)
+
+This English index summarizes existing experiments. Original records and frozen fixtures remain in their source language; translating a summary is not rerunning an experiment. Dates and skill versions identify the actual subjects of each run.
+
+## Version 0.3.2: English-first distribution
+
+Version 0.3.2 changes the maintained skill instructions, plugin presentation and default documentation to English, adds a complete Chinese README with language switching, and provides bilingual research/value guides. Code identifiers and comments remain English. Responses follow the user's preferred language.
+
+The change preserves the intended authorization, ownership, budget, frozen-input and handoff rules. Static validation and existing offline tests check packaging, links, recorded evidence and fixtures. They do not prove behavioral equivalence between translated prompts. Native discovery, actual handoff and bilingual behavior have not been rerun for 0.3.2; an existing installed 0.3.1 cache is not automatically evidence of installing this version.
+
+## Paired pilot
+
+Date: 2026-10-20. Skill: 0.3.1, source `a86ba04`. Three small synthetic tasks, one pair per task, eight native chats and twelve aggregate turns. Both arms used `gpt-6.1-sol` with high effort and the same initial business inputs. Each task/arm had a ceiling of four turns, including any collaborators. No specialists were created; the handoff case used a fresh successor in each arm.
+
+| Measure | Single chat | Orchivane |
+| --- | --- | --- |
+| Tasks completed | 3 of 3 | 3 of 3 |
+| Extra coordination requests | 0 | 0 |
+| Actual aggregate turns | 6 | 6 |
+| Cumulative active duration | 216.163 s | 293.142 s |
+| Reported total tokens | 1,120,054 | 1,536,528 |
+| Real human minutes / monetary cost | Not measured / unavailable | Not measured / unavailable |
+
+Tasks covered a small normalization change, staged changes across stock-summary code/CLI/docs/contract, and file-based handoff with a repeated request. Final functional checks passed in both arms: 4, 9 and 5 checks respectively. Each handoff arm applied A1 and A2 once; duplicate dispatch left the actual input, program, configuration, output and audit unchanged.
+
+**No coordination reduction was observed.** Both baselines reached zero extra requests. The tasks were short and well specified, cross-file changes did not create cross-role pressure, and no sustained specialist collaboration occurred. Other plugins remained enabled; treatment prompts differed; the observer knew the arms. Turn ceilings were equal, actual token use was not. Cached tokens comprise much of the total and cannot be treated as an equal-rate bill. There were no independent repeats or human-time calibration.
+
+Both arms retained intermediate failing tests before implementation, and the Orchivane preparation trace includes one failed read of absent index files. Measurement-driver errors are disclosed in the original report; no post-grading solver repair was added.
+
+Reproducible materials: [frozen English protocol](../tests/paired/protocol.md), [plan](../tests/paired/plan.json), [metrics](../tests/paired/metrics.json), [results](../tests/paired/results.jsonl), [inputs](../tests/paired/inputs.json), [final artifacts](../tests/paired/artifacts.json), [grader](../tests/paired/grade.py), [full report and reproduction, Chinese](../tests/paired/README.md). The record audit found all six planned rows without missing, duplicate or version-conflicting records; it is not release approval or proof of labeling quality.
+
+## Desktop installation
+
+Date: 2026-10-19. Skill: 0.3.1. CLI 0.157.1 installed and enabled `orchivane@orchivane-local`. Seven cached skill files matched the source. The user observed Orchivane in the desktop directory. Two fresh native desktop chats actually read the cached entry and relevant modules and used them to recommend a collaboration structure.
+
+One request body did not name the skill, but both chat titles included Orchivane and other plugins were enabled. Each case ran once; this is not an implicit-trigger rate or a clean ablation. No restart was needed for these checks. UI visibility is user-reported, while file reads and responses were inspected through tools.
+
+The earlier Session Control 0.3.0 standalone copy was discovered in the CLI but absent from three fresh desktop chats. Its root cause remains unknown. The later successful plugin route does not retroactively repair that path. [Original observations and reproduction, Chinese](../tests/desktop-plugin.md); [English compatibility notes](compatibility.md).
+
+## Handoff and recovery
+
+Date: 2026-10-20. Skill: frozen 0.3.1 from `33fb0c4`. Three native chats represented the old owner, fresh successor and independent reviewer, with eight dispatched turns in total.
+
+The isolated CSV fixture exercised missing ignored inputs, restoration from an independent backup, preservation of uncommitted configuration, injected ownership conflict, historical-versus-current evidence and identical serial duplicate dispatch. A1 produced two rows totaling 5; A2 produced three rows totaling 9, each with one actual execution receipt. The successor passed read-only acceptance before taking ownership and executing A2; the duplicate request did not apply again.
+
+Initial independent review supported the six bounded behaviors but failed overall closure because the controller's pending handoff item and role label were stale. One correction to current records and a targeted independent recheck closed those issues; failed snapshots remained intact. Two read-only measurement assertions initially mixed copied or historical evidence into the wrong scope and were corrected without another business apply.
+
+The ownership conflict was a labeled file injection, not a real concurrent writer. No native archival, unknown creation result, crash window, asynchronous transport recovery or retry after context loss was tested. The fixture has no built-in deduplication, so this is not transactional exactly-once execution. [Full protocol and closure report, Chinese](../tests/handoff-recovery.md); [fixture](../tests/fixtures/recovery/report.py).
+
+## Native project example
+
+Date: 2026-10-19. Three fresh native chats performed research, design and independent acceptance for a fictional tool-lending pilot. Execution used frozen Skill 0.2.0; version 0.3.0 incorporated fixes identified by the run and was not given a full native rerun.
+
+Research covered three institutions and five primary pages. Initial acceptance was 17/20; after the sole allowed revision it was 19/20, with a remaining state-transition conflict. **Final acceptance failed**, and the stop condition prevented another repair. The process also exposed a controller-created frozen-package reference failure. Public artifacts are sanitized; private IDs and raw native receipts remain private.
+
+[Full case, Chinese](../examples/tool-library/README.md), [native reproduction protocol, Chinese](../tests/native-e2e.md). This case establishes an inspectable native workflow and failure, not quality or efficiency superiority over one chat.
+
+## Earlier text scenarios
+
+Versions 0.1.0 and 0.2.0 included baseline and skill-guided text exercises. The no-skill baseline already respected several important permission, budget and preservation boundaries. The exercises produced real local records but did not operate native chats. Their evaluators knew the scenarios; these were neither blind controlled trials nor performance estimates. [Original history, Chinese](../tests/evaluation.md).
+
+## What remains unverified
+
+Real human coordination savings, representative long-running specialist work, language-specific behavioral equivalence, cross-client installation, archival survival, real concurrent writers, crash recovery and long-term scheduling need separate evidence. Static CI, a well-formed manifest or a successful bounded run cannot establish these properties.

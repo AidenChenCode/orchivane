@@ -15,6 +15,12 @@ python3 -m venv .venv
 
 On Windows use `.venv\Scripts\python.exe`. The development dependency parses YAML; running the skill itself needs no Python or packages. Static validation is read-only; fixture tests use temporary directories. Neither creates sessions or calls providers.
 
+## Language conventions
+
+`README.md` is the canonical English entry; `README.zh-CN.md` is the complete Chinese guide. Keep installation steps, capabilities and evidence claims in sync when editing either. `README.en.md` is a compatibility link, not a third maintained copy. The research and value guides also have `.zh-CN.md` counterparts.
+
+Use English for code identifiers, comments, maintained skill instructions, plugin metadata and technical contributor documentation. Conversations should follow the user's preferred language. Preserve source-language quotations, historical reports and frozen fixtures; link an English summary instead of rewriting evidence. Translating a skill does not revalidate its prior behavior, so retain original experiment versions and disclose untested language behavior.
+
 ## Report a problem
 
 Include the skill version, host/client and available tools, the minimal user request, expected and observed behavior, and which evidence was actually checked. Redact credentials, personal paths, private chat IDs, internal document links and transcripts. Do not publish raw session exports. For a security-sensitive issue, use the host repository's private vulnerability reporting if enabled; otherwise contact the maintainer through a private channel before sharing details publicly.

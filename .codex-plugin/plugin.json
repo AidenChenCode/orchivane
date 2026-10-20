@@ -1,8 +1,10 @@
 {
   "name": "orchivane",
-  "version": "0.3.1",
-  "description": "从项目想法设计总控多会话协作，内置 handoff 和增量巡检。",
-  "author": { "name": "alexzhu0" },
+  "version": "0.3.2",
+  "description": "Plan project collaboration, coordinate persistent chats, verify deliveries, and hand off work safely.",
+  "author": {
+    "name": "alexzhu0"
+  },
   "license": "MIT",
   "skills": "./skills/",
   "hooks": {}

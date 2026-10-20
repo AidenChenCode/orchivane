@@ -1,43 +1,43 @@
-# 内置 Handoff：交接到可继续工作的状态
+# Built-in handoff: leave work ready to continue
 
-本模块独立完成交接，无须另装 `session-handoff`。适用于总控及专业角色。换班理由是目标阶段变化或纠正资料后仍反复混淆当前要求；聊天长度、天数、一次压缩不是充分理由，也不编造上下文占用阈值。
+This module handles controller and specialist handoffs without a separate `session-handoff` installation. Appropriate reasons include a changed phase goal or repeated confusion about current requirements after correcting the materials. Chat length, age or one context compaction alone is not sufficient; do not invent context-usage thresholds.
 
-## 准备与授权
+## Preparation and authorization
 
-“准备交接”只准备材料。创建、发任务、切换职责、改自动化、归档分别沿用用户明确授权的范围；已有充分授权时不重复确认。交接不新增业务、模型调用、对外通信或发布权限。
+“Prepare a handoff” authorizes materials only. Creation, task messages, ownership transfer, automation changes and archival each follow the user's explicit scope; do not ask again where authorization is sufficient. Handoff grants no new business execution, model-call, external-communication or publication authority.
 
-读取当前索引、相关变更、真实会话状态及必要历史。记录实际覆盖与读取失败，不声称摘要覆盖完整历史。确认旧会话当前写入和交接点；仍在运行时协调已授权的结束点，未经授权不强行中断。
+Read the index, relevant changes, actual chat status and necessary history. Record coverage and failed reads; do not claim a summary covers the full history. Check old-owner writes and the handoff boundary. If work is still running, coordinate its authorized stopping point rather than interrupting it without permission.
 
-## 一份交接包，逐步补回执
+## One package, receipts added as steps complete
 
-默认路径 `docs/handoffs/<交接ID>.md`，复用项目既有目录。恢复中断交接时先读同一包，查询已创建的目标，避免重建、重复搬运或重复归档。
+Default location: `docs/handoffs/<handoff-id>.md`; reuse the project's existing layout. For an interrupted handoff, read the same package and inspect already-created targets before retrying. Avoid duplicate creation, transfers or archival.
 
 ```markdown
-# 交接 ID
-状态：准备 / 待接班 / 阻塞 / 已接班 / 已切换 / 已归档 / 归档后已复核
-旧/新会话：真实标题、ID、链接；角色；当前唯一主责
-授权：原请求出处，各动作授权范围，仍有效的预算/停止条件
-当前目标与有效决定：来源、被替代旧决定、未决冲突
-成果与版本：文件/文档入口，实际目录，worktree/分支/提交或资料批次
-验证证据：已验、未验、历史证据适用范围
-下一步：未完成项、依赖、完成条件、第一步
-本地依赖与自动化：资料位置、运行依赖、冻结输入、调度ID/目标/周期/状态
-保全记录：独立目标、范围/校验、已知缺失、恢复或读取检查
-接班回执：实际阅读/核对、职责理解、下一步、缺口
-切换/归档回执：每步实际结果、失败/重试点、归档后复核负责方与结果
+# Handoff ID
+Status: preparing / awaiting takeover / blocked / accepted / switched / archived / post-archive verified
+Old/new chats: actual titles, IDs, links; roles; current sole owner
+Authorization: original request, scope of each action, effective budget/stop conditions
+Current goal and decisions: sources, superseded decisions, unresolved conflicts
+Deliverables and versions: entries, actual directory, worktree/branch/commit or material batch
+Validation: verified, unverified, applicability of historical evidence
+Next steps: unfinished work, dependencies, completion criteria, first action
+Local dependencies and automation: locations, runtime needs, frozen inputs, schedule ID/target/cadence/status
+Preservation: independent destination, scope/checks, known missing items, recovery/read checks
+Takeover receipt: actual reading/verification, role understanding, next step, gaps
+Switch/archive receipts: actual results, failure/retry point, post-archive owner and verification
 ```
 
-摘要约一页；大型资产清单放附件，不复制整段聊天，不保存真实凭据。
+Keep the summary about one page; attach large asset inventories separately. Do not copy whole transcripts or store real credentials.
 
-## 安全执行顺序
+## Safe execution order
 
-1. **确认依赖不会随旧会话消失。** 核对附着工作树、未提交源码、ignored/untracked 资料、数据库及运行依赖。原生归档可能连带收起工作树；Git 快照通常不含 ignored 数据。把必要资料保全到不会随旧会话归档的位置，核清单/关键内容摘要及实际可读性。符号链接若仍指向待归档目录不算独立备份。活跃数据库使用一致性备份或约定停写点，不把写入中裸复制算可靠快照。既有缺失单独标出，不能伪称已恢复。
-2. **建立或复用接班目标。** 用户要求干净新会话时创建新任务，分叉会继承历史。先核真实返回的就绪 ID；未知结果先查询，不盲目重建。
-3. **首次接班只读核验。** 交付包和最小任务，让接收方报告职责、已读材料、实际版本/路径、未完成项、下一步及缺口。总控读取结果核验；“收到”不算通过，不立即重跑原业务。可运行性用必要的低成本检查证明，不擅自付费调用或部署。
-4. **确认自动化承接。** 查实际目标和有效配置；改绑必须在授权内，保留原提示、周期及其他字段，并读回核验。当前配置与旧记录不同，记录差异并查有效来源，不擅自回写旧周期。若仅历史记录过时、实时完整配置可核、原用户授权没有冲突且本次仅允许换目标，可保留实时配置改绑，标明历史差异的核查范围；不为追溯每次旧修改额外阻塞。若差异涉及用户明确禁令、预算/停止条件、未知任务身份或并发写入风险，则先解决关键冲突再切换。调度已改绑与首次定时执行成功分开记。若需要暂停/恢复，也须有相应授权，避免旧新同时写入。
-5. **通过后切换唯一主责。** 必需资料不可读、旧会话仍冲突写入、关键决定未核实或自动化未明确承接时保留原承接关系。条件满足后更新当前索引及受影响的现行入口，保留历史和替代关系。未授权归档则保留旧会话，交接仍可交付。
-6. **最后才归档，并核验归档后的真实状态。** 归档须已获授权且保全、接班、自动化均已核。保留原名/链接，不手动删除目录。通过归档列表/工具确认旧会话状态，再核必要路径、独立保全资料和接班可运行性；归档前可读不等于归档后仍可用。失败时只处理未完成步骤，必要时用平台恢复能力保全资料，不重新创建已成功的接班者。
+1. **Ensure dependencies survive the old chat.** Check attached worktrees, uncommitted source, ignored/untracked materials, databases and runtime dependencies. Native chat archival can also archive its worktree, and Git snapshots generally exclude ignored data. Preserve necessary materials somewhere independent of the old chat's archival; verify the inventory, key content hashes and actual readability. A symlink back into the directory being archived is not an independent backup. Use a consistent database backup or agreed write pause, not a live raw-file copy presented as reliable. Record already-missing materials separately; do not claim they were restored.
+2. **Create or reuse the successor.** If the user wants a clean conversation, create a new task; a fork inherits history. Verify the actual ready ID. Inspect uncertain outcomes before creating again.
+3. **Verify initial takeover read-only.** Give the recipient the package and a minimal task. Require its role, materials actually read, versions/paths, unfinished work, next step and gaps. The controller reads and checks that receipt; acknowledgment is not acceptance. Do not immediately rerun the business operation. Establish runnability with necessary low-cost checks, without unauthorized paid calls or deployment.
+4. **Verify automation continuity.** Read the actual target and effective configuration. Rebinding must be authorized; preserve the prompt, cadence and other fields, then read them back. If live configuration differs from history, record the difference and check the effective source instead of restoring an old cadence. When only history is stale, the complete live configuration is verifiable, original human authorization does not conflict, and only target changes are allowed, preserve live settings and rebind the target, stating the historical scope checked. Do not block solely to reconstruct every past edit. Resolve conflicts involving explicit prohibitions, budgets/stop conditions, unknown task identity or concurrent writes before switching. Record rebinding separately from the first successful scheduled execution. Pausing/resuming also requires authority; prevent old and new owners from writing concurrently.
+5. **Switch sole ownership only after acceptance.** Retain the original relationship if necessary materials are unreadable, old-owner writes conflict, important decisions are unverified or automation continuity is unclear. When conditions hold, update the current index and affected entries while preserving history and supersession. Without archival authorization, retain the old chat; the handoff can still be delivered.
+6. **Archive last, then verify the actual state.** Archive only after authorization, preservation, takeover and automation checks. Keep the original name/link; do not manually delete directories. Confirm the old chat's status with native archival tools, then check required paths, independent preserved data and successor runnability. Pre-archive readability does not prove post-archive survival. On failure, handle only unfinished steps and use native recovery capabilities if needed; do not recreate an already-established successor.
 
-**总控自身换班的额外要求：** 自归档可能终止当前执行。归档前明确一个已获授权、实际承接的会话负责最终归档后复核；可由接班总控执行最后归档和复核。若没有可执行的承接方，旧总控先保留，不能先自归档再承诺稍后检查。只有接收方回执、原生归档确认与归档后复核三者齐备，才标全部完成。
+**Additional requirement for controller handoff:** self-archival may end the current execution. Before archiving, name an authorized, actually accepted successor responsible for post-archive verification; it may perform final archival itself. If no capable owner has accepted, retain the old controller rather than archiving first and promising a later check. Mark the full process complete only with a takeover receipt, native archival confirmation and post-archive verification.
 
-无法保证保全时保留旧会话。工具不可用时交付包和准确缺口，明确未创建、未切换或未归档；不拿记录改成“已完成”代替实际操作。
+If preservation cannot be guaranteed, keep the old chat. If tools are unavailable, deliver the package and precise gaps, stating what was not created, switched or archived. Editing a status to “complete” cannot substitute for execution.

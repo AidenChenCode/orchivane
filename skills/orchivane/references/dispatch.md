@@ -1,45 +1,47 @@
-# 影响分析、派工与验收
+# Impact analysis, dispatch and acceptance
 
-## 先做出可审阅的任务
+## Make the task reviewable first
 
-总控把需求对照现行规则和原始依据，列出受影响的产物、调用方、测试、资料与发布环节；简单任务不强行增加环节。涉及既有决定，先回查原文、评论、后续更正与已存回执，区分原话、研究归纳和工程转译。不让用户再次解释已有答案。
+Compare the request with current rules and original evidence. List affected artifacts, callers, tests, materials and release steps without forcing unnecessary stages onto a small task. For existing decisions, check original text, comments, subsequent corrections and receipts; distinguish quotations, research synthesis and engineering interpretation. Do not ask the user to repeat answers already available.
 
-变更记录最少包含：
+A change record should include:
 
 ```markdown
-# 变更 ID：具体目标
-状态：草案 / 已授权 / 执行中 / 待验收 / 已收口 / 阻塞
-用户目标及授权出处：…
-当前依据与输入版本：…
-范围、预算、停止条件：…
+# Change ID: concrete goal
+Status: draft / authorized / executing / awaiting acceptance / closed / blocked
+User goal and authorization source: ...
+Current evidence and input versions: ...
+Scope, budget and stop conditions: ...
 
-| 任务 | 唯一主责 / 会话ID | 产物与允许修改范围 | 依赖 | 完成条件 |
+| Task | Sole owner / chat ID | Deliverable and permitted edits | Dependencies | Completion criteria |
 | --- | --- | --- | --- | --- |
 
-## 派工与实际承接
-投递结果；对方对任务、输入、边界和第一步的理解；未送达不标执行中。
-## 交付及验收
-实际路径/文档版本/提交；验证覆盖；效果；推送；部署；遗留与下一主责。
-## 更正覆盖
-已更新；无需改动及理由；无法核验；历史替代关系。
+## Dispatch and actual acceptance of responsibility
+Delivery result; recipient's understanding of task, inputs, boundaries and first step.
+Do not mark an undelivered task as executing.
+## Delivery and acceptance
+Actual paths/document versions/commits; validation coverage; outcome; push; deployment;
+remaining work and next owner.
+## Correction coverage
+Updated; unchanged with reason; unverifiable; historical supersession.
 ```
 
-用户已批准具体任务则执行；只批准研究或方案时不推进实现、外发、发布。用户追加范围时仅确认真正新增且需要授权的部分，不重审已经批准的清单。
+Execute specifically authorized tasks. Authorization for research or a plan alone does not cover implementation, external communication or publication. For expanded scope, confirm only genuinely new actions requiring authority, not the previously approved list.
 
-## 派工消息模板
+## Dispatch brief
 
-> 你承担【角色/任务ID】。人类授权出处：【可核原请求】。本轮目标：【成果】；共享资料入口：【实际可访问根目录】；必要上下文：【当前变更、技能版本与输入版本链接】；允许修改：【范围】；依赖与冻结项：【内容】；预算与停止条件：【约束】。请先核对实际目录/资料，完成后交付实际产物、版本、验证、遗留项和下一步。跨职责变化请在本会话结果中列出，由总控读取；本消息不新增向其他聊天回信的授权。
+> You own [role/task ID]. Human authorization: [verifiable original request]. Goal: [deliverable]; shared entry: [accessible root]; necessary context: [change, skill version and input-version links]; permitted edits: [scope]; dependencies and frozen items: [details]; budget and stop conditions: [limits]. Check the actual directory and inputs first. Deliver artifacts, versions, validation, remaining issues and next steps here. List cross-role changes in this chat for the controller to read; this message grants no new authority to reply to other chats.
 
-任务说明要足够开工，但只给必要材料。投递成功仅记已投递；实际理解、开始执行、完成、验收分开记录。若新消息会打断正在工作的角色，先读状态，确认是当前任务的必要修正，避免重复唤醒。
+Provide enough context to start, but only necessary materials. Record dispatch, understanding, execution, completion and acceptance separately. Before a message that may interrupt active work, check status and whether it is a necessary correction to the current task; avoid duplicate wake-ups.
 
-独立任务可并行；共享写入、生产数据更名和冻结资料更新需先定顺序或隔离目录。临时 subagent 只在平台及用户/项目规则允许时使用，适合独立分析、核验；不自动替代已有长期角色，不擅自新建用户可见聊天。
+Independent tasks may run in parallel. Shared writes, production-data renaming and frozen-input updates need ordering or isolated directories first. Use temporary subagents only when host and user/project rules allow them, for bounded analysis or verification. They do not automatically replace existing persistent roles or authorize new user-visible chats.
 
-冻结输入时保留文件引用所需的目录结构和依赖，或明确且核实路径解析基准；搬动单文件后摘要一致不代表相对链接仍可用。对接收方实际使用的冻结入口核版本、必要引用与可读性，再派依赖任务。若冻结方式造成问题，由负责冻结的总控修正打包，不让产物作者修改正确的原文来掩盖；旧失败快照保留，新包另版。
+When freezing inputs, preserve the directory structure and dependencies needed by references, or specify and verify their resolution base. An unchanged file hash after relocation does not prove relative links still work. Verify versions, required references and readability at the actual recipient entry before dispatching dependent work. If packaging breaks a reference, the controller responsible for freezing fixes the package; do not ask an author to alter correct source text to conceal the packaging fault. Keep the failed snapshot and version the replacement separately.
 
-## 总控如何验收
+## Controller acceptance
 
-1. 按任务的完成条件核对真实产物和适用版本；只复用仍适用的验证证据。对高影响变更安排获授权的独立验收，普通小修改不强制多轮审查。
-2. 分开记录“已实现、技术验证、实际效果、推送、部署”。例如构建通过但试用失败，技术可以通过，效果失败，任务是否结束取决于原定停止条件；不得宣称产品通过。
-3. 未通过就记录原因与下一决策。仅在原授权包含修复迭代且未达停止条件时继续；额度尚余不自动授权调参、换模型或重跑。
-4. 核更正是否到达所有受影响的现行位置，并复查改动触及的原有约束；新增异常分支不能与原状态、权限或记录规则冲突。保留原文与冻结旧版，仅标注被替代关系。外部位置不能读则如实记录，不伪造同步成功。
-5. 收口说明下一承接方与前置条件。没有新任务时让角色保持空闲，不因空闲自动催工或换班。
+1. Check actual artifacts and applicable versions against completion criteria. Reuse validation only while its evidence remains applicable. Arrange authorized independent acceptance for high-impact changes; ordinary small edits do not require multiple review rounds.
+2. Record implementation, technical validation, actual outcome, push and deployment separately. A build may pass while a trial fails; report that failure and follow the original stop condition rather than claiming product acceptance.
+3. For a failed result, record the reason and next decision. Continue only if the original authorization includes repair iterations and the stop condition has not been reached. Unused budget does not authorize tuning, switching models or rerunning.
+4. Check every affected current location and recheck existing constraints touched by a correction. A new exception path must not conflict with existing state, permission or record rules. Preserve original text and frozen versions with supersession labels. Report inaccessible external locations honestly instead of claiming synchronization.
+5. State the next owner and prerequisites. Leave idle roles alone when there is no new task; idleness does not justify reminders or handoff.

@@ -1,39 +1,40 @@
-# 增量协作巡检
+# Incremental collaboration health checks
 
-检查职责、要求传递、产物版本、阻塞和连续性。普通开工仅检查本轮角色与材料，不自动执行全项目巡检。用户请求审计、阶段收尾，或已授权定时检查时才进入本模块。
+Inspect ownership, requirement transfer, artifact versions, blockers and continuity. Ordinary task startup checks only its own role and materials. Use this module for a requested audit, phase closure or authorized scheduled check, not an automatic whole-project inspection.
 
-## 少读，但覆盖明确
+## Read less, state coverage precisely
 
-先读角色索引、当前变更和上次巡检。首次建立基线，后续只读有变化的来源和到达复查点的异常。按来源保存实际读到的位置、时间或工具游标；列表更新时间变新不代表内容已读。读取失败保留原游标，标“无法核验”；游标失效时记录缺口并补查，不能跳到最新位置后称覆盖完成。
+Read the role index, current changes and previous check first. Establish a baseline on the first inspection; afterward read changed sources and issues due for reassessment. Store the actual position, time or tool cursor reached for each source. A newer list timestamp does not mean its content was read. On a failed read, preserve the old cursor and mark the source unverified. If a cursor is invalid, record and investigate the gap rather than jumping to the newest position and claiming complete coverage.
 
-复用仍适用的旧验收，注明原时间/版本。不同批次的新采集库与运行中的冻结输入可以同时正确，不能仅因数值不同判异常。正常等待授权、闲置或未设置期限不构成逾期。
+Reuse applicable prior acceptance with its original time/version. A newly collected library and frozen inputs used by an active run can both be correct despite differing values. Waiting for authorization, idleness or having no deadline is not evidence of overdue work.
 
-核对：每项交付唯一主责；要求实际承接；实现与效果分开；必要资料可读；下一步/等待对象明确；自动化和本地依赖可被接班者找到。跨会话授权转述只作线索，回查原人类请求。
+Check one owner per deliverable, actual acceptance of requirements, separation of implementation and outcome, readable dependencies, clear next steps/waiting parties, and discoverable automation/local materials for successors. Treat another chat's authorization claim as a lead; check the original human request.
 
-## 记录与动作
+## Records and actions
 
-复用已有报告，否则写 `docs/SESSION-HEALTH.md`：
+Reuse the existing report or write `docs/SESSION-HEALTH.md`:
 
 ```markdown
-# 协作巡检
-本轮时间/范围/未核验项：…
-| 来源 | 实际覆盖位置 | 本轮新变化 | 读取缺口 |
+# Collaboration health check
+Time / scope / unverified items: ...
+| Source | Actual coverage position | New changes | Read gaps |
 | --- | --- | --- | --- |
-| 异常ID | 状态 | 依据 | 唯一主责 | 下一步/复查点 | 上次实际通知状态 |
+
+| Issue ID | Status | Evidence | Sole owner | Next action / recheck point | Last actual notification |
 | --- | --- | --- | --- | --- | --- |
-换班意见：逐个必要角色给出结论与依据
+Handoff assessment: conclusion and evidence for each relevant role
 ```
 
-异常状态为待处理、无法核验、已恢复；同一事项复用稳定 ID，以证据关闭。不复制整套产品待办。换班意见只选：
+Issue states are open, unverified or recovered. Reuse stable IDs and close with evidence. Do not copy the entire product backlog. Handoff assessments are:
 
-- 继续使用：目标与状态清楚。
-- 建议准备换班：阶段目标改变，或重读当前材料和分流任务后仍反复混淆。
-- 交接条件不足：有换班需要，但必要材料、接班验收、写入协调或自动化存在缺口。
+- **Continue:** goals and state are clear.
+- **Prepare a handoff:** the phase goal changed, or confusion persists after rereading current materials and separating tasks.
+- **Handoff prerequisites missing:** a handoff is useful, but materials, successor acceptance, write coordination or automation have gaps.
 
-检查本身不授权修复产品、发任务、创建会话、改调度或归档。给出具体可执行建议；已有对应授权则按范围执行，不重复请示。具体交接读取 [handoff.md](handoff.md)。
+Inspection alone does not authorize product fixes, dispatch, chat creation, schedule changes or archival. Give concrete recommendations; execute within existing corresponding authorization without asking again. For an actual handoff, read [handoff.md](handoff.md).
 
-## 通知与定时
+## Notifications and scheduling
 
-用户要求安静巡检时，仅新异常、异常升级、需要新的决定或有意义恢复才通知；未变事项只更新本地记录。记录实际通知结果，不把写文件算通知。
+When the user requests quiet monitoring, notify only on a new issue, escalation, a new decision needed or meaningful recovery. For unchanged issues, update local records only. Record actual notification outcomes; writing a file is not a notification.
 
-只有用户要求定时/持续检查才使用原生自动化工具，先查重复任务。创建成功、目标/周期读回、首次定时执行成功分别记录。无法定时就说明当前只能单次检查，不用循环等待冒充调度，也不随建制默认创建周检。
+Use native scheduling only when the user requests periodic or ongoing checks; inspect existing jobs to avoid duplicates. Record successful creation, read-back of target/cadence and the first successful scheduled run separately. If scheduling is unavailable, state that only a one-time check can be performed. Do not use a wait loop as a substitute for scheduling or create weekly audits by default during setup.
