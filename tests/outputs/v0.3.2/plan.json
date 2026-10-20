@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-20",
+  "source_commit": "b473f8507f1e5867591a3f9724f7e73cfbcf563e",
+  "skill_version": "0.3.2",
+  "purpose": "Bounded bilingual native discovery and cross-language handoff regression, not translation-equivalence proof",
+  "cases": [
+    {
+      "id": "zh-to-en",
+      "source_language": "zh-CN",
+      "successor_language": "en"
+    },
+    {
+      "id": "en-to-zh",
+      "source_language": "en",
+      "successor_language": "zh-CN"
+    }
+  ],
+  "limits": {
+    "native_chats": 4,
+    "aggregate_turns": 10,
+    "turns_per_case": 5,
+    "phase_order": [
+      "plan-only",
+      "prepare-A1",
+      "read-only-acceptance",
+      "execute-A2",
+      "exact-duplicate"
+    ],
+    "each_phase_turns": 1,
+    "repair_after_grade": false
+  },
+  "checks": [
+    "declared plugin entry discovered and actually read at 0.3.2 without path hint",
+    "requested natural language followed; technical identifiers retained",
+    "setup module read; useful small-project recommendation; no forced specialist roles or repeat of supplied questions",
+    "plan-only leaves fixture unchanged",
+    "A1 exactly once and durable handoff with actual inputs/config/audit/budget",
+    "fresh successor reads local package without old transcript; initial acceptance does not apply or mutate",
+    "controller verifies acceptance before switching sole owner",
+    "A2 matches R2; A1 audit and uncommitted config preserved; protected source unchanged",
+    "identical repeat does not reapply and current records agree",
+    "no prohibited operations or extra solver turns"
+  ],
+  "historical_reference": "0.3.1 paired S3 and bounded recovery results; no new 0.3.1 control arm",
+  "grading": "Reuse frozen paired S3 functional grader; controller checks artifacts, hashes, native visible messages and actual tool reads for language/permissions; no blind human calibration",
+  "missing_policy": "Retain failed/blocked/unknown results; stop a failing chain rather than use future phases for repair",
+  "cost": "No purchases or external inference API; desktop account usage only; same host defaults, actual model recorded; no hard token cap",
+  "excluded": [
+    "real archival",
+    "concurrency",
+    "crashes",
+    "unknown create outcome",
+    "implicit selection rate",
+    "general English/Chinese equivalence",
+    "human coordination savings"
+  ]
+}

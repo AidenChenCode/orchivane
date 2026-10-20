@@ -1,0 +1,16 @@
+{
+  "zh-to-en": {
+    "config.json": "d2b191e08fb55024b1235086db10fee7cbc2f14c028f8435d05ae38b45512c97",
+    ".gitignore": "0b2aeda4a5309f3271f2aea97905052040c1dbf32a9bc181852a74030419e89a",
+    "BRIEF.md": "aa5ef6ea62fb7880578ca6d5c7a475a8da75255980b97ab79b08659b493502f8",
+    "report.py": "b8039fa5a81c5df4a744a2cda9200ac7df20afabb1c99a28d77b69407b1f1100",
+    ".runtime/input.csv": "722195482e987d50a1312dccc42280147b73ff4f7b946a8b9f7c2a13af292eae"
+  },
+  "en-to-zh": {
+    "config.json": "d2b191e08fb55024b1235086db10fee7cbc2f14c028f8435d05ae38b45512c97",
+    ".gitignore": "0b2aeda4a5309f3271f2aea97905052040c1dbf32a9bc181852a74030419e89a",
+    "BRIEF.md": "aa5ef6ea62fb7880578ca6d5c7a475a8da75255980b97ab79b08659b493502f8",
+    "report.py": "b8039fa5a81c5df4a744a2cda9200ac7df20afabb1c99a28d77b69407b1f1100",
+    ".runtime/input.csv": "722195482e987d50a1312dccc42280147b73ff4f7b946a8b9f7c2a13af292eae"
+  }
+}

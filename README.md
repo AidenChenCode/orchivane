@@ -20,7 +20,7 @@ For example, ask the controller to add login to an existing product. It first ch
 
 **Coordination savings are not yet established.** In the [paired pilot](docs/evidence.md#paired-pilot), both workflows completed three tasks with zero extra coordination requests under the same tasks, model and turn ceilings. Orchivane used more cumulative active time and reported tokens. Real human time and sustained specialist collaboration were not measured.
 
-Version 0.3.2 makes skill instructions, plugin presentation and default documentation English-first, with a complete Chinese README. You can continue using Chinese in conversations. Native installation and behavioral observations below concern 0.3.1; they are not a native rerun of 0.3.2.
+Version 0.3.2 makes skill instructions, plugin presentation and default documentation English-first, with a complete Chinese README. You can continue using Chinese in conversations. A [native 0.3.2 follow-up](tests/bilingual-032.md) verified upgrade and loading in four fresh chats, bilingual planning, and English-to-Chinese handoff execution. The reverse handoff was interrupted by host capacity; final record consistency also needed controller closure. This is partial evidence, not proof of translation equivalence.
 
 ## Start from an idea
 
@@ -120,4 +120,4 @@ The skill defines a workflow; the host supplies chat creation, reading, messagin
 
 The native example finished at 19/20 and **failed acceptance**. The paired pilot found no coordination-request reduction. Bounded handoff tests do not prove crash recovery, concurrent safety or archival reliability. See [evidence](docs/evidence.md) for versions and failures; static checks are not behavioral tests or cross-client certification.
 
-Code identifiers, comments, plugin metadata and maintained skill instructions use English. The README and selected design guides provide Chinese counterparts. Respond in the user's preferred language. Original Chinese transcripts, fixtures and frozen reports remain in their source language so evidence is not rewritten; language-specific behavior has not been separately benchmarked.
+Code identifiers, comments, plugin metadata and maintained skill instructions use English. The README and selected design guides provide Chinese counterparts. Respond in the user's preferred language. Original Chinese transcripts, fixtures and frozen reports remain in their source language so evidence is not rewritten; the bounded [bilingual check](tests/bilingual-032.md) retains incomplete and failed observations alongside passes.

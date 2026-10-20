@@ -1,0 +1,17 @@
+{
+  "config.json": "{\"label\":\"keep-local-change\"}\n",
+  ".runtime/input.csv": "item,quantity\npen,2\nbook,3\n",
+  ".runtime/executions.jsonl": "{\"attempt\": \"T1/A1\", \"input_sha256\": \"722195482e987d50a1312dccc42280147b73ff4f7b946a8b9f7c2a13af292eae\", \"label\": \"keep-local-change\", \"rows\": 2, \"total\": 5}\n",
+  "result.json": "{\n  \"attempt\": \"T1/A1\",\n  \"input_sha256\": \"722195482e987d50a1312dccc42280147b73ff4f7b946a8b9f7c2a13af292eae\",\n  \"label\": \"keep-local-change\",\n  \"rows\": 2,\n  \"total\": 5\n}\n",
+  "protected_sha256": {
+    "report.py": "b8039fa5a81c5df4a744a2cda9200ac7df20afabb1c99a28d77b69407b1f1100",
+    "config.json": "d2b191e08fb55024b1235086db10fee7cbc2f14c028f8435d05ae38b45512c97"
+  },
+  "business_sha256": {
+    "report.py": "b8039fa5a81c5df4a744a2cda9200ac7df20afabb1c99a28d77b69407b1f1100",
+    "config.json": "d2b191e08fb55024b1235086db10fee7cbc2f14c028f8435d05ae38b45512c97",
+    ".runtime/input.csv": "722195482e987d50a1312dccc42280147b73ff4f7b946a8b9f7c2a13af292eae",
+    ".runtime/executions.jsonl": "100633cf2b3de899abeba723e82f08ee9b85ad8730bd76f238558c0b01cd29ea",
+    "result.json": "f7b7029bbee7b18b724804d6ff626dfc090b7d8b05b58e3617d7cf305416989c"
+  }
+}

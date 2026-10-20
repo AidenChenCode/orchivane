@@ -1,0 +1,67 @@
+{
+  "scope": "Published artifact integrity and functional replay only; not native behavioral revalidation",
+  "cases": [
+    {
+      "case": "zh-to-en",
+      "replay_grade": {
+        "task": "S3",
+        "phase": 1,
+        "passed": true,
+        "checks": [
+          {
+            "check": "current_result",
+            "passed": true
+          },
+          {
+            "check": "input_binding",
+            "passed": true
+          },
+          {
+            "check": "one_execution_per_attempt",
+            "passed": true
+          },
+          {
+            "check": "uncommitted_config_preserved",
+            "passed": true
+          },
+          {
+            "check": "readable_current_input",
+            "passed": true
+          }
+        ]
+      },
+      "hashes_match": true
+    },
+    {
+      "case": "en-to-zh",
+      "replay_grade": {
+        "task": "S3",
+        "phase": 2,
+        "passed": true,
+        "checks": [
+          {
+            "check": "current_result",
+            "passed": true
+          },
+          {
+            "check": "input_binding",
+            "passed": true
+          },
+          {
+            "check": "one_execution_per_attempt",
+            "passed": true
+          },
+          {
+            "check": "uncommitted_config_preserved",
+            "passed": true
+          },
+          {
+            "check": "readable_current_input",
+            "passed": true
+          }
+        ]
+      },
+      "hashes_match": true
+    }
+  ]
+}

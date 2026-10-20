@@ -2,7 +2,15 @@
 
 [English evidence index](../docs/evidence.md) · 原始中文记录
 
-## 2026-10-20: 0.3.2 English-first documentation
+## 2026-10-20：0.3.2 本机升级与原生双语复核
+
+完整[英文报告](bilingual-032.md)与[中文摘要](bilingual-032.zh-CN.md)保留冻结方案和实际结果。本机插件已升级并启用 0.3.2，7 个缓存文件与源码一致；4 个新对话均实际读取该版本。共派发 8 轮，7 完成、1 因宿主模型容量失败，未追加执行者修复。
+
+两种语言的规划及 A1 准备通过。英文材料到中文接班完成只读验收、总控切换、A2 与重复请求检查；反向验收中断，未继续派工。最终现行记录停在 4/5，与回复中的实际 5/5 不一致；测试索引的只读要求和派工中的记录更新要求存在冲突。总控评分后保留原记录并补齐收尾，业务数据未变，原一致性失败不改成通过。不能宣称双向接班全部通过或翻译行为等价。
+
+本节替代下一历史记录中的“尚未重测、未修改本机缓存”作为当前状态；保留原发布时点说明。Skill 和清单保持 0.3.2。旧冻结案例及对照结果不重写，真实归档、并发和协调成本仍未新增验证。
+
+## 2026-10-20: 0.3.2 English-first documentation (historical release-time record)
 
 The default README, maintained skill and five references, plugin descriptions and UI prompts now use English. A complete Chinese README and bilingual research/value guides provide language switching; the previous English README path remains a compatibility entry. Code identifiers and comments remain English. Historical reports and frozen examples retain their original contents and tested versions.
 

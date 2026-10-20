@@ -1,0 +1,212 @@
+{
+  "version": "0.3.2",
+  "source_commit": "b473f8507f1e5867591a3f9724f7e73cfbcf563e",
+  "date": "2026-10-20",
+  "overall": "partial_evidence_not_clean_nonregression",
+  "native_chats": 4,
+  "dispatched_turns": 8,
+  "completed_turns": 7,
+  "failed_turns": 1,
+  "unused_ceiling_turns": 2,
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "new_031_control_arm": false,
+  "cases": {
+    "zh-to-en": {
+      "turns": [
+        {
+          "phase": "plan-only",
+          "status": "completed",
+          "duration_ms": 46507,
+          "error": null,
+          "cached_032_reads": [
+            "SKILL.md",
+            "references/setup.md"
+          ]
+        },
+        {
+          "phase": "prepare-A1",
+          "status": "completed",
+          "duration_ms": 119592,
+          "error": null,
+          "cached_032_reads": [
+            "references/handoff.md",
+            "references/dispatch.md",
+            "SKILL.md"
+          ]
+        },
+        {
+          "phase": "read-only-acceptance",
+          "status": "failed",
+          "duration_ms": 18773,
+          "error": {
+            "message": "Selected model is at capacity. Please try a different model.",
+            "additionalDetails": null
+          },
+          "cached_032_reads": [
+            "SKILL.md"
+          ]
+        }
+      ],
+      "plan_requested_language": true,
+      "plan_minimal_single_owner_recommended": true,
+      "plan_files_unchanged": true,
+      "a1_functional_checks_passed": 5,
+      "a1_preserved_files": 5,
+      "acceptance_files_unchanged": true,
+      "successor_requested_language": "English commentary only; no completed acceptance",
+      "functional_grade_at_last_reached_phase": {
+        "task": "S3",
+        "phase": 1,
+        "passed": true,
+        "checks": [
+          {
+            "check": "current_result",
+            "passed": true
+          },
+          {
+            "check": "input_binding",
+            "passed": true
+          },
+          {
+            "check": "one_execution_per_attempt",
+            "passed": true
+          },
+          {
+            "check": "uncommitted_config_preserved",
+            "passed": true
+          },
+          {
+            "check": "readable_current_input",
+            "passed": true
+          }
+        ]
+      },
+      "outcome": "incomplete_host_capacity_error",
+      "ownership_switched": false,
+      "a2_and_duplicate_tested": false,
+      "prohibited_solver_actions_observed": false,
+      "current_record_check": "not reached"
+    },
+    "en-to-zh": {
+      "turns": [
+        {
+          "phase": "plan-only",
+          "status": "completed",
+          "duration_ms": 36387,
+          "error": null,
+          "cached_032_reads": [
+            "SKILL.md",
+            "references/setup.md"
+          ]
+        },
+        {
+          "phase": "prepare-A1",
+          "status": "completed",
+          "duration_ms": 148330,
+          "error": null,
+          "cached_032_reads": [
+            "references/handoff.md",
+            "references/dispatch.md"
+          ]
+        },
+        {
+          "phase": "read-only-acceptance",
+          "status": "completed",
+          "duration_ms": 60340,
+          "error": null,
+          "cached_032_reads": [
+            "SKILL.md",
+            "references/setup.md",
+            "references/handoff.md"
+          ]
+        },
+        {
+          "phase": "execute-A2",
+          "status": "completed",
+          "duration_ms": 77588,
+          "error": null,
+          "cached_032_reads": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "phase": "exact-duplicate",
+          "status": "completed",
+          "duration_ms": 40036,
+          "error": null,
+          "cached_032_reads": []
+        }
+      ],
+      "plan_requested_language": true,
+      "plan_minimal_single_owner_recommended": true,
+      "plan_files_unchanged": true,
+      "a1_functional_checks_passed": 5,
+      "a1_preserved_files": 8,
+      "acceptance_files_unchanged": true,
+      "successor_requested_language": "Chinese acceptance and both execution replies",
+      "functional_grade_at_last_reached_phase": {
+        "task": "S3",
+        "phase": 2,
+        "passed": true,
+        "checks": [
+          {
+            "check": "current_result",
+            "passed": true
+          },
+          {
+            "check": "input_binding",
+            "passed": true
+          },
+          {
+            "check": "one_execution_per_attempt",
+            "passed": true
+          },
+          {
+            "check": "uncommitted_config_preserved",
+            "passed": true
+          },
+          {
+            "check": "readable_current_input",
+            "passed": true
+          }
+        ]
+      },
+      "outcome": "functional_pass_with_current_record_gap",
+      "ownership_switched": true,
+      "a2_and_duplicate_tested": true,
+      "prohibited_solver_actions_observed": false,
+      "current_record_check": {
+        "passed_before_controller_closure": false,
+        "file_used_turns": 4,
+        "actual_used_turns": 5,
+        "file_next_step": "dispatch final check although already completed",
+        "confound": "Controller index called final phase read-only; execution prompt also requested current-record updates. Solver reported actual budget in its final reply and wrote no files."
+      }
+    }
+  },
+  "limitations": [
+    "one run per direction",
+    "explicit skill naming and detailed phase constraints",
+    "other installed plugins enabled",
+    "controller checks unblinded",
+    "native receipts private; published evidence is redacted derivative",
+    "no translation equivalence or coordination savings claim"
+  ],
+  "cumulative_native_turn_ms": 547553,
+  "duplicate_hash_check": {
+    "all_files_unchanged": true,
+    "protected_business_files_unchanged": true,
+    "current_record_budget_agrees_with_actual_turns": false,
+    "current_record_next_step_agrees_with_actual_phase": false,
+    "observed_final_reply_budget": 5,
+    "observed_current_file_budget": 4
+  },
+  "controller_closure": {
+    "records_updated": true,
+    "business_artifacts_unchanged": true,
+    "solver_retries": 0,
+    "original_grades_preserved": true,
+    "skill_or_manifest_changed": false
+  }
+}

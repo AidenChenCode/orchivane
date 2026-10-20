@@ -1,0 +1,15 @@
+{
+  "version": "0.3.2",
+  "installed": true,
+  "enabled": true,
+  "source_commit": "b473f8507f1e5867591a3f9724f7e73cfbcf563e",
+  "skill_sha256": {
+    "skills/orchivane/SKILL.md": "7372589680d37058f2c3908ee628fff63a84092f4db440be9b1a60332e8ef77a",
+    "skills/orchivane/references/setup.md": "e4b0f5b0f39b95287921953a82bf00a4b0aca27daadf56e940a8378814c820af",
+    "skills/orchivane/references/health-check.md": "45a41c0c00be09861b2888b16e3f009ba90819184f2b88964bd1f747f18f3a70",
+    "skills/orchivane/references/codex.md": "df65f6170f58c0aa6e655099b37096791ea90b7f3aa390fe5f139a7dc77082f1",
+    "skills/orchivane/references/dispatch.md": "a801e3879ec0ee67dd0a3de569cab2f89d3b0833a2090a4145befe878851d67a",
+    "skills/orchivane/references/handoff.md": "d51ce0b209a934e096eb30940e4ab838ff9cc94e9c3234ddc78503112598e32c",
+    "skills/orchivane/agents/openai.yaml": "a4e6158ced8ae7d0d0a119a32a93f589a1d245b67a6771b79f311847f922fa6d"
+  }
+}

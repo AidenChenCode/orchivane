@@ -1,6 +1,6 @@
 # Compatibility and current design basis
 
-Checked against primary documentation on 2026-10-19. Version 0.3.2 translates the skill and default presentation into English; the native installation and behavioral observations below remain tied to their original versions. No native 0.3.2 rerun is claimed. Availability is a capability question, not a brand-name guarantee.
+Checked against primary documentation on 2026-10-19. Version 0.3.2 translates the skill and default presentation into English; the native installation and behavioral observations below remain tied to their original versions. A [2026-10-20 native 0.3.2 follow-up](../tests/bilingual-032.md) verified local upgrade and fresh-chat loading, with partial bilingual/handoff results and retained failures. Availability is a capability question, not a brand-name guarantee.
 
 | Surface | Supported claim | Limit |
 | --- | --- | --- |
@@ -8,7 +8,7 @@ Checked against primary documentation on 2026-10-19. Version 0.3.2 translates th
 | Codex desktop with native chat tools | The repository preserves a real creation → dispatch → artifact → review experiment using frozen 0.2.0 | A documented run on one host is not every account/client version |
 | Codex CLI / other skill clients | Instructions and records can be used | Native persistent-chat control must be verified separately; subagents are not a drop-in substitute |
 | Claude Code agent teams | Relevant conceptual comparison | No tested adapter or Claude plugin manifest in this release |
-| Portable / Codex plugin package | CLI 0.157.1 installation passed; user observed desktop directory visibility; two fresh desktop chats read and used 0.3.1 | UI-button installation, other hosts and repeatable implicit selection remain unverified |
+| Portable / Codex plugin package | CLI 0.157.1 installation passed; user observed desktop directory visibility; two fresh desktop chats read and used 0.3.1; later four fresh chats read installed 0.3.2, with partial behavioral results | UI-button installation, other hosts and repeatable implicit selection remain unverified |
 
 The [Agent Skills specification](https://agentskills.io/specification) standardizes skill files and progressive loading; it does not standardize chat creation or archival. The core stays independent of a host, and the Codex reference documents native capabilities that must exist at execution time. Other clients can fall back to files and copyable task briefs without pretending a message was sent.
 

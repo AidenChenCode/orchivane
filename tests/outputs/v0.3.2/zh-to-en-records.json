@@ -1,0 +1,16 @@
+{
+  "before_controller_closure": "# Current project ownership\n\n截至 2026-10-20；本记录是当前入口。历史原记录保留于 `handoffs/T1-A1/preserved/docs/SESSION-MANAGEMENT.md`，不再代表当前阶段。\n\nCurrent owner: 双语验证｜中文规划 / <source-chat>\nPhase: A1 preparation complete; awaiting read-only successor acceptance. 主责尚未切换。\nWrite boundary: 旧主责完成本轮交付后停止写入；下一阶段接班者只读，总控验收通过并明确授权后方可切换主责和执行 A2。\nController / human-authority reference: <controller-chat-reference>；人类请求本地升级及全新原生双语交接验证。\nBudget: five aggregate native turns total; planning + A1 preparation consumed two; three remain after this turn, one per dispatched phase. No reset on handoff, compaction or retry.\n\n## 交付与证据\n- 实际项目：`<project-zh-to-en>`；以 BRIEF.md 为要求入口。\n- 已安装 Orchivane 0.3.2（实际读取元数据）；最小结构沿用总控，不设专业会话。\n- 交接包：`handoffs/T1-A1.md`；验证证据：`handoffs/T1-A1/evidence.json`；保留副本：`handoffs/T1-A1/preserved/`。\n- 已执行且只执行一次 `python3 -B report.py --attempt T1/A1 --apply`，退出码 0。\n- 实际结果：2 行，总量 5，label=keep-local-change；result.json、打印输出和唯一一条 T1/A1 回执一致。T1/A2 条数为 0。\n- 原未提交配置、输入、report.py、.gitignore 和 BRIEF.md 哈希不变；ignored 输入和审计仍在原位，并有已验证副本。Git main / HEAD 93ddcdd0310366491d3f972cf70778c345de4903。\n- 技术验证已完成；总控的阶段验收、接班者验收和主责切换尚未发生。未提交、推送、部署。\n\n## 下一主责及待办\n1. 总控创建全新接班者并给出只读验收任务，入口为上述绝对项目路径及交接包；本会话未创建或联系接班者。\n2. 接班者核对实际材料与 A1 基线，在自身答复交付只读验收回执；总控直接读取验收。\n3. 验收通过后，总控才切换唯一主责并另行授权 A2；后续重复检查不得重跑 A1。\n\n当前阶段不再执行报告或写入。无额外聊天、子代理、归档、自动化、网络、购买、生产操作授权。不得修改 report.py、config.json、输入 CSV；不得读取其他试验、评估材料或无关历史。程序无内置去重，每次 --apply 均追加回执。\n\nPending successor: Bilingual check | English successor / <successor-chat>. Created for read-only acceptance; sole owner has not switched.\n",
+  "after_controller_closure": "# Current role and closure record\n\nSole recorded owner: <source-chat>. Owner is quiescent.\n\nStopped: successor acceptance failed with a host capacity error. No ownership switch or A2 dispatch occurred.\nBudget used: 3/5. Trial stopped; unused allowance does not authorize retry.\nNo next execution is authorized. A1 evidence and all local input/configuration/audit files remain preserved.\n\nController closure: docs/handoffs/controller-closure.json. Superseded current index: docs/handoffs/pre-closure-index.md. All phase-specific handoff and verification files are historical evidence; their pending status and budget values do not override this closure.\n\nNo commit, push or deployment applies to this fixture. No archive occurred. Next owner for a separately authorized experiment: controller.\n",
+  "closure": {
+    "case": "zh-to-en",
+    "stage": "controller closure after frozen trial; not a solver retry",
+    "used_solver_turns": 3,
+    "maximum": 5,
+    "unused_turns_authorize_retry": false,
+    "outcome": "Stopped: successor acceptance failed with a host capacity error. No ownership switch or A2 dispatch occurred.",
+    "current_owner": "<recorded-owner>",
+    "business_artifacts_unchanged_by_closure": true,
+    "archive": "not performed; preserve all chats and local data",
+    "next": "No automatic dispatch. A separate bounded future experiment is required for additional behavioral evidence."
+  }
+}
