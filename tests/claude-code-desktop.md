@@ -60,6 +60,23 @@ These probes ran on 2026-10-20, except the archival-cascade and reuse-pool check
 
 `scripts/validate.py` and all 24 unit tests passed, including new checks for the Claude manifest and for `claude://` links and `local_...` IDs. `claude plugin validate` passed for the repository and `.claude-plugin/marketplace.json`. On 2026-10-21, a headless session of the bundled Claude Code 2.1.295 loaded the repository with `--plugin-dir` (session only, read-only tools): its skills list showed `orchivane:orchivane` next to the standalone `orchivane`, the Skill tool loaded the namespaced entry from the plugin's `skills/orchivane`, which reported version 0.4.0 and the Claude Code routing row, and it read `references/claude-code.md` from that directory. Marketplace installation from GitHub was not run.
 
+## Instruction-loading regression review
+
+On 2026-10-21, maintainer review of PR #1 found that the adapter at `5f153fb` unconditionally requested a `CLAUDE.md` importing the adjacent `AGENTS.md`. The correction preserves working native loading and requires scope verification before introducing imports. This is a documentation-based review of the corrected decisions, not a new native trial; the review host had no Claude CLI on PATH or desktop app at the standard Applications location.
+
+Reproducer: an isolated lab contains `parent/AGENTS.md` and `parent/project/AGENTS.md`, with distinct harmless markers and no Claude instruction files. Launch from `parent/project` using the default instruction setting. The documented baseline loads both files. The old advice adds `parent/project/CLAUDE.md` containing only `@AGENTS.md`, which leaves the parent's rules out of the startup set. The corrected advice leaves the working layout unchanged.
+
+| Case reviewed | Decision under the corrected adapter | Review result |
+| --- | --- | --- |
+| Parent and project AGENTS files already load | Keep both files and do not add a wrapper | Preserves the documented baseline |
+| Project has an existing CLAUDE file and an unloaded AGENTS file | Preserve Claude content; assess all applicable rules before adding imports | No unconditional replacement or adjacent-only assumption |
+| Project has no AGENTS file but inherits one | Inspect inherited rules before creating a project CLAUDE file | Covers the same switch in a new project |
+| Runtime or loading evidence is unavailable | Report loading as unverified | Does not claim compatibility from file presence |
+
+Basis: [official instruction-loading documentation](https://code.claude.com/docs/en/memory#agentsmd), read on 2026-10-21. The table records maintainer reasoning, not agent behavior or a simulated Claude implementation. No keyword test was added to stand in for runtime behavior. After the correction, the package validator (109 files), all 24 unit tests, Skill frontmatter validation and `git diff --check` passed locally.
+
+Native regression protocol: use disposable folders for each case, record client version and instruction setting, capture the loaded file set before and after the adapter-guided setup, then reopen a fresh session. For the reproducer, require both markers and no new wrapper; also open a file under a nested AGENTS scope and verify its marker remains available. For the import case, require the existing Claude content and every intended imported rule. Missing files or unavailable observations are a failure or unverified result, never a pass. Do not change global settings to make a case pass. This protocol remains unrun on the review host.
+
 ## Limits
 
 Each run happened once on one host and one account. Runs 2 and 3 used the run-1 lab, so the clean empty-project setup path was exercised only before the round-1 fixes. The final wording edits are untested natively. Not exercised: `start_session` and `hand_off_to_session` (absent on this host), Remote Control and cloud sessions, the terminal CLI, archival of a worktree holding only ignored files, holds for user-created sessions in another permission class, `AGENTS.md` auto-loading, controller handoff and plugin installation from GitHub. Raw transcripts, session IDs, links and personal paths remain private; this record is a sanitized summary.

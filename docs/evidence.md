@@ -10,6 +10,8 @@ Version 0.4.0 adds `.claude-plugin/` manifests and a [Claude Code adapter](../sk
 
 Dates: 2026-10-20 to 2026-10-21. In three fresh-controller runs in the desktop app, the user typed the same request and the controller created a writer and a reviewer through task chips, dispatched by `ListAgents` name with idle notices, accepted a brief against hashes (integrated by the controller in runs 2 and 3), with no archives, schedules or writes outside the lab. In run 1 the app's worktree guard blocked the reviewer from writing to the base checkout, which the writer had reached through the shell; the layout rule added afterwards held in runs 2 and 3. Run 3 passed 13 of 16 items, with three partial. Runs 2 and 3 used the run-1 lab, run 2 was confounded by an active plugin during planning and low effort, and the final wording edits were not rerun. A session-only `--plugin-dir` load discovered and invoked the plugin skill; installation from GitHub was not observed. [Full record](../tests/claude-code-desktop.md).
 
+The 2026-10-21 [instruction-loading regression review](../tests/claude-code-desktop.md#instruction-loading-regression-review) corrected an unconditional CLAUDE wrapper recommendation that could omit inherited AGENTS rules. Four setup cases were reviewed against documented behavior; native loading remains unverified.
+
 ## Version 0.3.2: English-first distribution
 
 Version 0.3.2 changes the maintained skill instructions, plugin presentation and default documentation to English, adds a complete Chinese README with language switching, and provides bilingual research/value guides. Code identifiers and comments remain English. Responses follow the user's preferred language.
