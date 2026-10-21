@@ -20,7 +20,7 @@ For example, ask the controller to add login to an existing product. It first ch
 
 **Coordination savings are not yet established.** In the [paired pilot](docs/evidence.md#paired-pilot), both workflows completed three tasks with zero extra coordination requests under the same tasks, model and turn ceilings. Orchivane used more cumulative active time and reported tokens. Real human time and sustained specialist collaboration were not measured.
 
-Version 0.4.0 adds Claude Code support: plugin manifests and a [Claude Code adapter](skills/orchivane/references/claude-code.md) for the Claude desktop app's Code tab. In [three native desktop runs](tests/claude-code-desktop.md), fresh controllers created two persistent roles, dispatched work and accepted a short brief with an independent review. The final run passed 13 of 16 checks with three partial, and the text was revised afterwards without a rerun; plugin installation in Claude Code has not been observed.
+Version 0.4.0 adds Claude Code support: plugin manifests and a [Claude Code adapter](skills/orchivane/references/claude-code.md) for the Claude desktop app's Code tab. In [three native desktop runs](tests/claude-code-desktop.md), fresh controllers created two persistent roles, dispatched work and accepted a short brief with an independent review. The final run passed 13 of 16 checks with three partial, and the text was revised afterwards without a rerun; plugin installation from GitHub has not been observed.
 
 Version 0.3.2 makes skill instructions, plugin presentation and default documentation English-first, with a complete Chinese README. You can continue using Chinese in conversations. A [native 0.3.2 follow-up](tests/bilingual-032.md) verified upgrade and loading in four fresh chats, bilingual planning, and English-to-Chinese handoff execution. The reverse handoff was interrupted by host capacity; final record consistency also needed controller closure. This is partial evidence, not proof of translation equivalence.
 
@@ -92,7 +92,7 @@ In Claude Code, add the GitHub source and install the plugin:
 /plugin install orchivane@orchivane
 ```
 
-From a shell, `claude plugin marketplace add alexzhu0/orchivane` and `claude plugin install orchivane@orchivane` do the same. The manifests pass `claude plugin validate`, but installation and discovery from this source have not been observed yet. For a standalone copy, place the complete `skills/orchivane` directory at `~/.claude/skills/orchivane` or in a project's `.claude/skills/`, and keep one active source. Creating, messaging and archiving persistent chats needs the session tools of the Claude desktop app's Code tab; see the [Claude Code adapter](skills/orchivane/references/claude-code.md) and the [desktop record](tests/claude-code-desktop.md).
+From a shell, `claude plugin marketplace add alexzhu0/orchivane` and `claude plugin install orchivane@orchivane` do the same. The manifests pass `claude plugin validate`, and a session-only `--plugin-dir` load discovered and invoked `orchivane:orchivane`; installation from this GitHub source has not been observed yet. For a standalone copy, place the complete `skills/orchivane` directory at `~/.claude/skills/orchivane` or in a project's `.claude/skills/`, and keep one active source. Creating, messaging and archiving persistent chats needs the session tools of the Claude desktop app's Code tab; see the [Claude Code adapter](skills/orchivane/references/claude-code.md) and the [desktop record](tests/claude-code-desktop.md).
 
 ### Standalone skill
 

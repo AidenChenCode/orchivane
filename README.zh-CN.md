@@ -20,7 +20,7 @@ Orchivane 把这些协作责任交给一个总控入口：总控先澄清目标�
 
 **尚未证明协调成本更低。** 2026-10-20的[配对试跑](tests/paired/README.md)使用相同任务、模型及轮次预算上限：两组各完成三题，额外协调请求均为零；Orchivane 组累计执行时长和 token 更高。没有测量真人时间，也没有形成长期多角色协作，不能把机制设计当成已证实的效能收益。
 
-0.4.0 新增 Claude Code 支持：插件清单，以及面向 Claude 桌面 App Code 标签页的 [Claude Code 适配说明](skills/orchivane/references/claude-code.md)。在[三轮桌面原生验收](tests/claude-code-desktop.md)中，新总控创建两个长期角色，完成派工，并验收一份附独立评审的简报；最后一轮 16 项中 13 项通过、3 项部分通过，此后的措辞修订未再复测。Claude Code 中的插件安装尚未实测。
+0.4.0 新增 Claude Code 支持：插件清单，以及面向 Claude 桌面 App Code 标签页的 [Claude Code 适配说明](skills/orchivane/references/claude-code.md)。在[三轮桌面原生验收](tests/claude-code-desktop.md)中，新总控创建两个长期角色，完成派工，并验收一份附独立评审的简报；最后一轮 16 项中 13 项通过、3 项部分通过，此后的措辞修订未再复测。从 GitHub 安装插件尚未实测。
 
 0.3.2 将技能正文、插件展示及默认文档改为英文；可继续用中文对话。[0.3.2 原生复核](tests/bilingual-032.zh-CN.md)已确认本机升级、四个新对话加载、中英文规划及英文材料到中文接班的执行；反向接班因宿主容量中断，最终记录一致性也需总控收尾。这是部分证据，不能宣称翻译后完全无退化。
 
@@ -92,7 +92,7 @@ codex plugin list --marketplace orchivane-local --json
 /plugin install orchivane@orchivane
 ```
 
-也可在终端执行 `claude plugin marketplace add alexzhu0/orchivane` 和 `claude plugin install orchivane@orchivane`。清单已通过 `claude plugin validate`，但从该来源安装和发现尚未实测。独立复制安装时，把完整的 `skills/orchivane` 目录放到 `~/.claude/skills/orchivane` 或项目的 `.claude/skills/`，只保留一个活跃来源。创建、发消息和归档长期会话需要 Claude 桌面 App Code 标签页的会话工具，见 [Claude Code 适配说明](skills/orchivane/references/claude-code.md)与[桌面验收记录](tests/claude-code-desktop.md)。
+也可在终端执行 `claude plugin marketplace add alexzhu0/orchivane` 和 `claude plugin install orchivane@orchivane`。清单已通过 `claude plugin validate`，以 `--plugin-dir` 临时加载时能发现并调用 `orchivane:orchivane`；从该 GitHub 来源安装尚未实测。独立复制安装时，把完整的 `skills/orchivane` 目录放到 `~/.claude/skills/orchivane` 或项目的 `.claude/skills/`，只保留一个活跃来源。创建、发消息和归档长期会话需要 Claude 桌面 App Code 标签页的会话工具，见 [Claude Code 适配说明](skills/orchivane/references/claude-code.md)与[桌面验收记录](tests/claude-code-desktop.md)。
 
 ### 独立 Skill 安装
 
